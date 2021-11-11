@@ -1,4 +1,5 @@
 <html>
+<title> Home </title>
 <form action="loginController.php" method="post">
     <div class="form-group">
         <input type="text" class="form-control" id="email1" name="uemail" placeholder="Email...">
