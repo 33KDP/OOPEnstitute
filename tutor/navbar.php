@@ -14,7 +14,7 @@
                     <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="timeslot.php">Time Slots</a>
+                    <a class="nav-link" href="timeslots.php">Time Slots</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="requests.php">Requests</a>

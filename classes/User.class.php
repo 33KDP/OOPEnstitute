@@ -11,12 +11,12 @@ abstract class User
     private int $userTypeId;
 
     private $profilePic;
-    private int $rating;
-    protected DBConn $dbCon;
+    private $rating;
+    protected $dbCon;
 
-    public function __contruct(string $userId, DBConn $db){
+    public function __contruct($userId){
         $this->userId = $userId;
-        $this->dbCon = $db;
+        $this->dbCon = DBConn::getInstance();
         $qry = $this->dbCon->getPDO()->prepare("SELECT * FROM `User` WHERE id=:uid");
         $qry->execute(array(':uid'=>$userId));
         $row = $qry->fetch(PDO::FETCH_ASSOC);
@@ -25,31 +25,20 @@ abstract class User
         $this->lName=$row['last_name'];
         $this->district=$row['district'];
         $this->city=$row['city'];
-        $this->rating=$row['rating'];
         $this->userTypeId = $row['usertype_id'];
-//        $this->profilePic=$row['profile_picture'];
     }
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId()
     {
         return $this->userId;
     }
 
-    /**
-     * @return string
-     */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     */
-    public function setEmail(string $email): void
+    public function setEmail($email)
     {
         $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET email:=phld WHERE id=:uid");
         $qry->execute(array(
@@ -58,18 +47,12 @@ abstract class User
         $this->email = $email;
     }
 
-    /**
-     * @return string
-     */
-    public function getFName(): string
+    public function getFName()
     {
         return $this->fName;
     }
 
-    /**
-     * @param string $fName
-     */
-    public function setFName(string $fName): void
+    public function setFName($fName)
     {
         $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET first_name:=phld WHERE id=:uid");
         $qry->execute(array(
@@ -78,18 +61,13 @@ abstract class User
         $this->fName = $fName;
     }
 
-    /**
-     * @return string
-     */
-    public function getLName(): string
+    public function getLName()
     {
         return $this->lName;
     }
 
-    /**
-     * @param string $lName
-     */
-    public function setLName(string $lName): void
+
+    public function setLName($lName)
     {
         $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET last_name:=phld WHERE id=:uid");
         $qry->execute(array(
@@ -98,18 +76,12 @@ abstract class User
         $this->lName = $lName;
     }
 
-    /**
-     * @return string
-     */
-    public function getDistrict(): string
+    public function getDistrict()
     {
         return $this->district;
     }
 
-    /**
-     * @param string $district
-     */
-    public function setDistrict(string $district): void
+    public function setDistrict($district)
     {
         $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET district:=phld WHERE id=:uid");
         $qry->execute(array(
@@ -118,18 +90,13 @@ abstract class User
         $this->district = $district;
     }
 
-    /**
-     * @return string
-     */
-    public function getCity(): string
+    public function getCity()
     {
         return $this->city;
     }
 
-    /**
-     * @param string $city
-     */
-    public function setCity(string $city): void
+
+    public function setCity($city)
     {
         $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET city:=phld WHERE id=:uid");
         $qry->execute(array(
@@ -138,42 +105,32 @@ abstract class User
         $this->city = $city;
     }
 
-    /**
-     * @return int
-     */
-    public function getUserTypeId(): int
+
+    public function getUserTypeId()
     {
         return $this->userTypeId;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getProfilePic()
     {
 //        return $this->profilePic;
     }
 
-    /**
-     * @param mixed $profilePic
-     */
-    public function setProfilePic($profilePic): void
+
+    public function setProfilePic($profilePic)
     {
 //        $this->profilePic = $profilePic;
     }
 
-    /**
-     * @return int
-     */
-    public function getRating(): int
+
+    public function getRating()
     {
         return $this->rating;
     }
 
-    /**
-     * @param int $rating
-     */
-    public function setRating(int $rating): void
+
+    public function setRating($rating)
     {
         $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET rating:=phld WHERE id=:uid");
         $qry->execute(array(
