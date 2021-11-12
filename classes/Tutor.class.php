@@ -38,7 +38,7 @@ class Tutor extends User
     public function setDescription($description)
     {
 
-        $qry = $this->dbCon->getPDO()->prepare("UPDATE `Tutor` SET description:=phld WHERE id=:tid");
+        $qry = $this->dbCon->getPDO()->prepare("UPDATE `Tutor` SET description=:phld WHERE id=:tid");
         $qry->execute(array(
             ':phld'=>$description,
             ':uid'=>$this->tutorId));
@@ -57,7 +57,7 @@ class Tutor extends User
         } else {
             $val = 0;
         }
-        $qry = $this->dbCon->getPDO()->prepare("UPDATE `Tutor` SET availability_flag:=phld WHERE id=:tid");
+        $qry = $this->dbCon->getPDO()->prepare("UPDATE `Tutor` SET availability_flag=:phld WHERE id=:tid");
         $qry->execute(array(
             ':phld'=>$val,
             ':uid'=>$this->tutorId));

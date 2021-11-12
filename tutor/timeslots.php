@@ -33,7 +33,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form action="addTimeslot.php" method="POST">
+                    <form action="timeslotController.php" method="POST">
                       <div class="mb-3">
                         <label for="dayInput" class="form-label">Day</label>
                         <input type="text"  name="dayInput" class="form-control" id="dayInput">
@@ -46,6 +46,7 @@
                         <label for="endTime" class="form-label">End time</label>
                         <input type="time" name="endTime" class="form-control" id="endTime">
                       </div>
+                      <input type="hidden" name="tutorid" value="'.$curTutor->getTutorId().'">
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <input type="submit" name="Add" value="Add" class="btn btn-primary">
@@ -85,7 +86,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <form action="editTimeslot.php" method="POST">
+                        <form action="timeslotController.php" method="POST">
                           <div class="mb-3">
                             <label for="dayInput" class="form-label">Day</label>
                             <input type="text"  name="dayInput" class="form-control" id="dayInput" value="'.htmlentities($timeSlot->getDay()).'">
@@ -96,7 +97,7 @@
                           </div>
                           <div class="mb-3">
                             <label for="endTime" class="form-label">End time</label>
-                            <input type="time" name="endTime" class="form-control" id="endTime" value="'.htmlentities(Timeslot::getTime24($timeSlot->getStartTime())).'">
+                            <input type="time" name="endTime" class="form-control" id="endTime" value="'.htmlentities(Timeslot::getTime24($timeSlot->getEndTime())).'">
                           </div>
                           <input type="hidden" name="timeid" value="'.$timeSlot->getTimeslotId().'">
                           <div class="modal-footer">
@@ -117,7 +118,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <form action="deleteTimeslot.php" method="POST">
+                        <form action="timeslotController.php" method="POST">
                           <div class="mb-3">
                             <label for="dayInput" class="form-label">You will not be able to undo this action.</label>
                           </div>     
@@ -137,6 +138,5 @@
 
 
         ?>
-        <script src="js/timeslot.js"></script>
     </body>
 </html>

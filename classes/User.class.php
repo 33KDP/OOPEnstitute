@@ -40,7 +40,7 @@ abstract class User
 
     public function setEmail($email)
     {
-        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET email:=phld WHERE id=:uid");
+        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET email=:phld WHERE id=:uid");
         $qry->execute(array(
             ':phld'=>$email,
             ':uid'=>$this->userId));
@@ -54,7 +54,7 @@ abstract class User
 
     public function setFName($fName)
     {
-        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET first_name:=phld WHERE id=:uid");
+        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET first_name=:phld WHERE id=:uid");
         $qry->execute(array(
             ':phld'=>$fName,
             ':uid'=>$this->userId));
@@ -69,7 +69,7 @@ abstract class User
 
     public function setLName($lName)
     {
-        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET last_name:=phld WHERE id=:uid");
+        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET last_name=:phld WHERE id=:uid");
         $qry->execute(array(
             ':phld'=>$lName,
             ':uid'=>$this->userId));
@@ -83,7 +83,7 @@ abstract class User
 
     public function setDistrict($district)
     {
-        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET district:=phld WHERE id=:uid");
+        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET district=:phld WHERE id=:uid");
         $qry->execute(array(
             ':phld'=>$district,
             ':uid'=>$this->userId));
@@ -98,7 +98,7 @@ abstract class User
 
     public function setCity($city)
     {
-        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET city:=phld WHERE id=:uid");
+        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET city=:phld WHERE id=:uid");
         $qry->execute(array(
             ':phld'=>$city,
             ':uid'=>$this->userId));
@@ -132,7 +132,7 @@ abstract class User
 
     public function setRating($rating)
     {
-        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET rating:=phld WHERE id=:uid");
+        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET rating=:phld WHERE id=:uid");
         $qry->execute(array(
             ':phld'=>$rating,
             ':uid'=>$this->userId));

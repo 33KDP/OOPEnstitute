@@ -26,6 +26,7 @@ class Timeslot
 
     public static function init(){
         self::$dbConn = DBConn::getInstance();
+        self::$instances= array();
     }
 
 
@@ -93,10 +94,10 @@ class Timeslot
 
     public function setStartTime($startTime)
     {
-        $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET start_time:=phld WHERE id=:timeid");
+        $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET start_time=:phld WHERE id=:timeid");
         $qry->execute(array(
             ':phld'=>$startTime,
-            ':id'=>$this->timeslotId));
+            ':timeid'=>$this->timeslotId));
         $this->startTime = $startTime;
     }
 
@@ -109,10 +110,10 @@ class Timeslot
 
     public function setEndTime($endTime)
     {
-        $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET end_time:=phld WHERE id=:timeid");
+        $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET end_time=:phld WHERE id=:timeid");
         $qry->execute(array(
             ':phld'=>$endTime,
-            ':id'=>$this->timeslotId));
+            ':timeid'=>$this->timeslotId));
         $this->endTime = $endTime;
     }
 
@@ -124,10 +125,10 @@ class Timeslot
 
     public function setDay($day)
     {
-        $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET day:=phld WHERE id=:timeid");
+        $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET day=:phld WHERE id=:timeid");
         $qry->execute(array(
             ':phld'=>$day,
-            ':id'=>$this->timeslotId));
+            ':timeid'=>$this->timeslotId));
         $this->day = $day;
     }
 
@@ -138,7 +139,7 @@ class Timeslot
 
     public function setNotAvailable($notAvailable)
     {
-        $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET start_time:=phld WHERE id=:timeid");
+        $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET start_time=:phld WHERE id=:timeid");
         if ($notAvailable){
             $val = 1;
         } else {
@@ -146,7 +147,7 @@ class Timeslot
         }
         $qry->execute(array(
             ':phld'=>$val,
-            ':id'=>$this->timeslotId));
+            ':timeid'=>$this->timeslotId));
         $this->notAvailable = $notAvailable;
     }
 
@@ -168,16 +169,17 @@ class Timeslot
             $day = $_POST['dayInput'];
             $start = self::getMinutes($_POST['startTime']);
             $end = self::getMinutes($_POST['endTime']);
+            $tutorid = $_POST['tutorid'];
 
             $qry = self::$dbConn->getPDO()->prepare("INSERT INTO TimeSlot (tutor_id, day, start_time, end_time) VALUES (:tid, :day, :start, :end)");
             $qry->execute(array(
-                ':tid' => getId($_SESSION['utype'], $_SESSION['user_id']),
+                ':tid' => $tutorid,
                 ':day' => $day,
                 ':start' => $start,
                 ':end' => $end
             ));
         }
-        header("location: timeslot.php");
+        header("location: timeslots.php");
     }
 
     public function editTimeSlot($form){
@@ -192,9 +194,18 @@ class Timeslot
             $this->setStartTime($start);
             $this->setEndTime($end);
         }
-        header("location: timeslot.php");
+        header("location: timeslots.php");
     }
 
+    public static function deleteTimeSlot($timeSlotId){
+        $qry = self::$dbConn->getPDO()->prepare("DELETE FROM Timeslot WHERE id=:timeid");
+        $qry->execute(array(
+            ':timeid' => $timeSlotId
+        ));
+        unset(self::$instances[$timeSlotId]);
+        //flash message
+        header("location: timeslots.php");
+    }
 }
 
 Timeslot::init();
