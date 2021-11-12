@@ -6,6 +6,7 @@ class Student extends User
 {
     private $grade;
     private $studentId;
+    private static $instances;
 
     public function __contruct($userId)
     {
@@ -16,4 +17,14 @@ class Student extends User
         $this->grade=$row['grade'];
         $this->studentId=$row['id'];
     }
+
+    final public static function getInstance($userId)
+    {
+        if (!isset(self::$instances[$userId])) {
+            self::$instances[$userId] = new Student($userId);
+        }
+        return self::$instances[$userId];
+    }
+
+
 }

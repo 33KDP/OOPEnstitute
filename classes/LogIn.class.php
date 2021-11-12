@@ -50,10 +50,11 @@ class LogIn
     public function logInUser($form){
        if ($this->validateForm($form)){
            if ($curUId = $this->validateUser($form['uemail'], $form['pwd'])){
-                if ($this->getUserType($form['uemail']) === 1){
-                    $url = "../webapp/student/home.php";
+               //var_dump($this->getUserType($form['uemail']));
+                if ($this->getUserType($form['uemail']) == 1){
+                    $url = "../OOPEnstitute/Student/index.php";
                 } else {
-                    $url = "../webapp/tutor/home.php";
+                    $url = "../OOPEnstitute/tutor/home.php";
                 }
                 $_SESSION['user_id'] = $curUId;
                 header("location: ".$url);
