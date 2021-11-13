@@ -1,0 +1,200 @@
+create database Enstitute;
+GRANT ALL ON Enstitute.* TO 'enstitute'@'localhost' IDENTIFIED BY '33kdp';
+GRANT ALL ON Enstitute.* TO 'enstitute'@'127.0.0.1' IDENTIFIED BY '33kdp';
+
+use Enstitute;
+
+CREATE TABLE `User` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `usertype_id` int NOT NULL,
+  `email` varchar(256) UNIQUE,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `district` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `profile_picture` mediumblob,
+  `rating` decimal(2, 1)
+);
+
+CREATE TABLE `Authentication` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int,
+  `password` char(64)
+);
+
+CREATE TABLE `UserType` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `type_name` varchar(20) UNIQUE
+);
+
+CREATE TABLE `Student` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int,
+  `grade` int NOT NULL
+);
+
+CREATE TABLE `Tutor` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int,
+  `description` text,
+  `cover_image` mediumblob,
+  `availability_flag` bit DEFAULT 0
+);
+
+CREATE TABLE `Subject` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `grade` int NOT NULL,
+  `subject_medium` varchar(10)
+);
+
+CREATE TABLE `Tutor_Subject` (
+  `subject_id` int,
+  `tutor_id` int,
+  PRIMARY KEY (`subject_id`, `tutor_id`)
+);
+
+CREATE TABLE `Group` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `group_admin` int NOT NULL,
+  `group_name` varchar(20) NOT NULL,
+  `subject_id` int,
+  `capacity` int NOT NULL,
+  `created_date` datetime NOT NULL,
+  `description` tinytext
+);
+
+CREATE TABLE `Group_Student` (
+  `student_id` int,
+  `group_id` int,
+  PRIMARY KEY (`student_id`, `group_id`)
+);
+
+CREATE TABLE `IndividualClass` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `student_id` int NOT NULL,
+  `tutor_id` int NOT NULL,
+  `subject_id` int NOT NULL
+);
+
+CREATE TABLE `GroupClass` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `group_id` int NOT NULL,
+  `tutor_id` int NOT NULL
+);
+
+CREATE TABLE `Message` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `group_id` int,
+  `user_id` int,
+  `user_first_name` varchar(50) NOT NULL,
+  `user_last_name` varchar(50) NOT NULL,
+  `receiver` int NOT NULL,
+  `message` text NOT NULL,
+  `time` datetime NOT NULL DEFAULT now() ,
+  `state` tinyint COMMENT '0 - unread, 1 - read',
+  `type` tinyint NOT NULL COMMENT '0 - private, 1 - group'
+);
+
+CREATE TABLE `Request` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `group_id` int,
+  `student_id` int,
+  `tutor_id` int NOT NULL,
+  `subject_id` int NOT NULL,
+  `message` text NOT NULL,
+  `time` datetime NOT NULL DEFAULT now() ,
+  `state` tinyint DEFAULT 0 COMMENT '0 - pending, 1 - accepted, 2 - rejected',
+  `type` bit NOT NULL COMMENT '0 - individual, 1 - group'
+);
+
+CREATE TABLE `JoinGroupRequest` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `student_id` int NOT NULL,
+  `group_id` int NOT NULL,
+  `message` text NOT NULL,
+  `time` datetime NOT NULL DEFAULT now() ,
+  `state` tinyint DEFAULT 0 COMMENT '0 - pending, 1 - accepted, 2 - rejected'
+);
+
+CREATE TABLE `Review` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `reviewer_id` int,
+  `reviewee_id` int,
+  `user_first_name` varchar(50) NOT NULL,
+  `user_last_name` varchar(50) NOT NULL,
+  `star_rating` tinyint NOT NULL,
+  `review_text` text,
+  `review_date` date
+);
+
+CREATE TABLE `TimeSlot` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `tutor_id` int NOT NULL,
+  `day` tinytext NOT NULL,
+  `start_time` int NOT NULL COMMENT 'minutes since 00:00',
+  `end_time` int NOT NULL COMMENT 'minutes since 00:00',
+  `state` bit DEFAULT 0 COMMENT '0 - unoccupied, 1 - unoccupied'
+);
+
+ALTER TABLE `User` ADD FOREIGN KEY (`usertype_id`) REFERENCES `UserType` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Authentication` ADD FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Student` ADD FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Tutor` ADD FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Tutor_Subject` ADD FOREIGN KEY (`subject_id`) REFERENCES `Subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Tutor_Subject` ADD FOREIGN KEY (`tutor_id`) REFERENCES `Tutor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Group` ADD FOREIGN KEY (`subject_id`) REFERENCES `Subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Group` ADD FOREIGN KEY (`group_admin`) REFERENCES `Student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Group_Student` ADD FOREIGN KEY (`student_id`) REFERENCES `Student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Group_Student` ADD FOREIGN KEY (`group_id`) REFERENCES `Group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `IndividualClass` ADD FOREIGN KEY (`student_id`) REFERENCES `Student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `IndividualClass` ADD FOREIGN KEY (`tutor_id`) REFERENCES `Tutor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `IndividualClass` ADD FOREIGN KEY (`subject_id`) REFERENCES `Subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `GroupClass` ADD FOREIGN KEY (`group_id`) REFERENCES `Group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `GroupClass` ADD FOREIGN KEY (`tutor_id`) REFERENCES `Tutor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Message` ADD FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE `Message` ADD FOREIGN KEY (`group_id`) REFERENCES `Group` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE `Request` ADD FOREIGN KEY (`student_id`) REFERENCES `Student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Request` ADD FOREIGN KEY (`group_id`) REFERENCES `Group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Request` ADD FOREIGN KEY (`tutor_id`) REFERENCES `Tutor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Request` ADD FOREIGN KEY (`subject_id`) REFERENCES `Subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `JoinGroupRequest` ADD FOREIGN KEY (`group_id`) REFERENCES `Group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `JoinGroupRequest` ADD FOREIGN KEY (`student_id`) REFERENCES `Student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Review` ADD FOREIGN KEY (`reviewer_id`) REFERENCES `User` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE `Review` ADD FOREIGN KEY (`reviewee_id`) REFERENCES `User` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE `TimeSlot` ADD FOREIGN KEY (`tutor_id`) REFERENCES `Tutor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE UNIQUE INDEX `IndividualClass_index_0` ON `IndividualClass` (`student_id`, `tutor_id`, `subject_id`);
+
+CREATE UNIQUE INDEX `GroupClass_index_1` ON `GroupClass` (`group_id`, `tutor_id`);
+
+
+INSERT INTO usertype (type_name)
+VALUES ("student");
+INSERT INTO usertype (type_name)
+VALUES ("tutor");

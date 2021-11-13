@@ -1,5 +1,4 @@
 <?php
-require_once("Session.class.php");
 require_once("DBConn.class.php");
 require_once("Tutor.class.php");
 require_once("Student.class.php");
@@ -7,14 +6,13 @@ session_start();
 
 class LogIn
 {
-    private DBConn $dbCon;
+    private $dbCon;
 
-    public function __construct(DBConn $db){
-        $this->dbCon = $db;
+    public function __construct(){
+        $this->dbCon = DBConn::getInstance();
     }
 
     private function validateForm($form){
-        var_dump($form);
         if(empty($form['uemail']) || empty($form['pwd'])){
             $result = false;
         }else{
@@ -52,19 +50,13 @@ class LogIn
     public function logInUser($form){
        if ($this->validateForm($form)){
            if ($curUId = $this->validateUser($form['uemail'], $form['pwd'])){
-                if ($this->getUserType($form['uemail']) === 1){
-                    $curUser = new Student($curUId);
-                    $url = "../student/home.php";
+               //var_dump($this->getUserType($form['uemail']));
+                if ($this->getUserType($form['uemail']) == 1){
+                    $url = "../OOPEnstitute/Student/index.php";
                 } else {
-                    $curUser = new Tutor($curUId);
-                    echo '1';
-                    $url = "../tutor/home.php";
+                    $url = "../OOPEnstitute/tutor/home.php";
                 }
-                $curSession = Session::getInstance();
-                $curSession->setUser($curUser);
-                $curSession->setLoggedIn(true);
-                $_SESSION['session'] = $curSession;
-                echo '2';
+                $_SESSION['user_id'] = $curUId;
                 header("location: ".$url);
            } else {
                echo 'invalid cred';

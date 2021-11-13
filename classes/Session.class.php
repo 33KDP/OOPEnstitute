@@ -1,16 +1,17 @@
 <?php
+session_start();
 require_once("User.class.php");
 require_once("Student.class.php");
 require_once("Tutor.class.php");
 
 class Session
 {
-    private User $user;
-    private String $errMsg;
-    private String $successMsg;
-    private static Session $instance;
-    private bool $loggedIn;
+    private static $user;
+    private static $errMsg;
+    private static $successMsg;
+    private static $loggedIn;
 
+<<<<<<< HEAD
     private function __construct(){
         $this->loggedIn = false;
     }
@@ -18,75 +19,59 @@ class Session
     public static function getInstance() : Session{
         if (!isset(self::$instance)){
             self::$instance = new Session();
+=======
+    public static function init(){
+        if (isset($_SESSION['user_id'])){
+            self::$loggedIn=true;
+        } else {
+            self::$loggedIn=false;
+>>>>>>> 99a6c03668b591f7802f57f314aacfb1143f7a01
         }
-        return self::$instance;
+    }
+    public static function getUser()
+    {
+        return self::$user;
     }
 
-    /**
-     * @return User
-     */
-    public function getUser(): User
+    public static function setUser($user)
     {
-        return $this->user;
+        self::$user = $user;
     }
 
-    /**
-     * @param User $user
-     */
-    public function setUser(User $user): void
+    public static function getErrMsg()
     {
-        $this->user = $user;
-    }
-
-    /**
-     * @return String
-     */
-    public function getErrMsg(): string
-    {
-        $txt = $this->errMsg;
-        $this->errMsg = "";
+        $txt = self::$errMsg;
+        self::$errMsg = "";
         return $txt;
     }
 
-    /**
-     * @param String $errMsg
-     */
-    public function setErrMsg(string $errMsg): void
+    public static function setErrMsg($errMsg)
     {
-        $this->errMsg = $errMsg;
+        self::$errMsg = $errMsg;
     }
 
-    /**
-     * @return String
-     */
-    public function getSuccessMsg(): string
+    public static function getSuccessMsg()
     {
-        $txt = $this->successMsg;
-        $this->successMsg = "";
+        $txt = self::$successMsg;
+        self::$successMsg = "";
         return $txt;
     }
 
-    /**
-     * @param String $successMsg
-     */
-    public function setSuccessMsg(string $successMsg): void
+    public static function setSuccessMsg($successMsg)
     {
-        $this->successMsg = $successMsg;
+        self::$successMsg = $successMsg;
     }
 
-    /**
-     * @return bool
-     */
-    public function isLoggedIn(): bool
+    public static function setLoggedIn($loggedIn): void
     {
-        return $this->loggedIn;
+        self::$loggedIn = $loggedIn;
     }
 
-    /**
-     * @param bool $loggedIn
-     */
-    public function setLoggedIn(bool $loggedIn): void
+    public static function isLoggedIn()
     {
-        $this->loggedIn = $loggedIn;
+        return self::$loggedIn;
     }
 }
+Session::init();
+
+
