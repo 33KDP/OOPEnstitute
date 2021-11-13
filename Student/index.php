@@ -6,7 +6,7 @@ require_once "../classes/Tutor.class.php";
 if (!isset($_SESSION['user_id'])){
     header("location: ../index.php");
 }
-$curTutor=  Student::getInstance($_SESSION['user_id']);
+$curStudent=  Student::getInstance($_SESSION['user_id']);
 ?>
 
 <html>
