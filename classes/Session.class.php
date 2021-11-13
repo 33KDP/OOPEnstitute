@@ -11,23 +11,14 @@ class Session
     private static $successMsg;
     private static $loggedIn;
 
-<<<<<<< HEAD
-    private function __construct(){
-        $this->loggedIn = false;
-    }
-
-    public static function getInstance() : Session{
-        if (!isset(self::$instance)){
-            self::$instance = new Session();
-=======
     public static function init(){
         if (isset($_SESSION['user_id'])){
             self::$loggedIn=true;
         } else {
             self::$loggedIn=false;
->>>>>>> 99a6c03668b591f7802f57f314aacfb1143f7a01
         }
     }
+    
     public static function getUser()
     {
         return self::$user;
