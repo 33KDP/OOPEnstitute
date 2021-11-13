@@ -42,7 +42,7 @@
     <title>Message</title>
 </head>
 <body>
-
+<?php require_once "../Student/navbar.php"; ?>
 <div class="container">
     <?php
     $sql = "SELECT first_name, last_name FROM `User` WHERE id = :tutor_id";

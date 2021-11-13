@@ -13,7 +13,7 @@ unset($_SESSION['tutor_id']);
     <title>Tutors</title>
 </head>
 <body>
-
+<?php require_once "navbar.php"; ?>
 <div class="container">
     <h1>All Tutors</h1>
     <?php
