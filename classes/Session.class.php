@@ -16,7 +16,7 @@ class Session
     }
 
     public static function getInstance() : Session{
-        if (!isset(self::$instances)){
+        if (!isset(self::$instance)){
             self::$instance = new Session();
         }
         return self::$instance;

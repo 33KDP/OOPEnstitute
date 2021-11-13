@@ -16,11 +16,11 @@ class LogIn
     private function validateForm($form){
         var_dump($form);
         if(empty($form['uemail']) || empty($form['pwd'])){
-            $reuslt = false;
+            $result = false;
         }else{
-            $reuslt = true;
+            $result = true;
         }
-        return $reuslt;
+        return $result;
     }
 
     private function validateUser($uemail, $pwd){
@@ -57,13 +57,15 @@ class LogIn
                     $url = "../student/home.php";
                 } else {
                     $curUser = new Tutor($curUId);
+                    echo '1';
                     $url = "../tutor/home.php";
                 }
                 $curSession = Session::getInstance();
                 $curSession->setUser($curUser);
                 $curSession->setLoggedIn(true);
                 $_SESSION['session'] = $curSession;
-               header("location: ".$url);
+                echo '2';
+                header("location: ".$url);
            } else {
                echo 'invalid cred';
                header("location: ../index.php");
