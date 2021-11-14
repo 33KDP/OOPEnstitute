@@ -43,17 +43,14 @@
     </head>
 
     <body>
+        <?php require_once "navbar.php"; ?>
         <div class="container">
             <?php
                 $sql = "SELECT first_name, last_name FROM `User` WHERE id = :tutor_id";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute(array(':tutor_id' => $_SESSION['tutor_id']));
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo ('<a href="../Student/tutorList.php">Back</a> &emsp;'.htmlentities($row['first_name']).' '.htmlentities($row['last_name']));
-
-                echo '<div class="text-end">';
-                echo '<a href="logout.php" class="text-end">Logout</a><br>';
-                echo '</div><hr>';
+                echo ('<a href="../Student/tutorList.php">Back</a> &emsp;'.htmlentities($row['first_name']).' '.htmlentities($row['last_name']).'<hr>');
 
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo (htmlentities($row['first_name']).' '.htmlentities($row['last_name']));

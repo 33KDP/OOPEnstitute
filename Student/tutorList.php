@@ -31,8 +31,6 @@ unset($_SESSION['tutor_id']);
                     }
 
                 } else {
-                    echo'<a href="logout.php">Logout</a><br>';
-
                     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo (htmlentities($row['first_name']).' '.htmlentities($row['last_name']));
                         echo '<div class="text-end" >';

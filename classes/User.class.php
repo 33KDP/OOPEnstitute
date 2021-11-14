@@ -9,6 +9,8 @@ abstract class User
     private string $district;
     private string $city;
     private int $userTypeId;
+    // private $privateMessageList;
+    // private $groupMessageList;
 
     private $profilePic;
     private $rating;
@@ -26,7 +28,25 @@ abstract class User
         $this->district=$row['district'];
         $this->city=$row['city'];
         $this->userTypeId = $row['usertype_id'];
+        // $this->privateMessageList = $this->getMessages($userId, 0);
+        // $this->groupMessageList = $this->getMessages($userId, 1);
     }
+
+    // private function getMessages($userId, $messageType)
+    // {
+    //     if ($messageType == 0)
+    //     {
+    //         $qry = $this->dbCon->getPDO()->prepare("SELECT * FROM `Message` WHERE (user_id = :senderId OR receiver = :receiverId) AND type = :messageType");
+    //         $qry->execute(array(':senderId'=>$userId,
+    //                             ':receiverId'=>$userId,
+    //                             ':messageType'=>$messageType));
+    //     }
+    //     else
+    //     {
+    //         echo 'Hi';
+    //     }
+    //     echo 'Hi';
+    // }
 
     public function getId()
     {
@@ -137,6 +157,12 @@ abstract class User
             ':phld'=>$rating,
             ':uid'=>$this->userId));
         $this->rating = $rating;
+    }
+
+    public function composeMessage($sender, $receiver, $messageBody, $messageType)
+    {
+        $message = new Message($sender, $receiver, $messageBody, $messageType);
+        $message->send($message);
     }
 
 

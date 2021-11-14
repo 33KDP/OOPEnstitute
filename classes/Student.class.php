@@ -1,6 +1,7 @@
 <?php
 require_once("User.class.php");
 require_once("Session.class.php");
+require_once("Message.class.php");
 
 class Student extends User
 {
@@ -26,11 +27,6 @@ class Student extends User
         return self::$instances[$userId];
     }
 
-    public function composeMessage($sender, $receiver, $messageBody, $messageType)
-    {
-        $message = new Message($sender, $receiver, $messageBody, $messageType);
-        $message->send($message);
-    }
     public function searchStudent() {
 
     }
