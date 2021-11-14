@@ -1,0 +1,24 @@
+use Enstitute;
+DELETE FROM Subject;
+ALTER TABLE Subject DROP COLUMN name;
+ALTER TABLE Subject DROP COLUMN subject_medium;
+ALTER TABLE Subject DROP COLUMN grade;
+
+ALTER TABLE Subject ADD `name_id` int NOT NULL;
+ALTER TABLE Subject ADD `grade_id` int NOT NULL;
+ALTER TABLE Subject ADD `medium_id` int NOT NULL;
+
+CREATE TABLE `SubjectName` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL
+);
+
+CREATE TABLE `Grade` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `grade` int NOT NULL
+);
+
+CREATE TABLE `SubjectMedium` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `medium` varchar(10) NOT NULL
+);
