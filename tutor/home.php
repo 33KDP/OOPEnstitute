@@ -1,4 +1,5 @@
 <?php
+    //session_start();
     require_once "../classes/Session.class.php";
     require_once "../classes/DBConn.class.php";
     require_once "../classes/Tutor.class.php";

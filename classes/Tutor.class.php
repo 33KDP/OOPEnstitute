@@ -2,6 +2,7 @@
 require_once "DBConn.class.php";
 require_once "User.class.php";
 require_once "Timeslot.class.php";
+require_once "Subject.class.php";
 
 class Tutor extends User
 {
@@ -19,6 +20,7 @@ class Tutor extends User
         $qry->execute(array(':uid'=>$userId));
         $row = $qry->fetch(PDO::FETCH_ASSOC);
         $this->timeSlots = array();
+        $this->subjects = array();
         $this->tutorId=$row['id'];
         $this->notAvailable=$row['availability_flag'];
     }
@@ -80,12 +82,32 @@ class Tutor extends User
     }
 
     public function getSubjects(){
-        $qry = $this->dbCon->getPDO()->prepare("SELECT Subject.id, Subject.name, Subject.grade, Subject.subject_medium FROM Tutor_Subject JOIN
+        $qry = $this->dbCon->getPDO()->prepare("SELECT Subject.id FROM Tutor_Subject JOIN
                                                                             Subject ON Tutor_Subject.subject_id=Subject.id WHERE Tutor_Subject.tutor_id=:tid");
         $qry->execute(array(':tid'=>$this->tutorId));
         while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
             array_push($this->subjects, Subject::getInstance($row['id']));
         }
         return $this->subjects;
+    }
+
+    public function setSubjects($subject){
+        $qry = $this->dbCon->getPDO()->prepare("INSERT INTO Tutor_Subject (tutor_id, subject_id) VALUES (:tid, :sid)");
+        $qry->execute(array(
+            ':tid'=>$this->tutorId,
+            ':sid'=>$subject->getId()
+        ));
+        array_push($this->subjects, $subject);
+    }
+
+    public function removeSubjects($subject){
+        $qry = $this->dbCon->getPDO()->prepare("DELETE FROM Tutor_Subject  WHERE tutor_id=:tid AND subject_id=:sid");
+        $qry->execute(array(
+            ':tid'=>$this->tutorId,
+            ':sid'=>$subject->getId()
+        ));
+        if (($key = array_search($subject, $this->subjects)) !== false) {
+            unset($this->subjects[$key]);
+        }
     }
 }
