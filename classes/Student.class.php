@@ -26,5 +26,50 @@ class Student extends User
         return self::$instances[$userId];
     }
 
+    public function composeMessage($sender, $receiver, $messageBody, $messageType)
+    {
+        $message = new Message($sender, $receiver, $messageBody, $messageType);
+        $message->send($message);
+    }
+    public function searchStudent() {
+
+    }
+
+    public function viewTutorDetails() {
+
+    }
+
+    public function contactTutor() {
+
+    }
+
+    public function enrollTutor() {
+
+    }
+
+    public function createGroup() {
+
+    }
+
+    public function searchGroup() {
+
+    }
+
+    public function joinGroup() {
+
+    }
+
+    public function viewGroupDetails() {
+
+    }
+
+    public function rateTutor() {
+
+    }
+
+    public function disenrollClass() {
+
+    }
+
 
 }

@@ -2,9 +2,13 @@
 require_once "../bootstrap.php";
 ?>
 
+<?php
+require_once "../bootstrap.php";
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">Home</a>
+        <a class="navbar-brand" href="../Student/index.php">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,7 +24,7 @@ require_once "../bootstrap.php";
                     <a class="nav-link" href="../Group/manage_group.php">Manage Groups</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tutorList.php">Tutors</a>
+                    <a class="nav-link" href="../Student/tutorList.php">Tutors</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,13 +47,16 @@ require_once "../bootstrap.php";
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="user_settings.php">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="../index.php">Logout</a></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
+
 

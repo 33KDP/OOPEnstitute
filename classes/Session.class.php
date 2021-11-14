@@ -18,6 +18,7 @@ class Session
             self::$loggedIn=false;
         }
     }
+    
     public static function getUser()
     {
         return self::$user;

@@ -14,11 +14,11 @@ class LogIn
 
     private function validateForm($form){
         if(empty($form['uemail']) || empty($form['pwd'])){
-            $reuslt = false;
+            $result = false;
         }else{
-            $reuslt = true;
+            $result = true;
         }
-        return $reuslt;
+        return $result;
     }
 
     private function validateUser($uemail, $pwd){

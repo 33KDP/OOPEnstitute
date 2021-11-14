@@ -3,7 +3,6 @@ session_start();
 
 ?>
 
-
 <html>
 <head>
     <?php require_once "../bootstrap.php";
@@ -15,10 +14,3 @@ session_start();
 
 </head>
 <body>
-
-<div class="container">
-    <h1>All the groups you are in</h1>
-
-</div>
-</body>
-</html>
