@@ -1,0 +1,67 @@
+INSERT INTO subjectmedium (`medium`) VALUE ("Sinhala");
+INSERT INTO subjectmedium (`medium`) VALUE ("Tamil");
+INSERT INTO subjectmedium (`medium`) VALUE ("English");
+
+INSERT INTO Grade (`grade`) VALUE (1);
+INSERT INTO Grade (`grade`) VALUE (2);
+INSERT INTO Grade (`grade`) VALUE (3);
+INSERT INTO Grade (`grade`) VALUE (4);
+INSERT INTO Grade (`grade`) VALUE (5);
+INSERT INTO Grade (`grade`) VALUE (6);
+INSERT INTO Grade (`grade`) VALUE (7);
+INSERT INTO Grade (`grade`) VALUE (8);
+INSERT INTO Grade (`grade`) VALUE (9);
+INSERT INTO Grade (`grade`) VALUE (10);
+INSERT INTO Grade (`grade`) VALUE (11);
+INSERT INTO Grade (`grade`) VALUE (12);
+INSERT INTO Grade (`grade`) VALUE (13);
+
+INSERT INTO SubjectName (`name`) VALUES ("Sinhala");
+INSERT INTO SubjectName (`name`) VALUES ("Science");
+INSERT INTO SubjectName (`name`) VALUES ("English");
+INSERT INTO SubjectName (`name`) VALUES ("Maths");
+INSERT INTO SubjectName (`name`) VALUES ("History");
+INSERT INTO SubjectName (`name`) VALUES ("Art");
+INSERT INTO SubjectName (`name`) VALUES ("Music");
+INSERT INTO SubjectName (`name`) VALUES ("Geography");
+INSERT INTO SubjectName (`name`) VALUES ("Buddhism");
+
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (1,6,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (2,6,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (3,6,3);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (4,6,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (5,6,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (6,6,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (7,6,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (8,6,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (9,6,1);
+
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (1,7,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (2,7,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (3,7,3);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (4,7,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (5,7,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (6,7,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (7,7,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (8,7,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (9,7,1);
+
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (1,10,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (2,10,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (3,10,3);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (4,10,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (5,10,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (6,10,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (7,10,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (8,10,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (9,10,1);
+
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (1,9,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (2,9,3);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (3,9,3);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (4,9,3);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (5,9,1);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (6,9,3);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (7,9,3);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (8,9,3);
+INSERT INTO Subject (`name_id`,`grade_id`,`medium_id`) VALUES (9,9,1);

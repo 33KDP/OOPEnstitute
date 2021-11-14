@@ -1,5 +1,9 @@
 <?php
     require_once('../classes/Timeslot.class.php');
+    session_start();
+    if (!isset($_SESSION['user_id'])){
+        header("location: ../index.php");
+    }
 
     if (isset($_POST['Add'])){
         Timeslot::addTimeslot($_POST);
