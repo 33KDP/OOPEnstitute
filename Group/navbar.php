@@ -1,5 +1,9 @@
 <?php
-require_once "bootstrap.php";
+require_once "../bootstrap.php";
+?>
+
+<?php
+require_once "../bootstrap.php";
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -14,7 +18,13 @@ require_once "bootstrap.php";
                     <a class="nav-link" href="../Group/create_group.php">Create a New Group</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="../Group/join_group.php">Join a Group</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="../Group/manage_group.php">Manage Groups</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Student/tutorList.php">Tutors</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,4 +57,6 @@ require_once "bootstrap.php";
         </div>
     </div>
 </nav>
+
+
 

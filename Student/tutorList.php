@@ -1,6 +1,6 @@
 <?php
 require_once "../classes/DBConn.class.php";
-require_once "bootstrap.php";
+require_once "../bootstrap.php";
 $dbCon = DBConn::getInstance();
 $pdo = $dbCon->getPDO();
 session_start();

@@ -1,5 +1,5 @@
 <?php
-require_once "bootstrap.php";
+require_once "../bootstrap.php";
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -43,10 +43,9 @@ require_once "bootstrap.php";
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><a class="dropdown-item" href="user_settings.php">Settings</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="../index.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
