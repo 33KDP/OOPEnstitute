@@ -9,6 +9,7 @@ class Tutor extends User
     private  $notAvailable;
     private  $tutorId;
     private  $timeSlots;
+    private $subjects;
     private static $instances;
 
     private function __construct($userId)
@@ -78,6 +79,13 @@ class Tutor extends User
         return $this->timeSlots;
     }
 
-
-
+    public function getSubjects(){
+        $qry = $this->dbCon->getPDO()->prepare("SELECT Subject.id, Subject.name, Subject.grade, Subject.subject_medium FROM Tutor_Subject JOIN
+                                                                            Subject ON Tutor_Subject.subject_id=Subject.id WHERE Tutor_Subject.tutor_id=:tid");
+        $qry->execute(array(':tid'=>$this->tutorId));
+        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            array_push($this->subjects, Subject::getInstance($row['id']));
+        }
+        return $this->subjects;
+    }
 }

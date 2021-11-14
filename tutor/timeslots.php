@@ -19,7 +19,7 @@
 
         <?php
 
-        echo '<div class="position-fixed"  style="top: 90%; left: 90%; transform: translate(-50%, -50%);">';
+        echo '<div class="position-fixed"  style="top: 90%; left: 90%; transform: translate(-50%, -50%); z-index: 1000">';
         echo '<svg type="button" data-bs-toggle="modal" data-bs-target="#addEntry" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" fill="#0a89a6" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                         </svg>';
@@ -60,22 +60,22 @@
         echo '<div class="container p-4">';
         echo '<div class="row">';
         foreach ($curTutor->getTimeSlots() as $timeSlot) {
-            echo '<div class="col-4">';
+            echo '<div class="col-3">';
             echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
-                                  <div class="card-body">
-                                    <h5 class="card-title">'.htmlentities($timeSlot->getDay()).'</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">'.htmlentities(Timeslot::getTime12($timeSlot->getStartTime())).' - '.htmlentities(Timeslot::getTime12($timeSlot->getEndTime())).'</h6>
-                                    <div class="my-3">';
+                      <div class="card-body">
+                        <h5 class="card-title">'.htmlentities($timeSlot->getDay()).'</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">'.htmlentities(Timeslot::getTime12($timeSlot->getStartTime())).' - '.htmlentities(Timeslot::getTime12($timeSlot->getEndTime())).'</h6>
+                        <div class="my-3">';
             if (!$timeSlot->getNotAvailable()){
                 echo '<span class="badge rounded-pill bg-success">Vacant</span>';
             } else{
                 echo '<span class="badge rounded-pill bg-warning text-dark">Occupied</span>';
             }
             echo'</div>
-                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editEntry'.$timeSlot->getTimeslotId().'">Edit</button>
-                                    <button class="btn btn-sm btn-secondary"  data-bs-toggle="modal" data-bs-target="#deleteEntry'.$timeSlot->getTimeslotId().'">Delete</button>
-                                  </div>
-                                </div>';
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editEntry'.$timeSlot->getTimeslotId().'">Edit</button>
+                    <button class="btn btn-sm btn-secondary"  data-bs-toggle="modal" data-bs-target="#deleteEntry'.$timeSlot->getTimeslotId().'">Delete</button>
+                  </div>
+                </div>';
             echo '</div>';
 
             echo'<div class="modal fade" id="editEntry'.$timeSlot->getTimeslotId().'" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

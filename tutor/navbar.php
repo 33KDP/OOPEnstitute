@@ -2,7 +2,7 @@
     require_once "../bootstrap.php";
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Nav Bar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,13 +14,19 @@
                     <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="timeslots.php">Time Slots</a>
+                    <a class="nav-link active" href="timeslots.php">Time Slots</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="requests.php">Requests</a>
+                    <a class="nav-link active" href="requests.php">Requests</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="profile.php">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="subjects.php">Subjects</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Classes
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
