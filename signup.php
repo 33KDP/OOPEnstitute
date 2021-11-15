@@ -7,7 +7,6 @@
 ?>
 
     <section class="signup-form">
-        <h2>Sign Up</h2>
         <div class="signup-form-form">
         <!--
             .inc.php or -inc.php  user cant see in the page but only.php files user can see
@@ -56,7 +55,7 @@
                     <div class="form-group">
                     <input type="password" class="form-control" id="password2" name="pwdrepeat" placeholder="repeat password...">
                     </div>
-                    <button type="submit" name="submit" class="btn btn-info btn-block btn-round">sigup</button>
+                    <button type="submit" name="signup" class="btn btn-info btn-block btn-round">Sign Up</button>
                 </form>
                 
                 <div class="text-center text-muted delimiter">

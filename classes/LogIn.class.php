@@ -52,9 +52,9 @@ class LogIn
            if ($curUId = $this->validateUser($form['uemail'], $form['pwd'])){
                //var_dump($this->getUserType($form['uemail']));
                 if ($this->getUserType($form['uemail']) == 1){
-                    $url = "../OOPEnstitute/Student/index.php";
+                    $url = "../Student/index.php";
                 } else {
-                    $url = "../OOPEnstitute/tutor/home.php";
+                    $url = "../tutor/home.php";
                 }
                 $_SESSION['user_id'] = $curUId;
                 header("location: ".$url);

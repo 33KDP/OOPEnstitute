@@ -20,6 +20,9 @@ require_once "../bootstrap.php";
                     <a class="nav-link" href="../Group/manage_group.php">Manage Groups</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="../logout.php">Log out</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="tutorList.php">Tutors</a>
                 </li>
                 <li class="nav-item dropdown">
