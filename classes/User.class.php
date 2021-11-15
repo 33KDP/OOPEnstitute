@@ -19,7 +19,7 @@ abstract class User
     public function __contruct($userId){
         $this->userId = $userId;
         $this->dbCon = DBConn::getInstance();
-        $qry = $this->dbCon->getPDO()->prepare("SELECT * FROM `User` WHERE id=:uid");
+        $qry = $this->dbCon->getPDO()->prepare("SELECT * FROM `User` JOIN District ON `User`.district_id = District.id WHERE `User`.id=:uid");
         $qry->execute(array(':uid'=>$userId));
         $row = $qry->fetch(PDO::FETCH_ASSOC);
         $this->email=$row['email'];
