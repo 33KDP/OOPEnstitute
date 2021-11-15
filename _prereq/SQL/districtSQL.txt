@@ -1,0 +1,36 @@
+CREATE TABLE `District` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `district` varchar(50) NOT NULL
+);
+
+INSERT INTO `District` (`district`) VALUE ("Ampara");
+INSERT INTO `District` (`district`) VALUE ("Anuradhapura");
+INSERT INTO `District` (`district`) VALUE ("Badulla");
+INSERT INTO `District` (`district`) VALUE ("Batticaloa");
+INSERT INTO `District` (`district`) VALUE ("Colombo");
+INSERT INTO `District` (`district`) VALUE ("Gampaha");
+INSERT INTO `District` (`district`) VALUE ("Hambantota");
+INSERT INTO `District` (`district`) VALUE ("Jaffna");
+INSERT INTO `District` (`district`) VALUE ("Kalutara");
+INSERT INTO `District` (`district`) VALUE ("Kandy");
+INSERT INTO `District` (`district`) VALUE ("Kegalle");
+INSERT INTO `District` (`district`) VALUE ("Kilinochchi");
+INSERT INTO `District` (`district`) VALUE ("Kurunegala");
+INSERT INTO `District` (`district`) VALUE ("Mannar");
+INSERT INTO `District` (`district`) VALUE ("Matale");
+INSERT INTO `District` (`district`) VALUE ("Matara");
+INSERT INTO `District` (`district`) VALUE ("Monaragala");
+INSERT INTO `District` (`district`) VALUE ("Mullaitivu");
+INSERT INTO `District` (`district`) VALUE ("Nuwara Eliya");
+INSERT INTO `District` (`district`) VALUE ("Polonnaruwa");
+INSERT INTO `District` (`district`) VALUE ("Puttalam");
+INSERT INTO `District` (`district`) VALUE ("Ratnapura");
+INSERT INTO `District` (`district`) VALUE ("Trincomalee");
+INSERT INTO `District` (`district`) VALUE ("Vavuniya");
+
+
+
+ALTER TABLE `User` ADD `district_id` INT NOT NULL DEFAULT '1';
+
+ALTER TABLE `User` ADD FOREIGN KEY (`district_id`) REFERENCES `District` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `User` DROP COLUMN `district`;

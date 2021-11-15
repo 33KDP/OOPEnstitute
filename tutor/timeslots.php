@@ -25,7 +25,7 @@
                         </svg>';
         echo '</div>';
 
-        echo'<div class="modal fade" id="addEntry" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        echo '<div class="modal fade" id="addEntry" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -33,7 +33,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form action="timeslotController.php" method="POST">
+                    <form action="controllers/timeslotController.php" method="POST">
                       <div class="mb-3">
                         <label for="dayInput" class="form-label">Day</label>
                         <input type="text"  name="dayInput" class="form-control" id="dayInput">
@@ -46,7 +46,7 @@
                         <label for="endTime" class="form-label">End time</label>
                         <input type="time" name="endTime" class="form-control" id="endTime">
                       </div>
-                      <input type="hidden" name="tutorid" value="'.$curTutor->getTutorId().'">
+                      <input type="hidden" name="tutorid" value="' .$curTutor->getTutorId().'">
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <input type="submit" name="Add" value="Add" class="btn btn-primary">
@@ -78,7 +78,7 @@
                 </div>';
             echo '</div>';
 
-            echo'<div class="modal fade" id="editEntry'.$timeSlot->getTimeslotId().'" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            echo'<div class="modal fade" id="editEntry'.$timeSlot->getTimeslotId(). '" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                   <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -86,10 +86,10 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <form action="timeslotController.php" method="POST">
+                        <form action="controllers/timeslotController.php" method="POST">
                           <div class="mb-3">
                             <label for="dayInput" class="form-label">Day</label>
-                            <input type="text"  name="dayInput" class="form-control" id="dayInput" value="'.htmlentities($timeSlot->getDay()).'">
+                            <input type="text"  name="dayInput" class="form-control" id="dayInput" value="' .htmlentities($timeSlot->getDay()).'">
                           </div>
                           <div class="mb-3">
                             <label for="startTime" class="form-label">Start time</label>
@@ -110,7 +110,7 @@
                   </div>   
                 </div>';
 
-            echo'<div class="modal fade" id="deleteEntry'.$timeSlot->getTimeslotId().'" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            echo'<div class="modal fade" id="deleteEntry'.$timeSlot->getTimeslotId(). '" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                   <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -118,11 +118,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <form action="timeslotController.php" method="POST">
+                        <form action="controllers/timeslotController.php" method="POST">
                           <div class="mb-3">
                             <label for="dayInput" class="form-label">You will not be able to undo this action.</label>
                           </div>     
-                          <input type="hidden" name="timeid" value="'.$timeSlot->getTimeslotId().'">
+                          <input type="hidden" name="timeid" value="' .$timeSlot->getTimeslotId().'">
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <input type="submit" name="Delete" value="Delete" class="btn btn-danger">

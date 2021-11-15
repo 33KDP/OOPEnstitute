@@ -17,7 +17,7 @@
     <body>
         <?php require_once "navbar.php"; ?>
         <div class="container p-5 shadow my-5 rounded-3">
-            <form action="profileController.php" method="POST">
+            <form action="controllers/profileController.php" method="POST">
                 <div class="mb-3">
                     <label for="fname" class="form-label">First name</label>
                     <input type="text"  name="fname" class="form-control" id="fname" value="<?= htmlentities($curTutor->getFName())?>">
