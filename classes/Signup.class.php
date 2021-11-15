@@ -85,7 +85,10 @@ class Signup
     
     private function createUser($conn,$fname,$lname,$email,$pwd,$user_type,$grade,$distric,$city){
         if($user_type=="student"){
-            $sql1="INSERT INTO user(usertype_id,email,first_name,last_name,district,city) VALUES(:utype,:uemail,:fname,:lname,:distric,:city)";
+            $sql0=$conn->prepare("SELECT * FROM District WHERE district=:dis");
+            $sql0->execute(array(':dis'=>$distric));
+            $row = $sql0->fetch(pdo::FETCH_ASSOC);
+            $sql1="INSERT INTO user(usertype_id,email,first_name,last_name,district_id,city) VALUES(:utype,:uemail,:fname,:lname,:distric,:city)";
             $stmt1  = $conn->prepare($sql1);
         
             $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
@@ -95,7 +98,7 @@ class Signup
                 ':uemail' => $email,
                 ':fname' => $fname,
                 ':lname' => $lname,
-                ':distric' => $distric,
+                ':distric' =>$row['id'],
                 ':city' => $city)
                 );
     
@@ -116,7 +119,11 @@ class Signup
                 );
     
         }else{
-            $sql1="INSERT INTO user(usertype_id,email,first_name,last_name,district,city) VALUES(:utype,:uemail,:fname,:lname,:distric,:city)";
+            $sql0=$conn->prepare("SELECT * FROM District WHERE district=:dis");
+            $sql0->execute(array(':dis'=>$distric));
+            $row = $sql0->fetch(pdo::FETCH_ASSOC);
+
+            $sql1="INSERT INTO user(usertype_id,email,first_name,last_name,district_id,city) VALUES(:utype,:uemail,:fname,:lname,:distric,:city)";
             $stmt1  = $conn->prepare($sql1);
         
             $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
@@ -126,7 +133,7 @@ class Signup
                 ':uemail' => $email,
                 ':fname' => $fname,
                 ':lname' => $lname,
-                ':distric' => $distric,
+                ':distric' =>$row['id'],
                 ':city' => $city)
                 );
     
