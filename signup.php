@@ -37,12 +37,57 @@
                     <div class="form-group">
                     <input type="text" class="form-control" id="name2" name="lname" placeholder="last name...">
                     </div>
+
                     <div class="form-group" id="grade">
-                    <input type="number" class="form-control" min="1" max="13" step="1" id="grd" name="grade"  placeholder="Grade...">
+                    <select class="form-control" id="grd" name="grade" placeholder="Grade...">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                    </select>
                     </div>
+
+
                     <div class="form-group">
-                    <input type="text" class="form-control" id="dis" name="district" placeholder="your distric...">
+                    <select class="form-control" id="dis" name="district"  placeholder="your distric...">
+                        <option value="Ampara">Ampara</option>
+                        <option value="Anuradhapura">Anuradhapura</option>
+                        <option value="Badulla">Badulla</option>
+                        <option value="Batticaloa">Batticaloa</option>
+                        <option value="Colombo">Colombo</option>
+                        <option value="Galle">Galle</option>
+                        <option value="Gampaha">Gampaha</option>
+                        <option value="Hambantota">Hambantota</option>
+                        <option value="Jaffna">Jaffna</option>
+                        <option value="Kalutara">Kalutara</option>
+                        <option value="Kandy">Kandy</option>
+                        <option value="Kegalle">Kegalle</option>
+                        <option value="Kilinochchi">Kilinochchi</option>
+                        <option value="Kurunegala">Kurunegala</option>
+                        <option value="Mannar">Mannar</option>
+                        <option value="Matale">Matale</option>
+                        <option value="Matara">Matara</option>
+                        <option value="Monaragala">Monaragala</option>
+                        <option value="Mullaitivu">Mullaitivu</option>
+                        <option value="Nuwara Eliya">Nuwara Eliya</option>
+                        <option value="Polonnaruwa">Polonnaruwa</option>
+                        <option value="Puttalam">Puttalam</option>
+                        <option value="Ratnapura">Ratnapura</option>
+                        <option value="Trincomalee">Trincomalee</option>
+                        <option value="Vavuniya">Vavuniya</option>
+                    </select>
                     </div>
+
+
                     <div class="form-group">
                     <input type="text" class="form-control" id="cit" name="city" placeholder="your city...">
                     </div>
