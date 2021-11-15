@@ -8,7 +8,7 @@ session_start();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>E-nstitute</title>
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
     <!-- Font Awesome CSS -->
@@ -16,27 +16,26 @@ session_start();
     <!-- Style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Demo CSS -->
-    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="assets/css/demo.css">
 </head>
 
 <body>
 <header class="intro">
-    <div class="header">
-        <a href="index.php"><img src="img/logo.png" alt="E-nstitute logo"></a>
-        <ul class="list-group">
-            <li class="list-group-item"><a href="index.php">Home</a></li>
-            <li class="list-group-item"><a href="discover.php">About Us</a></li>
-            <li class="list-group-item"><a href="blog.php">Find Tutor</a></li>
-            <?php
-            if(isset($_SESSION["useruid"])){
-                echo "<li class='list-group-item'><a href='profile.php'>profile page</a></li>";
-                echo "<li class='list-group-item'><a href='includes/logout.inc.php'>Log out</a></li>";
-            }else{
-                echo "<li class='list-group-item'><a href='login.php'>Log in</a></li>";
-                echo "<li class='list-group-item'><a href='signup.php'>Sign up</a></li>";
-            }
-            ?>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="assets/img/logo2.png" alt="E-nstitute logo" style="width:200px;height:40px;"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.php">Log in</a></li>
+                <li class="nav-item"><a class="nav-link" href="signup.php">Sign up</a></li>
+
+            </ul>
+        </div>
     </div>
+</nav>
 </header>
 
