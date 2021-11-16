@@ -7,7 +7,7 @@
 
     if (isset($_POST['Accept'])){
        $request = new EnrollRequest($_POST['reqId']);
-       $request->accept();
+       $request->accept($_POST);
     } else if (($_POST['Reject'])) {
         $request = new EnrollRequest($_POST['reqId']);
         $request->reject();

@@ -1,6 +1,7 @@
 <?php
 require_once "DBConn.class.php";
 require_once "State.class.php";
+require_once "IndividualClass.class.php";
 abstract class Request
 {
     private $senderId;
@@ -30,8 +31,13 @@ abstract class Request
         $this->id=$id;
     }
 
-    public function accept(){
+    public function accept($form){
         $this->setState(Accepted::getInstance());
+        if ($form['type'] == 0){
+            IndividualClass::addClass($form);
+        } else {
+
+        }
         Request::removeRequest($this->id);
     }
 
@@ -107,9 +113,9 @@ abstract class Request
     }
 
     public static function removeRequest($requestId){
-//        $dbConn =DBConn::getInstance();
-//        $qry = $dbConn->getPDO()->prepare("DELETE FROM Request WHERE id=:reqid");
-//        $qry->execute(array(':reqid'=>$requestId));
+        $dbConn =DBConn::getInstance();
+        $qry = $dbConn->getPDO()->prepare("DELETE FROM Request WHERE id=:reqid");
+        $qry->execute(array(':reqid'=>$requestId));
     }
 
 }

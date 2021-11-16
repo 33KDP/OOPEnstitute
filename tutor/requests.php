@@ -35,7 +35,7 @@
                                       <div class="card-body">
                                         <h5 class="card-title">' . htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' medium</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">'.$note.' by '.$sender.'</h6>
-                                            <a href="viewRequest.php/?reqId='.$request->getId().'"><button class="btn btn-primary btn-sm" >View</button></a>
+                                            <a href="viewRequest.php?reqId='.$request->getId().'"><button class="btn btn-primary btn-sm" >View</button></a>
                                       </div>
                                 </div>';
                     }
