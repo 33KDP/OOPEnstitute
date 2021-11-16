@@ -1,6 +1,6 @@
 <?php
+    session_start();
     include_once 'head.php' ;
-    require_once "../classes/Session.class.php";
     require_once "../classes/DBConn.class.php";
     require_once "../classes/Student.class.php";
 

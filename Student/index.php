@@ -1,6 +1,9 @@
 <?php
+session_start();
 require_once "../classes/DBConn.class.php";
 require_once "../classes/Tutor.class.php";
+require_once "../classes/Student.class.php";
+
 
 if (!isset($_SESSION['user_id'])){
     header("location: ../index.php");
