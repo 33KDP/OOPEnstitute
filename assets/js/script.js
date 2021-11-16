@@ -23,4 +23,3 @@ window.addEventListener('DOMContentLoaded', (event) => {
   x.style.display = "none";
 });
 
-

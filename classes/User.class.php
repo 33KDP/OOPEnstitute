@@ -135,6 +135,7 @@ abstract class User
     public function getProfilePic()
     {
 //        return $this->profilePic;
+        return false;
     }
 
 
