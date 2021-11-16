@@ -1,5 +1,5 @@
 <?php
-    require_once('../classes/Timeslot.class.php');
+    require_once('../../classes/Timeslot.class.php');
     session_start();
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
@@ -13,5 +13,5 @@
     }else if (isset($_POST['Delete'])) {
         Timeslot::deleteTimeSlot($_POST['timeid']);
     } else {
-        header("location: timeslots.php");
+        header("location: ../timeslots.php");
     }

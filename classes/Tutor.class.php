@@ -3,6 +3,7 @@ require_once "DBConn.class.php";
 require_once "User.class.php";
 require_once "Timeslot.class.php";
 require_once "Subject.class.php";
+require_once "EnrollRequest.class.php";
 
 class Tutor extends User
 {
@@ -50,7 +51,11 @@ class Tutor extends User
 
     public function isNotAvailable()
     {
-        return $this->notAvailable;
+        if($this->notAvailable){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function setNotAvailable($notAvailable)
@@ -109,5 +114,17 @@ class Tutor extends User
         if (($key = array_search($subject, $this->subjects)) !== false) {
             unset($this->subjects[$key]);
         }
+    }
+
+    public function getRequests(){
+        $qry = $this->dbCon->getPDO()->prepare("SELECT Request.id FROM Tutor JOIN Request ON Tutor.id=request.tutor_id WHERE Tutor.id=:tid");
+        $qry->execute(array(
+            ':tid'=>$this->tutorId
+        ));
+        $requests = array();
+        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            array_push($requests, new EnrollRequest($row['id']));
+        }
+        return $requests;
     }
 }

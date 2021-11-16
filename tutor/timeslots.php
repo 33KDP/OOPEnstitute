@@ -47,6 +47,12 @@
                         <input type="time" name="endTime" class="form-control" id="endTime">
                       </div>
                       <input type="hidden" name="tutorid" value="' .$curTutor->getTutorId().'">
+                      <div class="mb-3">
+                          <input class="form-check-input" type="checkbox" name="flag" id="flag">
+                          <label class="form-check-label" for="flag">
+                            Set as occupied
+                          </label>
+                      </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <input type="submit" name="Add" value="Add" class="btn btn-primary">
@@ -100,6 +106,16 @@
                             <input type="time" name="endTime" class="form-control" id="endTime" value="'.htmlentities(Timeslot::getTime24($timeSlot->getEndTime())).'">
                           </div>
                           <input type="hidden" name="timeid" value="'.$timeSlot->getTimeslotId().'">
+                          <div class="mb-3">
+                              <input class="form-check-input" type="checkbox" name="flag" id="flag"';
+                                if ($timeSlot->getNotAvailable()) {
+                                    echo 'checked';
+                                }
+                              echo '>
+                              <label class="form-check-label" for="flag">
+                                Set as occupied
+                              </label>
+                          </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <input type="submit" name="Save" value="Save" class="btn btn-primary">

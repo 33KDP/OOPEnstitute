@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $(".subject" ).autocomplete({
-        source: '../Sources/subjectList.php',
+        source: 'subjectList.php',
         select: function (event, ui) {
             // Set autocomplete element to display the label
             this.value = ui.item.label;
@@ -13,3 +13,12 @@ $(document).ready(function(){
         }
     });
 });
+
+$("#profileImage").click(function(e) {
+    $("#imageUpload").click();
+  });
+  
+var loadFile = function(event) {
+	var image = document.getElementById('profileImage');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
