@@ -2,7 +2,7 @@
 
 abstract class User
 {
-    private int $userId;
+    private $userId;
     private string $email;
     private string $fName;
     private string $lName;
@@ -136,6 +136,7 @@ abstract class User
     public function getProfilePic()
     {
 //        return $this->profilePic;
+        return false;
     }
 
 
@@ -158,6 +159,10 @@ abstract class User
             ':phld'=>$rating,
             ':uid'=>$this->userId));
         $this->rating = $rating;
+    }
+
+    public function reset_password($old_pwd,$new_pwd,$confirm_pwd){
+
     }
 
     public function composeMessage($sender, $receiver, $messageBody, $messageType)

@@ -51,7 +51,11 @@ class Tutor extends User
 
     public function isNotAvailable()
     {
-        return $this->notAvailable;
+        if($this->notAvailable){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function setNotAvailable($notAvailable)

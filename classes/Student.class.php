@@ -1,5 +1,6 @@
 <?php
-require_once("User.class.php");
+require_once "DBConn.class.php";
+require_once "User.class.php";
 require_once("Session.class.php");
 require_once("Message.class.php");
 
@@ -67,5 +68,17 @@ class Student extends User
 
     }
 
+    public function getSubjects() {
+//        $qry = $this->dbCon->getPDO()->prepare("SELECT Subject.id FROM Subject WHERE Subject.id = :sid");
+//        $qry->execute(array(':sid'=>$this->subjectID));
+//        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+//            array_push($this->subjects, Subject::getInstance($row['id']));
+//        }
+//        return $this->subjects;
+    }
+
+    public function getStudentID() {
+        return $this->studentId;
+    }
 
 }
