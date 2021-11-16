@@ -24,10 +24,10 @@
             if ($request->getType() == 0){
                 $note = 'Individual request';
                 $sender = Student::getInstance(Student::getUserId($senderId));
-                $getUrl='../viewStudent.php?sid='.$senderId;
+                $getUrl='../tutor/viewStudent.php?sid='.$senderId;
             } else {
                 $note = 'Group request';
-                $getUrl='../viewStudent.php?gid='.$senderId;
+                $getUrl='../tutor/viewStudent.php?gid='.$senderId;
             }
             echo '<div class="container p-5">';
             echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
