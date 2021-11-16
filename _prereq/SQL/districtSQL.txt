@@ -8,6 +8,7 @@ INSERT INTO `District` (`district`) VALUE ("Anuradhapura");
 INSERT INTO `District` (`district`) VALUE ("Badulla");
 INSERT INTO `District` (`district`) VALUE ("Batticaloa");
 INSERT INTO `District` (`district`) VALUE ("Colombo");
+INSERT INTO `District` (`district`) VALUE ("Galle");
 INSERT INTO `District` (`district`) VALUE ("Gampaha");
 INSERT INTO `District` (`district`) VALUE ("Hambantota");
 INSERT INTO `District` (`district`) VALUE ("Jaffna");
