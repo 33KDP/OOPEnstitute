@@ -16,7 +16,7 @@ class Tutor extends User
 
     private function __construct($userId)
     {
-        parent::__contruct($userId);
+        parent::__construct($userId);
         $qry = $this->dbCon->getPDO()->prepare("SELECT Tutor.description, Tutor.id, Tutor.availability_flag FROM `User` JOIN tutor ON `User`.id = Tutor.user_id WHERE `User`.id=:uid");
         $qry->execute(array(':uid'=>$userId));
         $row = $qry->fetch(PDO::FETCH_ASSOC);

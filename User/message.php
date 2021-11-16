@@ -46,20 +46,34 @@
         <?php require_once "navbar.php"; ?>
         <div class="container">
             <?php
+                $messages = $curStudent->readMessages($_SESSION['user_id'], $_SESSION['tutor_id'], 0);
                 $sql = "SELECT first_name, last_name FROM `User` WHERE id = :tutor_id";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute(array(':tutor_id' => $_SESSION['tutor_id']));
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 echo ('<a href="../Student/tutorList.php">Back</a> &emsp;'.htmlentities($row['first_name']).' '.htmlentities($row['last_name']).'<hr>');
 
-                while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo (htmlentities($row['first_name']).' '.htmlentities($row['last_name']));
-                    echo '<div class="text-end" >';
-                    echo ('<a href="../tutor/viewDetails.php?tutor_id='.$row['id'].'">View details</a> &emsp;');
-                    echo ('<a href="../User/message.php?tutor_id='.$row['id'].'">Message</a> &emsp;');
-                    echo ('<a href="sendRequest.php?tutor_id='.$row['id'].'">Send enrolment request</a>');
-                    echo '</div>';
-                    echo '<hr>';
+                foreach ($messages as $message) {
+                    $sender = $message->getSender();
+                    $receiver = $message->getReceiver();
+                    $messageBody = $message->getMessageBody();
+                    $time = $message->getTime();
+                    if ($sender == $_SESSION['user_id'])
+                    {
+                        echo '<div class="text-end" >';
+                        echo ($messageBody);
+                        echo '<br>';
+                        echo ($time);
+                        echo '</div>';
+                    }
+                    else
+                    {
+                        echo '<div class="text-start" >';
+                        echo ($messageBody);
+                        echo '<br>';
+                        echo ($time);
+                        echo '</div>';
+                    }
                 }
 
             ?>
