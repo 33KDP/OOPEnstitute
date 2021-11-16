@@ -3,12 +3,12 @@
 abstract class User
 {
     private $userId;
-    private string $email;
-    private string $fName;
-    private string $lName;
-    private string $district;
-    private string $city;
-    private int $userTypeId;
+    private $email;
+    private $fName;
+    private $lName;
+    private $district;
+    private $city;
+    private $userTypeId;
     private $messageList;
     // private $privateMessageList;
     // private $groupMessageList;
