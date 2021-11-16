@@ -1,6 +1,4 @@
 <?php
-    require_once "../classes/Session.class.php";
-    require_once "../classes/DBConn.class.php";
     require_once "../classes/Tutor.class.php";
 
     if (!isset($_SESSION['user_id'])){
@@ -38,9 +36,7 @@
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control"  name="description" id="description" ><?= htmlentities($curTutor->getDescription())?></textarea>
                 </div>
-                <?php
 
-                ?>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="flag"
                         <?php

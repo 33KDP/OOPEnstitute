@@ -1,5 +1,6 @@
 <?php
-require_once("User.class.php");
+require_once "DBConn.class.php";
+require_once "User.class.php";
 require_once("Session.class.php");
 require_once("Message.class.php");
 
@@ -9,9 +10,9 @@ class Student extends User
     private $studentId;
     private static $instances;
 
-    public function __contruct($userId)
+    public function __construct($userId)
     {
-        parent::__contruct($userId);
+        parent::__construct($userId);
         $qry = $this->dbCon->getPDO()->prepare("SELECT Student.grade, Student.id FROM `User` JOIN Student ON `User`.id = Student.user_id WHERE `User`.id=:uid");
         $qry->execute(array(':uid'=>$userId));
         $row = $qry->fetch(PDO::FETCH_ASSOC);
@@ -67,5 +68,17 @@ class Student extends User
 
     }
 
+    public function getSubjects() {
+//        $qry = $this->dbCon->getPDO()->prepare("SELECT Subject.id FROM Subject WHERE Subject.id = :sid");
+//        $qry->execute(array(':sid'=>$this->subjectID));
+//        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+//            array_push($this->subjects, Subject::getInstance($row['id']));
+//        }
+//        return $this->subjects;
+    }
+
+    public function getStudentID() {
+        return $this->studentId;
+    }
 
 }

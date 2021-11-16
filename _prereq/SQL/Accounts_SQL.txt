@@ -14,6 +14,8 @@ kal
 
 
 
+SELECT * FROM District JOIN Tutor JOIN User JOIN Subject ON Tutor.user_id=User.id AND Subject.tutor_id=Tutor.id AND User.district_id=District.id WHERE subject.id=$_POST['sid']
+AND District.district=$_POST['district'] AND
 
 
 

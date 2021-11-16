@@ -2,7 +2,7 @@
 
 abstract class User
 {
-    private int $userId;
+    private $userId;
     private string $email;
     private string $fName;
     private string $lName;
@@ -16,7 +16,7 @@ abstract class User
     private $rating;
     protected $dbCon;
 
-    public function __contruct($userId){
+    public function __construct($userId){
         $this->userId = $userId;
         $this->dbCon = DBConn::getInstance();
         $qry = $this->dbCon->getPDO()->prepare("SELECT * FROM `User` JOIN District ON `User`.district_id = District.id WHERE `User`.id=:uid");
