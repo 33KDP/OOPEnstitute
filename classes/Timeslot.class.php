@@ -139,15 +139,17 @@ class Timeslot
 
     public function setNotAvailable($notAvailable)
     {
-        $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET start_time=:phld WHERE id=:timeid");
         if ($notAvailable){
-            $val = 1;
+            $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET state=:phld WHERE id=:timeid");
+            $qry->execute(array(
+                ':phld'=>1,
+                ':timeid'=>$this->timeslotId));
         } else {
-            $val = 0;
+            $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET state=DEFAULT WHERE id=:timeid");
+            $qry->execute(array(
+                ':timeid'=>$this->timeslotId));
         }
-        $qry->execute(array(
-            ':phld'=>$val,
-            ':timeid'=>$this->timeslotId));
+
         $this->notAvailable = $notAvailable;
     }
 
@@ -178,8 +180,14 @@ class Timeslot
                 ':start' => $start,
                 ':end' => $end
             ));
+
+            if (isset($_POST['flag'])){
+                $id = self::$dbConn->getPDO()->lastInsertId();
+                $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET state=1 WHERE id=:id");
+                $qry->execute(array(':id'=>$id));
+            }
         }
-        header("location: timeslots.php");
+        header("location: ../timeslots.php");
     }
 
     public function editTimeSlot($form){
@@ -193,8 +201,14 @@ class Timeslot
             $this->setDay($day);
             $this->setStartTime($start);
             $this->setEndTime($end);
+
+            if (isset($_POST['flag'])){
+                $this->setNotAvailable(true);
+            }else{
+                $this->setNotAvailable(false);
+            }
         }
-        header("location: timeslots.php");
+        header("location: ../timeslots.php");
     }
 
     public static function deleteTimeSlot($timeSlotId){
@@ -204,7 +218,7 @@ class Timeslot
         ));
         unset(self::$instances[$timeSlotId]);
         //flash message
-        header("location: timeslots.php");
+        header("location: ../timeslots.php");
     }
 }
 
