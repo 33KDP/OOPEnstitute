@@ -22,7 +22,7 @@ abstract class _Class
     /**
      * @return mixed
      */
-    public function getClass()
+    public function getClassId()
     {
         return $this->class_id;
     }

@@ -9,6 +9,7 @@ abstract class Request
     private $message;
     private $state;
     private $type;
+    private $id;
 
     /**
      * @param $senderId
@@ -18,7 +19,7 @@ abstract class Request
      * @param $state
      * @param $type
      */
-    public function __construct($senderId, $receiverId, $subjectId, $message, $state, $type)
+    public function __construct($id, $senderId, $receiverId, $subjectId, $message, $state, $type)
     {
         $this->senderId = $senderId;
         $this->receiverId = $receiverId;
@@ -26,6 +27,25 @@ abstract class Request
         $this->message = $message;
         $this->state = $state;
         $this->type = $type;
+        $this->id=$id;
+    }
+
+    public function accept(){
+        $this->setState(Accepted::getInstance());
+        Request::removeRequest($this->id);
+    }
+
+    public function reject(){
+        $this->setState(Accepted::getInstance());
+        Request::removeRequest($this->id);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -84,6 +104,12 @@ abstract class Request
     public function getType()
     {
         return $this->type;
+    }
+
+    public static function removeRequest($requestId){
+//        $dbConn =DBConn::getInstance();
+//        $qry = $dbConn->getPDO()->prepare("DELETE FROM Request WHERE id=:reqid");
+//        $qry->execute(array(':reqid'=>$requestId));
     }
 
 }
