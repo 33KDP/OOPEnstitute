@@ -99,6 +99,9 @@
                             </div>
                          </div>
                      </div>
+                     <div class="modal-footer d-flex justify-content-center">
+                        <div class="signup-section">Already a member? <a href="login.php" class="text-info"> Log in</a>.</div>
+                    </div>
                 </div>
             </div>
         </div>
