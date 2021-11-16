@@ -161,6 +161,10 @@ abstract class User
         $this->rating = $rating;
     }
 
+    public function reset_password($old_pwd,$new_pwd,$confirm_pwd){
+
+    }
+
     public function composeMessage($sender, $receiver, $messageBody, $messageType)
     {
         $message = new Message($sender, $receiver, $messageBody, $messageType, 0);

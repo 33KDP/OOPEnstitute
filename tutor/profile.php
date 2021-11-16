@@ -59,7 +59,7 @@
 
             ?>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="flag"
+                <input type="checkbox" class="form-check-input" id="flag" name="cbox" value="1"
                     <?php
                         if ($curTutor->isNotAvailable()){
                             echo'checked';
@@ -69,7 +69,7 @@
                 <label class="form-check-label" for="flag">Set as unavailable</label>
             </div>
             <div>
-                <input type="submit" name="set" value="Edit" class="btn btn-primary">
+                <button type="submit" name="set" class="btn btn-primary">Edit</button>
             </div>
             <input type="hidden" name="tutorid" value="<?= $curTutor->getTutorId()?>">
         </form>
@@ -91,8 +91,8 @@
                 <label for="city" class="form-label">Confirm Password</label>
                 <input type="password"  name="confirm_pwd" class="form-control" id="pwd" >
             </div>
-            <div class="mb-3">
-                <input type="submit" name="reset" value="Reset password" class="btn btn-danger"> 
+            <div class="mb-3"> 
+                <button type="submit" name="reset" class="btn btn-danger">Reset password</button>
             </div>
             <div class="mb-3">
                 <button class="btn btn-dark" name="Cancel" value="Cancel" href="home.php">Cancel</button>
