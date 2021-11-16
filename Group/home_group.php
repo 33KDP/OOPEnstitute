@@ -1,40 +1,112 @@
 <?php
-session_start();
+include_once 'head.php' ;
+require_once "../classes/Session.class.php";
+require_once "../classes/DBConn.class.php";
+require_once "../classes/Student.class.php";
+
+if (!isset($_SESSION['user_id'])){
+    header("location: ../index.php");
+}
+$curGroup=  GroupClass::getInstance($_SESSION['user_id']);
+
+require_once "../bootstrap.php";
+require_once "navbar.php";
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Groups</title>
-</head>
-<body>
 
-<div class="container">
-    <h1>All the groups you are in</h1>
-    <?php
-    #$stmt = $pdo->query("SELECT profile_id, first_name, last_name, headline FROM users JOIN Profile ON users.user_id = Profile.user_id;");
-    if (!isset($_SESSION['name'])){
-        echo '<p><a href="login.php">Please log in</a></p>';
-        echo'<p><table style="width:100%" border="1" ><tr><th>Name</th><th>Headline</th>';
+<div class="container p-5 shadow my-5 rounded-3">
+    <form action="controllers/profileController.php" method="post">
 
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo'<tr><td><a href="view.php?profile_id='.$row['profile_id'].'">'.htmlentities($row['first_name']).' '.htmlentities($row['last_name'])."</a></td>";
-            echo"<td>".htmlentities($row['headline'])."</td><tr>";
-        }
-        echo"<table>";
-    } else {
-        echo'<a href="logout.php">Logout</a>';
-        echo'<table style="width:100%" border="1" ><tr><th>Name</th><th>Headline</th><th>Action</th>';
+        <div class="mb-3">
+            <label for="propic" class="form-label">Profile Photo</label><br>
+            <?php
+            //$propic = $curTutor->getProfilePic();
+            $propic = false ;
 
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo'<tr><td><a href="view.php?profile_id='.$row['profile_id'].'">'.htmlentities($row['first_name']).' '.htmlentities($row['last_name'])."</a></td>";
-            echo"<td>".htmlentities($row['headline'])."</td>";
-            echo'<td><a href="edit.php?profile_id='.$row['profile_id'].'">Edit</a> / <a href="delete.php?profile_id='.$row['profile_id'].'">Delete</a></td><tr>';
-        }
-        echo"<table>";
-        echo'<p><a value="Add" href="add.php">Add New Entry</a></p><br>';
-    }
-    ?>
+            if($propic=!false){
+
+                echo "<image id='profileImage' src='https://i.stack.imgur.com/YQu5k.png' style='width:110px; height:130px; object-fit:cover;' />" ;
+            }else{
+                echo "<image id='profileImage' src='{$propic}' class='img-thumbnail' style='width:110px; height:130px; object-fit:cover;'/>" ;
+            }
+            ?>
+            <input  id="imageUpload" type="file"  name="profile_photo" class="form-control" placeholder="Photo"  onchange="loadFile(event)" >
+        </div>
+
+        <div class="mb-3">
+            <label for="fname" class="form-label">First name</label>
+            <input type="text"  name="fname" class="form-control" id="fname" value="<?= htmlentities($curGroup->getFName())?>">
+        </div>
+        <div class="mb-3">
+            <label for="lname" class="form-label">Last name</label>
+            <input type="text"  name="lname" class="form-control" id="lname" value="<?= htmlentities($curGroup->getLName())?>">
+        </div>
+        <div class="mb-3">
+            <label for="district" class="form-label">District</label>
+            <input type="text"  name="district" class="form-control" id="district" value="<?= htmlentities($curGroup->getDistrict())?>">
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text"  name="city" class="form-control" id="city" value="<?= htmlentities($curGroup->getCity())?>">
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control"  name="description" id="description" >
+                     <?php
+                     if(!empty($curGroup->getDescription())){
+                         echo htmlentities($curGroup->getDescription());
+                     }else{
+                         echo "add a bio";
+                     }
+                     ?>
+                </textarea>
+        </div>
+        <?php
+
+        ?>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="flag" name="cbox" value="1"
+                <?php
+                if ($curGroup->isNotAvailable()){
+                    echo'checked';
+                }
+                ?>
+            >
+            <label class="form-check-label" for="flag">Set as unavailable</label>
+        </div>
+        <div>
+            <button type="submit" name="set" class="btn btn-primary">Edit</button>
+        </div>
+        <input type="hidden" name="tutorid" value="<?= $curGroup->getTutorId()?>">
+    </form>
+
+    <br>
+    <div class="mb-3">
+        <h4>Do you want to reset your password ?</h4>
+    </div>
+    <form action="controllers/profileController.php" method="POST">
+        <div class="mb-3">
+            <label for="city" class="form-label">Old Password</label>
+            <input type="password"  name="old_pwd" class="form-control" id="pwd" >
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">New Password</label>
+            <input type="password"  name="new_pwd" class="form-control" id="pwd" >
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">Confirm Password</label>
+            <input type="password"  name="confirm_pwd" class="form-control" id="pwd" >
+        </div>
+        <div class="mb-3">
+            <button type="submit" name="reset" class="btn btn-danger">Reset password</button>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-dark" name="Cancel" value="Cancel" href="home.php">Cancel</button>
+        </div>
+    </form>
+
+
 </div>
 </body>
 </html>

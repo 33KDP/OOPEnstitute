@@ -7,7 +7,7 @@ require_once "EnrollRequest.class.php";
 
 class Tutor extends User
 {
-    private string $description;
+    private $description;
     private  $notAvailable;
     private  int $tutorId;
     private  $timeSlots;
