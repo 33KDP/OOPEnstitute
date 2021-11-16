@@ -169,35 +169,27 @@ abstract class User
     public function readMessages($userId, $tutorId, $messageType)
     {
         $this->messageList = array();
-        $sql0 = "SELECT * FROM `Message` WHERE (((user_id = :userId AND receiver = :tutorId) OR (user_id = :tutorId AND receiver = :userId)) AND type = :messageType)";
-        $sql1 = "UPDATE `Message` SET state = 1 WHERE ((user_id = :tutorId AND receiver = :userId) AND type = :messageType)";
 
-        $stmt = $this->dbCon->getPDO()->prepare($sql0);
-        $stmt->execute(array(':userId'=>$userId,
-                            ':tutorId'=>$tutorId,
-                            ':messageType'=>$messageType));
-
-        $stmt1 = $this->dbCon->getPDO()->prepare($sql1);
-        $stmt1->execute(array(':userId'=>$userId,
-                            ':tutorId'=>$tutorId,
-                            ':messageType'=>$messageType));
+        $stmt = Message::receive($userId, $tutorId, $messageType);
 
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $messageId = $row['id'];
             if ($messageType == 0)
                 $sender = htmlentities($row['user_id']);
-
+            else
+                $sender = htmlentities($row['user_id']);
+                
             $receiver = htmlentities($row['receiver']);
             $messageBody = htmlentities($row['message']);
             $state = htmlentities($row['state']);
             $messageType = htmlentities($row['type']);
             
-            $newMessage = new Message($sender, $receiver, $messageBody, $messageType, $state);
-
+            $messageId = $row['id'];
             $qry = $this->dbCon->getPDO()->prepare("SELECT time FROM `Message` WHERE id=:messageId");
             $qry->execute(array(':messageId'=>$messageId));
             $row = $qry->fetch(PDO::FETCH_ASSOC);
             $time = $row['time'];
+            
+            $newMessage = new Message($sender, $receiver, $messageBody, $messageType, $state);
             $newMessage->setTime($time);
 
             array_push($this->messageList, $newMessage);
