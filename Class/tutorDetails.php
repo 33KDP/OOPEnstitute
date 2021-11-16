@@ -18,26 +18,36 @@
         <?php require_once "../Student/navbar.php"; ?>
         <div class="container p-5 shadow my-5 rounded-3">
             <table>
-                <th>First name: <th>
-                <td><?= htmlentities($curTutor->getFName())?></td>
+                <tr>
+                    <th>First name: </th>
+                    <td><?= htmlentities($curTutor->getFName())?></td></tr>
 
-                <th>Last name: </th>
-                <td><?= htmlentities($curTutor->getLName())?></td>
+                <tr><th>Last name: </th>
+                <td><?= htmlentities($curTutor->getLName())?></td> </tr>
 
-                <th>District: </th>
-                <td><?= htmlentities($curTutor->getDistrict())?></td>
+                <tr><th>District: </th>
+                <td><?= htmlentities($curTutor->getDistrict())?></td> </tr>
 
-                <th>City: </th>
-                <td> <?= htmlentities($curTutor->getCity())?></td>
+                <tr><th>City: </th>
+                <td> <?= htmlentities($curTutor->getCity())?></td> </tr>
                 <th>Description:</th>
-                <td><?= htmlentities($curTutor->getDescription())?></td>
 
-                <th>Available Time Slots:</th>
+                <tr><td>
+                <?php
+
+                if(!empty($curTutor->getDescription())){
+                    echo  htmlentities($curTutor->getDescription());
+                } else{
+                        echo "NULL"; } ?>
+                </td> </tr>
+
+
+                <tr><th>Available Time Slots:</th>
                 <?php $timeslots = $curTutor->getTimeSlots();
                         foreach ($timeslots as $value) {
                             echo '<td><?= htmlentities('. $value .')?></td><br>';
                         }
-                ?>
+                ?></tr>
 
             </table>
                 <br>

@@ -30,6 +30,12 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
             </a>
         </div>
 
+        <div class="position-fixed"  style="top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000">
+            <a href="profile.php">
+                <button>View Profile</button>
+            </a>
+        </div>
+
         <div class="position-fixed"  style="top: 90%; left: 50%; transform: translate(-50%, -50%); z-index: 1000">
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">

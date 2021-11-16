@@ -32,6 +32,9 @@
             $dis = $row['district'];
             $rate = $row['rating'];
 
+            if (is_null($id)){
+                header ('location: joinClass.php' );
+            }
             ?>
 
 <html>
