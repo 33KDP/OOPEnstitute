@@ -7,9 +7,9 @@ require_once "EnrollRequest.class.php";
 
 class Tutor extends User
 {
-    private  $description;
+    private string $description;
     private  $notAvailable;
-    private  $tutorId;
+    private  int $tutorId;
     private  $timeSlots;
     private $subjects;
     private static $instances;
@@ -24,6 +24,7 @@ class Tutor extends User
         $this->subjects = array();
         $this->tutorId=$row['id'];
         $this->notAvailable=$row['availability_flag'];
+        $this->description=$row['description'];
     }
 
     final public static function getInstance($userId)
@@ -45,7 +46,7 @@ class Tutor extends User
         $qry = $this->dbCon->getPDO()->prepare("UPDATE `Tutor` SET description=:phld WHERE id=:tid");
         $qry->execute(array(
             ':phld'=>$description,
-            ':uid'=>$this->tutorId));
+            ':tid'=>$this->tutorId));
         $this->description = $description;
     }
 
@@ -66,9 +67,15 @@ class Tutor extends User
             $val = 0;
         }
         $qry = $this->dbCon->getPDO()->prepare("UPDATE `Tutor` SET availability_flag=:phld WHERE id=:tid");
+        /*
+        $qry->bindParam(':tid',$this->tutorId , PDO::PARAM_INT);
+        $qry->bindParam(':phld', $val);
+        $qry->execute();
+        */
         $qry->execute(array(
             ':phld'=>$val,
-            ':uid'=>$this->tutorId));
+            ':tid'=>$this->tutorId));
+    
         $this->notAvailable = $notAvailable;
     }
 

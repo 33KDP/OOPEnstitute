@@ -2,26 +2,43 @@
     require_once "../classes/DBConn.class.php";
     require_once "../bootstrap.php";
     require_once "../classes/Student.class.php";
+
     $dbCon = DBConn::getInstance();
     $pdo = $dbCon->getPDO();
 
-    $curStudent = Student::getInstance($_SESSION['user_id']);
+    $qry = $pdo->prepare("SELECT usertype_id FROM `User` WHERE id=:userId");
+    $qry->execute(array(':userId'=>$_SESSION['user_id']));
+    $row = $qry->fetch(PDO::FETCH_ASSOC);
 
-    if (isset($_GET['tutor_id']))
-        $_SESSION['tutor_id'] = $_GET['tutor_id'];
+    if ($row['usertype_id'] == 1)
+        $curUser = Student::getInstance($_SESSION['user_id']);
+    else
+        $curUser = Tutor::getInstance($_SESSION['user_id']);
+
+    if (isset($_GET['receiver_id']))
+        $_SESSION['receiver_id'] = $_GET['receiver_id'];
 
     if (isset($_POST['send'])) {
         if (isset($_POST['message'])) {
-            if(!empty(trim($_POST['message']))) {
-                $curStudent->composeMessage($_SESSION['user_id'], $_SESSION['tutor_id'], $_POST['message'], 0);
-                echo "Message sent";         
-            }
+            if(!empty(trim($_POST['message']))) 
+                $curUser->composeMessage($_SESSION['user_id'], $_SESSION['receiver_id'], $_POST['message'], 0);
         }
-        header("Location: message.php?tutor_id=".$_SESSION['tutor_id']."");
+
+        header("Location: message.php?receiver_id=".$_SESSION['receiver_id']."");
         return;       
     }
 
+    $messages = $curUser->readMessages($_SESSION['user_id'], $_SESSION['receiver_id'], 0);
+    $sql = "SELECT first_name, last_name FROM `User` WHERE id = :receiver_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(':receiver_id' => $_SESSION['receiver_id']));
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
+
+<style>
+    <?php include 'styles.css'; ?>
+</style>
 
 <!-- <script type="text/javascript">
     const tx = document.getElementsByTagName("textarea");
@@ -46,38 +63,58 @@
         <?php require_once "navbar.php"; ?>
         <div class="container">
             <?php
-                $messages = $curStudent->readMessages($_SESSION['user_id'], $_SESSION['tutor_id'], 0);
-                $sql = "SELECT first_name, last_name FROM `User` WHERE id = :tutor_id";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute(array(':tutor_id' => $_SESSION['tutor_id']));
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo ('<a href="../Student/tutorList.php">Back</a> &emsp;'.htmlentities($row['first_name']).' '.htmlentities($row['last_name']).'<hr>');
+                if ($curUser->getUserTypeId() == 1)
+                    echo ('<a href="../Student/tutorList.php">Back</a> &emsp;'.htmlentities($row['first_name']).' '.htmlentities($row['last_name']).'<hr>');
+                else
+                    echo ('<a href="../tutor/conversations.php">Back</a> &emsp;'.htmlentities($row['first_name']).' '.htmlentities($row['last_name']).'<hr>');
 
                 foreach ($messages as $message) {
                     $sender = $message->getSender();
                     $receiver = $message->getReceiver();
                     $messageBody = $message->getMessageBody();
                     $time = $message->getTime();
+
                     if ($sender == $_SESSION['user_id'])
                     {
+                        // echo '<div class="float-right">';
+                        //     echo '<div class="card" style="width: 40rem;">';
+                        //         echo '<div class="card-body text-start">';
+                        //             echo $messageBody;
+                        //             echo '<div class="text-end" >';
+                        //                 echo (substr($time,0,-3));
+                        //             echo '</div>';
+                        //         echo '</div>';
+                        //     echo '</div>';
+                        // echo '</div>';
+
                         echo '<div class="text-end" >';
                         echo ($messageBody);
                         echo '<br>';
-                        echo ($time);
+                        echo (substr($time,0,-3));
                         echo '</div>';
+
                     }
                     else
                     {
+                        // echo '<div class="card">';
+                        //     echo '<div class="card-body text-start">';
+                        //         echo $messageBody;
+                        //         echo '<div class="text-end" >';
+                        //             echo (substr($time,0,-3));
+                        //         echo '</div>';
+                        //     echo '</div>';
+                        // echo '</div>';
+
                         echo '<div class="text-start" >';
                         echo ($messageBody);
                         echo '<br>';
-                        echo ($time);
+                        echo (substr($time,0,-3));
                         echo '</div>';
                     }
                 }
 
             ?>
-
+            <br>
             <form method="POST" class="row mb-3">
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="message" id="message" placeholder="Message">
