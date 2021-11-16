@@ -11,24 +11,25 @@
 
     require_once "../bootstrap.php";
     require_once "navbar.php";
-?>
 
+
+?>
 
     <div class="container p-5 shadow my-5 rounded-3">
         <form action="controllers/profileController.php" method="post">
-         
+
             <div class="mb-3">
                 <label for="propic" class="form-label">Profile Photo</label><br>
                 <?php
-                    //$propic = $curTutor->getProfilePic();
-                    $propic = false ;
-                    
-                    if($propic=!false){
-                        
-                        echo "<image id='profileImage' src='https://i.stack.imgur.com/YQu5k.png' style='width:110px; height:130px; object-fit:cover;' />" ;
-                    }else{
-                        echo "<image id='profileImage' src='{$propic}' class='img-thumbnail' style='width:110px; height:130px; object-fit:cover;'/>" ;
-                    }
+                //$propic = $curTutor->getProfilePic();
+                $propic = false ;
+
+                if($propic=!false){
+
+                    echo "<image id='profileImage' src='https://i.stack.imgur.com/YQu5k.png' style='width:110px; height:130px; object-fit:cover;' />" ;
+                }else{
+                    echo "<image id='profileImage' src='{$propic}' class='img-thumbnail' style='width:110px; height:130px; object-fit:cover;'/>" ;
+                }
                 ?>
                 <input  id="imageUpload" type="file"  name="profile_photo" class="form-control" placeholder="Photo"  onchange="loadFile(event)" >
             </div>
@@ -53,24 +54,24 @@
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control"  name="description" id="description" >
-                     <?php 
+                     <?php
                      if(!empty($curStudent->getDescription())){
-                        echo htmlentities($curStudent->getDescription());
+                         echo htmlentities($curStudent->getDescription());
                      }else{
-                        echo "add a bio";
-                     }                     
-                     ?>  
+                         echo "add a bio";
+                     }
+                     ?>
                 </textarea>
             </div>
             <?php
 
             ?>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="flag" name="cbox" value="1"
+                <input type="checkbox" class="form-check-input" id="flag"
                     <?php
-                        if ($curStudent->isNotAvailable()){
-                            echo'checked';
-                        }
+                    if ($curStudent->isNotAvailable()){
+                        echo'checked';
+                    }
                     ?>
                 >
                 <label class="form-check-label" for="flag">Set as unavailable</label>
@@ -80,7 +81,7 @@
             </div>
             <input type="hidden" name="tutorid" value="<?= $curStudent->getTutorId()?>">
         </form>
-        
+
         <br>
         <div class="mb-3">
             <h4>Do you want to reset your password ?</h4>
@@ -98,15 +99,17 @@
                 <label for="city" class="form-label">Confirm Password</label>
                 <input type="password"  name="confirm_pwd" class="form-control" id="pwd" >
             </div>
-            <div class="mb-3"> 
+            <div class="mb-3">
                 <button type="submit" name="reset" class="btn btn-danger">Reset password</button>
             </div>
             <div class="mb-3">
                 <button class="btn btn-dark" name="Cancel" value="Cancel" href="home.php">Cancel</button>
             </div>
         </form>
-        
 
     </div>
-</body>
-</html>
+
+
+<?php
+require_once "foot.php";
+?>

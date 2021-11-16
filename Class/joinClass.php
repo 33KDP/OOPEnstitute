@@ -22,7 +22,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 </head>
 
 <body class="sb-nav-fixed">
-    <?php require_once "../Student/navbar.php"; ?>
+    <?php require_once "navbar.php"; ?>
     <div class="container p-5">
         <div>
             <form action= 'form.php' method="GET">
@@ -69,26 +69,6 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 
     <hr>
     <br>
-
-    <div class="container p-5">
-    <h3>All Tutors</h3><br>
-
-    <?php
-    $stmt = $pdo->query("SELECT id, first_name, last_name FROM `User` WHERE usertype_id=2;");
-
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo (htmlentities($row['first_name']).' '.htmlentities($row['last_name']));
-        echo '<div class="text-end" >';
-        echo ('<a href="tutorDetails.php?id='.$id.'&sid='.$subjectID. '">View details</a> &emsp;');
-        echo ('<a href="../User/message.php?tutor_id='.$row['id'].'">Message</a> &emsp;');
-        echo ('<a href="sendRequest.php?tutor_id='.$row['id'].'">Send enrolment request</a>');
-        echo '</div>';
-        echo '<hr>';
-
-    }
-
-    ?>
-    </div>
 
     <script src="js/subjects.js"></script>
 </body>

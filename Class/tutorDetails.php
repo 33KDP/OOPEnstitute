@@ -15,7 +15,7 @@
         <?php require_once "../Student/head.php"; ?>
     </head>
     <body>
-        <?php require_once "../Student/navbar.php"; ?>
+        <?php require_once "navbar.php"; ?>
         <div class="container p-5 shadow my-5 rounded-3">
             <table>
                 <tr>
@@ -54,7 +54,7 @@
                 <div>
                     <?php
                     $lastURL = $_SESSION['lastURL'];
-                    echo '<a href="joinClass.php/?subID='.$lastURL['subId'].
+                    echo '<a href="form.php?subId='.$lastURL['subId'].
                         '&district='.$lastURL['district'].'&rating='.$lastURL['rating'].'" class="btn btn-secondary">Cancel</a>';
                     echo '<a href="submit.php?id='.$_GET['id'].'&sid='.$_GET['sid'].'" class="btn btn-primary">Enroll</a>';
                     ?>
