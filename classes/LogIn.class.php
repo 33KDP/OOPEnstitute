@@ -2,6 +2,7 @@
 require_once("DBConn.class.php");
 require_once("Tutor.class.php");
 require_once("Student.class.php");
+require_once("../includes/utils.php");
 session_start();
 
 class LogIn
@@ -59,12 +60,14 @@ class LogIn
                 $_SESSION['user_id'] = $curUId;
                 header("location: ".$url);
            } else {
-               echo 'invalid cred';
-               header("location: ../index.php");
+                $error_msg = "Incorrect username or password";
+                set_session_fail($error_msg);
+                header("location: ../login.php");
            }
        } else {
-           echo 'incomplete cred';
-           header("location: ../index.php");
+            $error_msg = "please fill all fields";
+            set_session_fail($error_msg);
+            header("location: ../login.php");
        }
     }
 }
