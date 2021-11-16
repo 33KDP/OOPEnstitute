@@ -1,5 +1,6 @@
 <?php
 require_once("DBConn.class.php");
+require_once("../includes/utils.php");
 session_start();
 
 class Signup
@@ -156,10 +157,14 @@ class Signup
     
     
         $profile_id = $conn->lastInsertId();
-        if($profile_id){
-            header("location: ../signup.php?error=none");
+        if($profile_id){          
+            $msg = "You have signup successfully";
+            set_session_success($msg);
+            header("location: ../signup.php");
         }else{
-            header("location: ../signup.php?error=stmtfailed");
+            $error_msg = "stmt is fail to connect";
+            set_session_fail($error_msg);
+            header("location: ../signup.php");
         }
         
     }
@@ -177,20 +182,28 @@ class Signup
         $user_type = $form["usertype"];
 
         $conn = $this->dbCon->getPDO();
-        if($this->emptyInputSignup($fname,$fname,$email,$pwd,$pwdrepeat,$user_type,$grade,$distric,$city) !== false){
-            header("location: ../signup.php?error=emptyinput");
+        if($this->emptyInputSignup($fname,$fname,$email,$pwd,$pwdrepeat,$user_type,$grade,$distric,$city) !== false){         
+            $error_msg = "please fill all fields";
+            set_session_fail($error_msg);
+            header("location: ../signup.php");
             exit();
         }
         if($this->invalidEmail($email) !== false){
-            header("location: ../signup.php?error=invalidemail");
+            $error_msg = "Invalid email";
+            set_session_fail($error_msg);
+            header("location: ../signup.php");
             exit();
         }
         if($this->pwdnotMatch($pwd,$pwdrepeat) !== false){
-            header("location: ../signup.php?error=passwordsdontmatch");
+            $error_msg = "Passwords are not matching";
+            set_session_fail($error_msg);
+            header("location: ../signup.php");
             exit();
         }
         if($this->UidExists($conn,$email) !== false){
-            header("location: ../signup.php?error=usernametaken");
+            $error_msg = "Email is already exist";
+            set_session_fail($error_msg);
+            header("location: ../signup.php");
             exit();
         }
         $this->createUser($conn,$fname,$lname,$email,$pwd,$user_type,$grade,$distric,$city);

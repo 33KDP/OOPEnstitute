@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $(".subject" ).autocomplete({
-        source: 'subjectList.php',
+        source: '../Sources/subjectList.php',
         select: function (event, ui) {
             // Set autocomplete element to display the label
             this.value = ui.item.label;
