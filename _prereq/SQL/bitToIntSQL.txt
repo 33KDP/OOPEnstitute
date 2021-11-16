@@ -1,0 +1,7 @@
+ALTER TABLE `Tutor` DROP COLUMN `availability_flag`;
+ALTER TABLE `Request` DROP COLUMN `type`;
+ALTER TABLE `TimeSlot` DROP COLUMN `state`;
+
+ALTER TABLE `Tutor` ADD `availability_flag` INT DEFAULT '0';
+ALTER TABLE `Request` ADD `type` INT DEFAULT '0';
+ALTER TABLE `TimeSlot` ADD `state` INT DEFAULT '0';
