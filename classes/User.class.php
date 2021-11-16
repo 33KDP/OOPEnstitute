@@ -104,10 +104,10 @@ abstract class User
 
     public function setDistrict($district)
     {
-        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET district=:phld WHERE id=:uid");
+        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET district_id= (SELECT id FROM district where district=:phld) WHERE id=:uiid");
         $qry->execute(array(
             ':phld'=>$district,
-            ':uid'=>$this->userId));
+            ':uiid'=>$this->userId));
         $this->district = $district;
     }
 

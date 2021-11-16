@@ -15,11 +15,10 @@
 
 
     <div class="container p-5 shadow my-5 rounded-3">
-        <form action="controllers/profileController.php" method="POST">
-
-            
+        <form action="controllers/profileController.php" method="post">
+         
             <div class="mb-3">
-                <label for="fname" class="form-label">Profile Photo</label><br>
+                <label for="propic" class="form-label">Profile Photo</label><br>
                 <?php
                     //$propic = $curTutor->getProfilePic();
                     $propic = false ;
@@ -31,7 +30,7 @@
                         echo "<image id='profileImage' src='{$propic}' class='img-thumbnail' style='width:110px; height:130px; object-fit:cover;'/>" ;
                     }
                 ?>
-                <input  id="imageUpload" type="file"  name="profile_photo" class="form-control" placeholder="Photo"  onchange="loadFile(event)" required="" capture>
+                <input  id="imageUpload" type="file"  name="profile_photo" class="form-control" placeholder="Photo"  onchange="loadFile(event)" >
             </div>
 
             <div class="mb-3">
@@ -53,7 +52,15 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control"  name="description" id="description" ><?= htmlentities($curTutor->getDescription())?></textarea>
+                <textarea class="form-control"  name="description" id="description" >
+                     <?php 
+                     if(!empty($curTutor->getDescription())){
+                        echo htmlentities($curTutor->getDescription());
+                     }else{
+                        echo "add a bio";
+                     }                     
+                     ?>  
+                </textarea>
             </div>
             <?php
 
