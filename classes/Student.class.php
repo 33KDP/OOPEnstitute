@@ -66,6 +66,9 @@ class Student extends User
     public function disenrollClass() {
 
     }
+    public function getstudentId(){
+        return $this->studentId;
+    }
 
     public static function getUserId($studentId){
         $qry = DBConn::getInstance()->getPDO()->prepare("SELECT `User`.id FROM `User` JOIN Student ON `User`.id = Student.user_id WHERE Student.id=:sid");
