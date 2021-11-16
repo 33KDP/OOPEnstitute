@@ -9,13 +9,12 @@ if (!isset($_SESSION['user_id'])){
     header("location: ../index.php");
 }
 $curStudent=  Student::getInstance($_SESSION['user_id']);
+
 ?>
 
-<html>
-<head>
-    <?php require_once "../bootstrap.php"; ?>
-    <?php require_once "head.php"; ?>
-</head>
+
+<?php require_once "../bootstrap.php"; ?>
+<?php require_once "head.php"; ?>
 
 <body class="sb-nav-fixed">
 <?php require_once "navbar.php";
@@ -53,6 +52,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
             </div>
         </footer>
         </div>
+<?php require_once "foot.php"?>
 </body>
 </html>
 

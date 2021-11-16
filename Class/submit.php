@@ -69,8 +69,8 @@
         <?php
 
         $lastURL = $_SESSION['lastURL'];
-        echo '<button class="btn btn-secondary" name="Cancel" value="Cancel" href="joinClass.php/?subID='.$lastURL['subId'].
-            '&district='.$lastURL['district'].'&rating='.$lastURL['rating'].'">Cancel</button>'?>
+        echo '<a href="form.php?subId='.$lastURL['subId'].
+                        '&district='.$lastURL['district'].'&rating='.$lastURL['rating'].'" class="btn btn-secondary">Cancel</a>';?>
         <input type="submit" name="Send" value="Send" class="btn btn-primary">
     </div>
 
