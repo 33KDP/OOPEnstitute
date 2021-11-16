@@ -25,7 +25,7 @@ unset($_SESSION['tutor_id']);
                     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo (htmlentities($row['first_name']).' '.htmlentities($row['last_name']));
                         echo '<div class="text-end" >';
-                        echo ('<a href="../tutor/viewDetails.php?tutor_id='.$row['id'].'">View details</a>');
+                        echo ('<a href="../Class/tutorDetails.php?tutor_id='.$row['id'].'">View details</a>');
                         echo '</div>';
                         echo '<hr>';
                     }
