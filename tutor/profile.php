@@ -1,7 +1,8 @@
 <?php
-    require_once "../classes/Session.class.php";
+    require_once "head.php";
     require_once "../classes/DBConn.class.php";
     require_once "../classes/Tutor.class.php";
+    session_start();
 
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
@@ -75,11 +76,39 @@
                     <label class="form-check-label" for="flag">Set as unavailable</label>
                 </div>
                 <div>
-                    <button class="btn btn-secondary" name="Cancel" value="Cancel" href="home.php">Cancel</button>
-                    <input type="submit" name="Add" value="Add" class="btn btn-primary">
+                    <button type="submit" name="set" class="btn btn-primary">Edit</button>
                 </div>
                 <input type="hidden" name="tutorid" value="<?= $curTutor->getTutorId()?>">
             </form>
+
+            <br>
+            <div class="mb-3">
+                <h4>Do you want to reset your password ?</h4>
+            </div>
+            <form action="controllers/profileController.php" method="POST">
+                <div class="mb-3">
+                    <label for="city" class="form-label">Old Password</label>
+                    <input type="password"  name="old_pwd" class="form-control" id="pwd" >
+                </div>
+                <div class="mb-3">
+                    <label for="city" class="form-label">New Password</label>
+                    <input type="password"  name="new_pwd" class="form-control" id="pwd" >
+                </div>
+                <div class="mb-3">
+                    <label for="city" class="form-label">Confirm Password</label>
+                    <input type="password"  name="confirm_pwd" class="form-control" id="pwd" >
+                </div>
+                <div class="mb-3"> 
+                    <button type="submit" name="reset" class="btn btn-danger">Reset password</button>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-dark" name="Cancel" value="Cancel" href="home.php">Cancel</button>
+                </div>
+            </form>
+
         </div>
-    </body>
-</html>
+
+
+<?php
+require_once "foot.php";
+?>
