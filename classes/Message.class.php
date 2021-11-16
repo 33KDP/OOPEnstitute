@@ -86,6 +86,24 @@ class Message
                 ':type' => $message->messageType ));
         }
     }
+
+    public static function receive($userId, $receiverId, $messageType)
+    {
+        $sql0 = "SELECT * FROM `Message` WHERE (((user_id = :userId AND receiver = :receiverId) OR (user_id = :receiverId AND receiver = :userId)) AND type = :messageType)";
+        $sql1 = "UPDATE `Message` SET state = 1 WHERE ((user_id = :receiverId AND receiver = :userId) AND type = :messageType)";
+
+        $stmt = self::$dbConn->getPDO()->prepare($sql0);
+        $stmt->execute(array(':userId'=>$userId,
+                            ':receiverId'=>$receiverId,
+                            ':messageType'=>$messageType));
+
+        $stmt1 = self::$dbConn->getPDO()->prepare($sql1);
+        $stmt1->execute(array(':userId'=>$userId,
+                            ':receiverId'=>$receiverId,
+                            ':messageType'=>$messageType));
+        
+        return $stmt;
+    }
     
 }
 

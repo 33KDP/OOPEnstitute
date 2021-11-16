@@ -2,7 +2,6 @@
     include_once 'header.php' ;
 ?>
 
-
     <section class="index-categories">
 
         <div class="text-center text-muted delimiter">

@@ -16,7 +16,8 @@
         <?php require_once "head.php"; ?>
     </head>
     <body>
-        <?php require_once "navbar.php"; ?>
-
+        <?php require_once "navbar.php";
+        echo '<div><h1>Welcome '. $curTutor->getFName().' '.$curTutor->getLName().'</h1></div>'
+        ?>
     </body>
 </html>
