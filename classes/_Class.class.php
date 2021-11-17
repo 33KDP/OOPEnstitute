@@ -12,11 +12,11 @@ abstract class _Class
     /**
      * _Class constructor.
      */
-    function __construct($class_id,$tutor_id, $subject_id)
+    public function __construct($class_id,$tutor_id, $subject_id)
     {
-        $this->$class_id = $class_id;
-        $this->$tutor_id = $tutor_id;
-        $this->$subject_id = $subject_id;
+        $this->class_id = $class_id;
+        $this->tutor_id = $tutor_id;
+        $this->subject_id = $subject_id;
     }
 
     /**
