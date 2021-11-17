@@ -2,6 +2,7 @@
     require_once "head.php";
     require_once "../classes/DBConn.class.php";
     require_once "../classes/Tutor.class.php";
+    require_once("../includes/utils.php");
     session_start();
 
     if (!isset($_SESSION['user_id'])){
@@ -15,6 +16,7 @@
 
 
     <div class="container p-5 shadow my-5 rounded-3">
+
         <form action="controllers/profileController.php" method="post">
 
             <div class="mb-3">
@@ -62,51 +64,54 @@
                      ?>
                 </textarea>
             </div>
-            <?php
-
-                ?>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="flag"
-                        <?php
-                            if ($curTutor->isNotAvailable()){
-                                echo'checked';
-                            }
-                        ?>
-                    >
-                    <label class="form-check-label" for="flag">Set as unavailable</label>
-                </div>
-                <div>
-                    <button type="submit" name="set" class="btn btn-primary">Edit</button>
-                </div>
-                <input type="hidden" name="tutorid" value="<?= $curTutor->getTutorId()?>">
-            </form>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="flag"
+                    <?php
+                        if ($curTutor->isNotAvailable()){
+                            echo'checked';
+                        }
+                    ?>
+                >
+                <label class="form-check-label" for="flag">Set as unavailable</label>
+            </div>
+            <div>
+                <button type="submit" name="set" class="btn btn-primary">Edit</button>
+            </div>
+            <input type="hidden" name="tutorid" value="<?= $curTutor->getTutorId()?>">
+        </form>
 
             <br>
-            <div class="mb-3">
-                <h4>Do you want to reset your password ?</h4>
-            </div>
-            <form action="controllers/profileController.php" method="POST">
-                <div class="mb-3">
-                    <label for="city" class="form-label">Old Password</label>
-                    <input type="password"  name="old_pwd" class="form-control" id="pwd" >
-                </div>
-                <div class="mb-3">
-                    <label for="city" class="form-label">New Password</label>
-                    <input type="password"  name="new_pwd" class="form-control" id="pwd" >
-                </div>
-                <div class="mb-3">
-                    <label for="city" class="form-label">Confirm Password</label>
-                    <input type="password"  name="confirm_pwd" class="form-control" id="pwd" >
-                </div>
-                <div class="mb-3"> 
-                    <button type="submit" name="reset" class="btn btn-danger">Reset password</button>
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-dark" name="Cancel" value="Cancel" href="home.php">Cancel</button>
-                </div>
-            </form>
-
+        <div class="mb-3">
+            <h4>Do you want to reset your password ?</h4>
         </div>
+        <form action="controllers/profileController.php" method="POST">
+            <div class="mb-3">
+                <label for="city" class="form-label">Old Password</label>
+                <input type="password"  name="old_pwd" class="form-control" id="pwd" >
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">New Password</label>
+                <input type="password"  name="new_pwd" class="form-control" id="pwd" >
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">Confirm Password</label>
+                <input type="password"  name="confirm_pwd" class="form-control" id="pwd" >
+            </div>
+            <div class="mb-3"> 
+                <button type="submit" name="reset" class="btn btn-danger">Reset password</button>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-dark" name="Cancel" value="Cancel" href="home.php">Cancel</button>
+            </div>
+        </form>
+
+        <div class="mb-3">
+            <?php
+                check_session();
+            ?>
+        </div>
+
+    </div>
 
 
 <?php
