@@ -2,6 +2,8 @@
     require_once "../classes/DBConn.class.php";
     require_once "../bootstrap.php";
     require_once "../classes/Student.class.php";
+    require_once "../classes/tutor.class.php";
+    session_start();
 
     $dbCon = DBConn::getInstance();
     $pdo = $dbCon->getPDO();
@@ -34,11 +36,16 @@
     $stmt->execute(array(':receiver_id' => $_SESSION['receiver_id']));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    if ($curUser->getUserTypeId() == 1)
+        require_once "../Student/navbar.php";
+    else
+        require_once "../tutor/navbar.php";
+
 ?>
 
-<style>
+<!-- <style>
     <?php include 'styles.css'; ?>
-</style>
+</style> -->
 
 <!-- <script type="text/javascript">
     const tx = document.getElementsByTagName("textarea");
@@ -60,7 +67,6 @@
     </head>
 
     <body>
-        <?php require_once "navbar.php"; ?>
         <div class="container">
             <?php
                 if ($curUser->getUserTypeId() == 1)

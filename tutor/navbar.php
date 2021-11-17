@@ -29,7 +29,7 @@
                     <a class="nav-link active" href="../logout.php">Log out</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="conversations.php">Conversations</a>
+                    <a class="nav-link active" href="../tutor/conversations.php">Conversations</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

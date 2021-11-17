@@ -50,8 +50,9 @@
                 <label for="city" class="form-label">City</label>
                 <input type="text"  name="city" class="form-control" id="city" value="<?= htmlentities($curStudent->getCity())?>">
             </div>
-
-            <div class="mb-3">
+            
+            <!-- no description for student -->
+            <!-- <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control"  name="description" id="description" >
                      <?php
@@ -62,7 +63,7 @@
                      }
                      ?>
                 </textarea>
-            </div>
+            </div> -->
             <?php
 
             ?>
