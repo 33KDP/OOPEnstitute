@@ -1,55 +1,51 @@
 <?php
     require_once("../../includes/utils.php");
-    require_once "../../classes/Tutor.class.php";
+    require_once "../../classes/Student.class.php";
     session_start();
 
     if(isset($_POST["set"])){
-        $curTutor=  Tutor::getInstance($_SESSION['user_id']);
-        update_tutor($_POST,$curTutor);
+        $curStudent=  Student::getInstance($_SESSION['user_id']);
+        update_tutor($_POST,$curStudent);
     }elseif(isset($_POST["reset"])){
-        $curTutor=  Tutor::getInstance($_SESSION['user_id']);
-        reset_pwd($_POST,$curTutor);
+        $curStudent=  Student::getInstance($_SESSION['user_id']);
+        reset_pwd($_POST,$curStudent);
     }else{
         header("location: ../profile.php");
     }
 
-    function update_tutor($_form,$tutor){
+    function update_tutor($_form,$student){
         $propic = $_form["profile_photo"];
         $fname = $_form["fname"];
         $lname = $_form["lname"];
         $distric = $_form["district"];
         $city = $_form["city"];
-        $dis = $_form["description"];
-
-        if(isset($_form["cbox"])){
-            $availability = true;
-        }else{
-            $availability = false;
-        }
+        $grade = $_form["grade"];
+        $stid = $_form["studentid"];
 
         $isedit=false;
-        if($availability!=$tutor->isNotAvailable()){
-            $tutor->setNotAvailable($availability);
+
+        if($propic){
+            $student->setProfilePic($propic);
             $isedit=true;
         }
-        if($fname!=$tutor->getFName()){
-            $tutor->setFName($fname);
+        if($fname!=$student->getFName()){
+            $student->setFName($fname);
             $isedit=true;
         }
-        if($lname!=$tutor->getLName()){
-            $tutor->setLName($lname);
+        if($lname!=$student->getLName()){
+            $student->setLName($lname);
             $isedit=true;
         }
-        if($distric!=$tutor->getDistrict()){
-            $tutor->setDistrict($distric);
+        if($distric!=$student->getDistrict()){
+            $student->setDistrict($distric);
             $isedit=true;
         }
-        if($city!=$tutor->getCity()){
-            $tutor->setCity($city);
+        if($city!=$student->getCity()){
+            $student->setCity($city);
             $isedit=true;
         }
-        if($dis!=$tutor->getDescription()){
-            $tutor->setDescription($dis);
+        if($grade!=$student->getgrade()){
+            $student->setgrade($grade);
             $isedit=true;
         }
         if($isedit){
@@ -59,7 +55,7 @@
             $msg = "no changes";
             set_session_success($msg);
         }
-        header("location: ../home.php");
+        header("location: ../profile.php");
     }
 
     function reset_pwd($_form,$user){
