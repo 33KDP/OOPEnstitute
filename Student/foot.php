@@ -1,3 +1,3 @@
-<script src="../Class/js/tutor.js"></script>
+<script src="js/student.js"></script>
 </body>
 </html>

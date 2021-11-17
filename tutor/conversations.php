@@ -38,7 +38,7 @@
                         $qry = $pdo->prepare("SELECT id, first_name, last_name FROM `User` WHERE id=:userId");
                         $qry->execute(array(':userId'=>$user));
                         $row = $qry->fetch(PDO::FETCH_ASSOC);
-                        echo (htmlentities($row['first_name']).' '.htmlentities($row['last_name']));
+                        echo ('<a href="../Student/viewDetails.php?student_id='.$row['id'].'" style="color: black; text-decoration: none;">'.htmlentities($row['first_name']).' '.htmlentities($row['last_name']).'</a> &emsp;');
                         echo '<div class="text-end" >';
                         echo ('<a href="../User/message.php?receiver_id='.$row['id'].'">Message</a> &emsp;');
                         echo '</div>';
