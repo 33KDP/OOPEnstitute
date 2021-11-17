@@ -10,7 +10,6 @@
        $request->accept($_POST);
     } else if (($_POST['Reject'])) {
         $request = new EnrollRequest($_POST['reqId']);
-        $request->reject();
-    } else {
-        header("location: ../timeslots.php");
+        $request->reject($_POST);
     }
+    header("location: ../requests.php");

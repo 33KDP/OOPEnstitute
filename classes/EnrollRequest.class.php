@@ -27,4 +27,27 @@ class EnrollRequest extends Request
         parent::__construct($requestId, $senderId, $receiverId, $subjectId, $message, $state, $type);
     }
 
+    public function accept($form)
+    {
+        $this->setState(Accepted::getInstance());
+        if ($form['type'] == 0){
+            IndividualClass::addClass($form);
+            //notify student
+        } else {
+            //notify group
+        }
+        Request::removeRequest($this->getId());
+    }
+
+
+    public function reject($form)
+    {
+        $this->setState(Rejected::getInstance());
+        if ($form['type'] == 0){
+            //notify student
+        } else {
+            //notify group
+        }
+        Request::removeRequest($this->getId());
+    }
 }

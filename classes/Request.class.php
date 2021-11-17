@@ -31,20 +31,9 @@ abstract class Request
         $this->id=$id;
     }
 
-    public function accept($form){
-        $this->setState(Accepted::getInstance());
-        if ($form['type'] == 0){
-            IndividualClass::addClass($form);
-        } else {
+    public abstract function accept($form);
 
-        }
-        Request::removeRequest($this->id);
-    }
-
-    public function reject(){
-        $this->setState(Accepted::getInstance());
-        Request::removeRequest($this->id);
-    }
+    public abstract function reject($form);
 
     /**
      * @return mixed
@@ -114,6 +103,7 @@ abstract class Request
 
     public static function removeRequest($requestId){
         $dbConn =DBConn::getInstance();
+        echo $requestId;
         $qry = $dbConn->getPDO()->prepare("DELETE FROM Request WHERE id=:reqid");
         $qry->execute(array(':reqid'=>$requestId));
     }

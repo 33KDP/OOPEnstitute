@@ -29,15 +29,15 @@
                     <a class="nav-link active" href="../logout.php">Log out</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="conversations.php">Conversations</a>
+                    <a class="nav-link active" href="../tutor/conversations.php">Conversations</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Classes
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="indivual-classes.php">Individual</a></li>
-                        <li><a class="dropdown-item" href="group-classes.php">Group</a></li>
+                        <li><a class="dropdown-item" href="individualClasses.php">Individual</a></li>
+                        <li><a class="dropdown-item" href="groupClasses.php">Group</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>

@@ -29,6 +29,9 @@
                         <div>'.
                             $student->getDistrict()
                         .'</div>
+                        <div>
+                            <button class="btn btn-primary">Send Message</button>
+                        </div>
                     </div>
                 ';
             ?>
