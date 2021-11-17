@@ -39,8 +39,8 @@
                             echo
                         '</p>
                         <form action="../tutor/controllers/requestController.php" method="POST" class="d-flex m-0">
-                            <input type="hidden" name="reqId" value="' .$request->getTutorId().'">
-                            <input type="hidden" name="tutorId" value="'.$curTutor->getId().'">
+                            <input type="hidden" name="reqId" value="' .$request->getId().'">
+                            <input type="hidden" name="tutorId" value="'.$curTutor->getTutorId().'">
                             <input type="hidden" name="studentId" value="'.$senderId.'">
                             <input type="hidden" name="type" value="'.$request->getType().'">
                             <input type="hidden" name="subjectId" value="'.$request->getSubjectId().'">
