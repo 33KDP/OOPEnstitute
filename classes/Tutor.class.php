@@ -134,4 +134,16 @@ class Tutor extends User
         }
         return $requests;
     }
+
+    public function getIndClasses(){
+        $qry = $this->dbCon->getPDO()->prepare("SELECT IndividualClass.id FROM Tutor JOIN IndividualClass ON Tutor.id=IndividualClass.tutor_id WHERE Tutor.id=:tid");
+        $qry->execute(array(
+            ':tid'=>$this->tutorId
+        ));
+        $classes = array();
+        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            array_push($classes, new IndividualClass($row['id']));
+        }
+        return $classes;
+    }
 }

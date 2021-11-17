@@ -8,12 +8,17 @@ class IndividualClass extends _Class
     /**
      * IndividualClass constructor.
      */
-    function __construct($class_id,$tutor_id, $subject_id, $student_id)
+    function __construct($class_id)
     {
-        $this->$class_id = $class_id;
-        $this->$tutor_id = $tutor_id;
-        $this->$subject_id = $subject_id;
-        $this->$student_id = $student_id;
+        $dbConn =DBConn::getInstance();
+        $qry = $dbConn->getPDO()->prepare("SELECT * FROM IndividualClass WHERE id=:clsid");
+        $qry->execute(array(':clsid'=>$class_id));
+        $row = $qry->fetch(PDO::FETCH_ASSOC);
+        $class_id = $row['id'];
+        $tutor_id = $row['tutor_id'];
+        $subject_id = $row['subject_id'];
+        $this->student_id = $row['student_id'];
+        parent::__construct($class_id, $tutor_id, $subject_id);
     }
 
     public static function addClass($form){
@@ -33,4 +38,14 @@ class IndividualClass extends _Class
         }
         header("location: ../requests.php");
     }
+
+    /**
+     * @return mixed
+     */
+    public function getStudentId()
+    {
+        return $this->student_id;
+    }
+
+
 }
