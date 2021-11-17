@@ -44,7 +44,7 @@
 </head>
 
 <body class="sb-nav-fixed">
-<?php require_once "../Student/navbar.php";
+    <?php require_once "../Student/navbar.php";
 
             echo '<div class="card">
                       <div class="card-header">

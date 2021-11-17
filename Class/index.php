@@ -1,3 +1,17 @@
+<?php
+    session_start();
+    require_once "../classes/DBConn.class.php";
+
+    if (empty($_GET['id'])) {
+        header ('location: individualClassList.php' );
+
+    } else {
+
+    }
+
+
+?>
+
 <html>
 <head>
     <?php require_once "../bootstrap.php"; ?>
@@ -6,5 +20,5 @@
 
 <body class="sb-nav-fixed">
 
-<?php require_once "navbar.php"; ?>
+    <?php require_once "navbar.php"; ?>
 

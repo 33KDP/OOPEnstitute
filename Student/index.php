@@ -27,7 +27,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
         </div>
 
         <div class="position-fixed"  style="top: 40%; left: 50%; transform: translate(-50%, -50%); z-index: 1000">
-            <a href="../Class/index.php">
+            <a href="../Class/individualClassList.php">
                 <button>Manage Classes</button>
             </a>
         </div>
