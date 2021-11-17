@@ -35,14 +35,13 @@ unset($_SESSION['receiver_id']);
                         echo (htmlentities($row['first_name']).' '.htmlentities($row['last_name']));
                         echo '<div class="text-end" >';
                         echo ('<a href="../tutor/viewDetails.php?tutor_id='.$row['id'].'">View details</a> &emsp;');
+                        //above code - go to tutorDetails.php page ** thivindu ** - It is updated
                         echo ('<a href="../User/message.php?receiver_id='.$row['id'].'">Message</a> &emsp;');
                         echo ('<a href="sendRequest.php?tutor_id='.$row['id'].'">Send enrolment request</a>');
                         echo '</div>';
                         echo '<hr>';
                     }
-
                 }
-
             ?>
         </div>
     </body>
