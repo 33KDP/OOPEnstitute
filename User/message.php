@@ -94,7 +94,7 @@
                         // echo '</div>';
 
                         echo '<div class="text-end" >';
-                        echo ($messageBody);
+                        echo (htmlentities($messageBody));
                         echo '<br>';
                         echo (substr($time,0,-3));
                         echo '</div>';
@@ -112,7 +112,7 @@
                         // echo '</div>';
 
                         echo '<div class="text-start" >';
-                        echo ($messageBody);
+                        echo (htmlentities($messageBody));
                         echo '<br>';
                         echo (substr($time,0,-3));
                         echo '</div>';
