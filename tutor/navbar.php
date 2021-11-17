@@ -14,16 +14,16 @@
                     <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="timeslots.php">Time Slots</a>
+                    <a class="nav-link active" href="../tutor/timeslots.php">Time Slots</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="requests.php">Requests</a>
+                    <a class="nav-link active" href="../tutor/requests.php">Requests</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="profile.php">Profile</a>
+                    <a class="nav-link active" href="../tutor/profile.php">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="subjects.php">Subjects</a>
+                    <a class="nav-link active" href="../tutor/subjects.php">Subjects</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="../logout.php">Log out</a>

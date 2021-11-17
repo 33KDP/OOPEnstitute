@@ -1,6 +1,8 @@
 <?php
+    require_once "head.php";
     require_once "../classes/DBConn.class.php";
     require_once "../bootstrap.php";
+    require_once "navbar.php";
     $dbCon = DBConn::getInstance();
     $pdo = $dbCon->getPDO();
     session_start();
@@ -18,36 +20,31 @@
     }
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Conversations</title>
-    </head>
+    <div class="container">
+        <h1>Conversations</h1>
+        <?php
+            if (isset($_SESSION['name'])) // should be not
+            {
+                echo '<p><a href="login.php">Please log in</a></p>';
 
-    <body>
-        <?php require_once "navbar.php"; ?>
-        <div class="container">
-            <h1>Conversations</h1>
-            <?php
-                if (isset($_SESSION['name'])) // should be not
-                {
-                    echo '<p><a href="login.php">Please log in</a></p>';
-
-                } else {
-                    foreach ($usersWithConversations as $user) {
-                        $qry = $pdo->prepare("SELECT id, first_name, last_name FROM `User` WHERE id=:userId");
-                        $qry->execute(array(':userId'=>$user));
-                        $row = $qry->fetch(PDO::FETCH_ASSOC);
-                        echo ('<a href="../Student/viewDetails.php?student_id='.$row['id'].'" style="color: black; text-decoration: none;">'.htmlentities($row['first_name']).' '.htmlentities($row['last_name']).'</a> &emsp;');
-                        echo '<div class="text-end" >';
-                        echo ('<a href="../User/message.php?receiver_id='.$row['id'].'">Message</a> &emsp;');
-                        echo '</div>';
-                        echo '<hr>';
-                    }
-
+            } else {
+                foreach ($usersWithConversations as $user) {
+                    $qry = $pdo->prepare("SELECT id, first_name, last_name FROM `User` WHERE id=:userId");
+                    $qry->execute(array(':userId'=>$user));
+                    $row = $qry->fetch(PDO::FETCH_ASSOC);
+                    echo ('<a href="../Student/viewDetails.php?student_id='.$row['id'].'" style="color: black; text-decoration: none;">'.htmlentities($row['first_name']).' '.htmlentities($row['last_name']).'</a> &emsp;');
+                    echo '<div class="text-end" >';
+                    echo ('<a href="../User/message.php?receiver_id='.$row['id'].'">Message</a> &emsp;');
+                    echo '</div>';
+                    echo '<hr>';
                 }
 
-            ?>
-        </div>
-    </body>
-</html>
+            }
+
+        ?>
+    </div>
+
+<?php
+    require_once "foot.php";
+?>
+

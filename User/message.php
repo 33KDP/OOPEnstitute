@@ -3,6 +3,8 @@
     require_once "../bootstrap.php";
     require_once "../classes/Student.class.php";
     require_once "../classes/tutor.class.php";
+    
+    
     session_start();
 
     $dbCon = DBConn::getInstance();
@@ -12,10 +14,11 @@
     $qry->execute(array(':userId'=>$_SESSION['user_id']));
     $row = $qry->fetch(PDO::FETCH_ASSOC);
 
-    if ($row['usertype_id'] == 1)
+    if ($row['usertype_id'] == 1){
         $curUser = Student::getInstance($_SESSION['user_id']);
-    else
+    }else{
         $curUser = Tutor::getInstance($_SESSION['user_id']);
+    }
 
     if (isset($_GET['receiver_id']))
         $_SESSION['receiver_id'] = $_GET['receiver_id'];
