@@ -16,30 +16,52 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 <?php require_once "../bootstrap.php"; ?>
 <?php require_once "head.php"; ?>
 
+
 <body class="sb-nav-fixed">
 <?php require_once "navbar.php";
-        echo '<div><h1>Welcome '. $curStudent->getFName().' '.$curStudent->getLName().'</h1></div>'
+
+        echo '
+                <div class="title">
+                <h1>Welcome <br/>'.$curStudent->getFName().' '.$curStudent->getLName().'</h1>
+                </div>'
 ?>
-        <div class="position-fixed"  style="top: 30%; left: 50%; transform: translate(-50%, -50%); z-index: 1000">
+
+
+
             <a href="../Class/joinClass.php">
                 <button>Join a Tutor</button>
-            </a>
-        </div>
+            </a><br/>
 
-        <div class="position-fixed"  style="top: 40%; left: 50%; transform: translate(-50%, -50%); z-index: 1000">
             <a href="../Class/individualClassList.php">
                 <button>Manage Classes</button>
-            </a>
-        </div>
+            </a><br/>
 
-        <div class="position-fixed"  style="top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000">
-            <a href="profile.php">
-                <button>View Profile</button>
-            </a>
-        </div>
+            <h2 style="color: white"> Groups </h2>
+            <a href="../Group/manage_group.php">
+                <button>Manage Groups</button>
+            </a><br/>
 
-        <div class="position-fixed"  style="top: 90%; left: 50%; transform: translate(-50%, -50%); z-index: 1000">
-        <footer class="py-4 bg-light mt-auto">
+            <a href="../Group/join_group.php">
+                <button>Join Groups</button>
+            </a><br/>
+
+            <br/>
+            <br/>
+
+            <ul>
+                <li>
+                    <a href="../Group/create_group.php" onclick="kevin()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span class="fab_fa-css3-alt" style="align-content: center">Create <br/> Group</span>
+                    </a>
+
+                </li>
+            </ul><br/>
+
+        <footer class="py-4 bg-dark mt-auto">
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
                     <div class="text-muted">Copyright &copy; Your Website 2021</div>
@@ -52,7 +74,9 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
             </div>
         </footer>
         </div>
-<?php require_once "foot.php"?>
+
+<div>
+
 </body>
-</html>
+<?php require_once "foot.php"?>
 
