@@ -41,20 +41,21 @@
 <head>
     <?php require_once "../bootstrap.php"; ?>
     <?php require_once "../Student/head.php"; ?>
+    <link rel="stylesheet" href="../Student/css/style.css" />
 </head>
 
 <body class="sb-nav-fixed">
     <?php require_once "../Student/navbar.php";
 
-            echo '<div class="card">
+            echo '<div class="card" style="background-color:black;color: #dddddd ">
                       <div class="card-header">
                         '.$name.'
                       </div>
                       <div class="card-body">
                         <h5 class="card-title">Rating: '.$rate.'</h5>
                         <h5 class="card-title">District: '.$district.'</h5>
-                        <a href="tutorDetails.php?id='.$id.'&sid='.$subjectID. '" class="btn btn-primary">View</a>
-                        <a href="submit.php?id=' .$id.'&sid='.$subjectID.'" class="btn btn-primary">Enroll</a>
+                        <a href="tutorDetails.php?id='.$id.'&sid='.$subjectID. '"><button>View</button></a>
+                        <a href="submit.php?id=' .$id.'&sid='.$subjectID.'" ><button>Enroll</button></a>
                       </div>
                     </div>';
             }

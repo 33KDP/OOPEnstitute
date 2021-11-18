@@ -14,10 +14,10 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 <html lang="en">
 <head>
     <?php require_once "../bootstrap.php"; ?>
-    <?php require_once "../Student/head.php"; ?>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+    <script src="https://kit.fontawesome.com/afd6aa68df.js" crossorigin="anonymous"></script>
     <title>join class</title>
 </head>
 
@@ -27,9 +27,10 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
         <div>
             <form action= 'form.php' method="GET">
                 <div>
-                    <div><h3> Filters</h3>
+                    <div><h3 style="color: #dddddd; font-family: 'Bebas Neue', cursive;"> Filters </h3>
                         <div>
-                            <label for="district">District:</label><select class="form-control" id="district" name="district" placeholder="district...">
+                            <label for="district" style="color: #dddddd; font-family: 'Bebas Neue', cursive;">District:</label>
+                            <select class="form-control" id="district" name="district" placeholder="district...">
                                 <?php
                                 $districts = "SELECT * FROM district";
                                 $districts = DBConn::getInstance()->getPDO()->prepare($districts);
@@ -42,7 +43,8 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                                 ?>
                             </select>
 
-                            <label for="rating">Rating:</label><select class="form-control" id="rating" name="rating" placeholder="Rating...">
+                            <label for="rating" style="color: #dddddd; font-family: 'Bebas Neue', cursive;">Rating:</label>
+                            <select class="form-control" id="rating" name="rating" placeholder="Rating...">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -57,6 +59,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                 </div>
                 <br>
                 <br>
+
                 <div>
                     <input class="form-control me-2 subject" type="search" placeholder="Search subjects" id="search" name="search" aria-label="Search">
                     <input class="btn btn-outline-success" name="Search" value="Search" type="submit">

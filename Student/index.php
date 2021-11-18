@@ -22,44 +22,56 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 
         echo '
                 <div class="title">
-                <h1>Welcome <br/>'.$curStudent->getFName().' '.$curStudent->getLName().'</h1>
+                <h1 class="h1">Welcome <br/>'.$curStudent->getFName().' '.$curStudent->getLName().'</h1>
                 </div>'
 ?>
 
+            <div class="butns">
+                <div class="row">
+                    <div class="column">
+                        <a href="../Class/joinClass.php">
+                            <button>Join a Tutor</button>
+                        </a><br/>
+                    </div>
+                    <div class="column">
+                        <a href="../Class/individualClassList.php">
+                            <button>Manage Classes</button>
+                        </a><br/>
+                    </div>
+                </div>
 
 
-            <a href="../Class/joinClass.php">
-                <button>Join a Tutor</button>
-            </a><br/>
-
-            <a href="../Class/individualClassList.php">
-                <button>Manage Classes</button>
-            </a><br/>
-
-            <h2 style="color: white"> Groups </h2>
-            <a href="../Group/manage_group.php">
-                <button>Manage Groups</button>
-            </a><br/>
-
-            <a href="../Group/join_group.php">
-                <button>Join Groups</button>
-            </a><br/>
+                <div class="row">
+                    <div class="column">
+                        <a href="../Group/manage_group.php">
+                            <button>Manage Groups</button>
+                        </a><br/>
+                    </div>
+                    <div class="column">
+                        <a href="../Group/join_group.php">
+                            <button>Join Groups</button>
+                        </a><br/>
+                    </div>
+                </div>
+            </div>
 
             <br/>
             <br/>
 
-            <ul>
+            <ul class="ul_li">
                 <li>
                     <a href="../Group/create_group.php" onclick="kevin()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span class="fab_fa-css3-alt" style="align-content: center">Create <br/> Group</span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
+    background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Create <br/> Group</span>
                     </a>
 
                 </li>
             </ul><br/>
+
 
         <footer class="py-4 bg-dark mt-auto">
             <div class="container-fluid px-4">
@@ -73,9 +85,9 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                 </div>
             </div>
         </footer>
-        </div>
 
-<div>
+
+
 
 </body>
 <?php require_once "foot.php"?>

@@ -13,13 +13,9 @@ require_once "../bootstrap.php";
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
                 <li class="nav-item">
                     <a class="nav-link" href="../Student/tutorList.php">Tutors</a>
                 </li>
-
-
-
             </ul>
 
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
