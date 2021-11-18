@@ -1,0 +1,62 @@
+    
+User.class.php:
+    
+    public function setProfilePic($name,$type,$data)
+    {
+
+        $qry0 = $this->dbCon->getPDO()->prepare("SELECT `propic`.name  FROM `User` JOIN `propic` ON `User`.id=`propic`.user_id WHERE `User`.id=:uiid");
+        $qry0->execute(array(
+            ':uiid'=>$this->userId
+        ));
+        $row = $qry0->fetch(PDO::FETCH_ASSOC);
+
+        if($row){
+            $qry1 = $this->dbCon->getPDO()->prepare("UPDATE `propic` SET name=:nm WHERE user_id=:uiid");
+            $qry1->execute(array(
+                ':nm'=>$name,
+                ':uiid'=>$this->userId));
+    
+            $qry2 = $this->dbCon->getPDO()->prepare("UPDATE `propic` SET mime=:mm WHERE user_id=:uiid");
+            $qry2->execute(array(
+                ':mm'=>$type,
+                ':uiid'=>$this->userId));
+    
+            $qry3 = $this->dbCon->getPDO()->prepare("UPDATE `propic` SET data=:dt WHERE user_id=:uiid");
+            $qry3->execute(array(
+                ':dt'=>$data,
+                ':uiid'=>$this->userId));
+        }
+        else{
+
+            $usid = $this->userId ;
+            $qry = $this->dbCon->getPDO()->prepare("insert into propic(user_id,name,mime,data) values(:userid,:nm,:typ,:dt) ");
+            
+            $qry -> bindParam(':userid',$usid,PDO::PARAM_INT);
+            $qry -> bindParam(':nm',$name,PDO::PARAM_STR);
+            $qry -> bindParam(':typ',$type,PDO::PARAM_STR);
+            $qry -> bindParam(':dt',$data,PDO::PARAM_LOB);
+
+
+            $qry -> execute();
+            
+            /*
+            $qry->execute(array(
+                ':userid' => $usid,
+                ':nm' => $name,
+                ':typ' => $type,
+                ':dt' => $data,)
+                );
+            */
+        }
+    }
+
+--------------------------------------------------------------------------------------------------------------
+profileController.php :
+
+    if (true) {
+        $name = $_FILES['profile_photo']['name'];
+        $type = $_FILES['profile_photo']['type'];
+        $data = file_get_contents($_FILES['profile_photo']['tmp_name']);
+        $student->setProfilePic($name,$type,$data);
+        $isedit = true;
+    }

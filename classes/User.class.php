@@ -10,12 +10,12 @@ abstract class User
     private $city;
     private $userTypeId;
     private $messageList;
+    private $propic;
     // private $privateMessageList;
     // private $groupMessageList;
-
-    private $profilePic;
     private $rating;
     protected $dbCon;
+
 
     public function __construct($userId){
         $this->userId = $userId;
@@ -29,8 +29,13 @@ abstract class User
         $this->district=$row['district'];
         $this->city=$row['city'];
         $this->userTypeId = $row['usertype_id'];
+        $this->propic = $row['profile_picture'];
+
         // $this->privateMessageList = $this->getMessages($userId, 0);
         // $this->groupMessageList = $this->getMessages($userId, 1);
+
+
+
     }
 
     // private function getMessages($userId, $messageType)
@@ -135,51 +140,17 @@ abstract class User
 
     public function getProfilePic()
     {
-//        return $this->profilePic;
-        return false;
+        return $this->propic;
     }
 
 
-    public function setProfilePic($profilePic)
+    public function setProfilePic($fileName)
     {
-        $targetDir = "../uploads/";
-        $fileName = basename($_FILES["file"]["name"]);
-        $targetFilePath = $targetDir . $fileName;
-        $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-        if(!empty($_FILES["file"]["name"])){
-            // Allow certain file formats
-            $allowTypes = array('jpg','png','jpeg','gif','pdf');
-            if(in_array($fileType, $allowTypes)){
-                // Upload file to server
-                if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
-                    // Insert image file name into database
-                    $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET profile_picture=:phld WHERE id=:uid");
-                    $qry->execute(array(
-                        ':phld'=>$profilePic,
-                        ':uid'=>$this->userId));
-                }else{
-                    $error_msg = "Sorry, there was an error uploading your file.";
-                    set_session_fail($error_msg);
-                    if($this->userTypeId==1){
-                        header("location: ../../Student/profile.php");
-                    }else{
-                        header("location: ../../tutor/profile.php");
-                    }
-                }
-            }else{
-                $error_msg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
-                set_session_fail($error_msg);
-                if($this->userTypeId==1){
-                    header("location: ../../Student/profile.php");
-                }else{
-                    header("location: ../../tutor/profile.php");
-                }
-            }
-        }
-
-
-
-//        $this->profilePic = $profilePic;
+        $qry = $this->dbCon->getPDO()->prepare("UPDATE `User` SET profile_picture=:phld WHERE id=:uid");
+        $qry->execute(array(
+            ':phld'=>$fileName,
+            ':uid'=>$this->userId));
+        $this->propic = $fileName;
     }
 
 

@@ -6,7 +6,15 @@ function set_session_fail($msg){
 function set_session_success($msg){
     $_SESSION['success'] = $msg ;
 }
+function set_session_specail($msg){
+    $_SESSION['special'] = $msg ;
+}
 function check_session(){
+    if(isset($_SESSION['special'])){
+        $msg = $_SESSION['special'] ;
+        unset($_SESSION['special']);
+        echo "<p>".$msg."</p>" ;  
+    }
     if(isset($_SESSION['error'])){
         $msg = $_SESSION['error'] ;
         unset($_SESSION['error']);

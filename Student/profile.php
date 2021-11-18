@@ -16,23 +16,20 @@ require_once "navbar.php";
     <body>
     <div class="container p-5 shadow my-5 rounded-3 st">
 
-        <form action="controllers/profileController.php" method="post">
+        <form action="controllers/profileController.php" enctype="multipart/form-data" method="post">
 
             <div class="mb-3">
                 <label for="propic" class="form-label">Profile Photo</label><br>
                 <?php
-                //$propic = $curTutor->getProfilePic();
-                $propic = false;
-
-                if ($propic = !false) {
-
-                    echo "<image id='profileImage' src='https://i.stack.imgur.com/YQu5k.png' style='width:110px; height:130px; object-fit:cover;' />";
+                $propic = $curStudent->getProfilePic();
+                if (!$propic) {
+                    echo "<image id='profileImage' src='https://i.stack.imgur.com/YQu5k.png' class='img-thumbnail' style='width:110px; height:130px; object-fit:cover;' />";
                 } else {
-                    echo "<image id='profileImage' src='{$propic}' class='img-thumbnail' style='width:110px; height:130px; object-fit:cover;'/>";
+                    $imageURL = '../uploads/'.$propic;
+                    echo "<image id='profileImage' src=".$imageURL." class='img-thumbnail' style='width:110px; height:130px; object-fit:cover;'/>";
                 }
                 ?>
-                <input id="imageUpload" type="file" name="profile_photo" class="form-control" placeholder="Photo"
-                       onchange="loadFile(event)">
+                <input id="imageUpload" type="file" name="profile_photo" class="form-control" placeholder="Photo" onchange="loadFile(event)">
             </div>
 
             <div class="mb-3">

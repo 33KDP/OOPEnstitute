@@ -1,11 +1,12 @@
 <?php
 require_once("../../includes/utils.php");
 require_once "../../classes/Student.class.php";
+require_once "../../classes/DBConn.class.php";
 session_start();
 
 if (isset($_POST["set"])) {
     $curStudent = Student::getInstance($_SESSION['user_id']);
-    update_tutor($_POST, $curStudent);
+    update_student($_POST, $curStudent);
 } elseif (isset($_POST["reset"])) {
     $curStudent = Student::getInstance($_SESSION['user_id']);
     reset_pwd($_POST, $curStudent);
@@ -13,7 +14,7 @@ if (isset($_POST["set"])) {
     header("location: ../profile.php");
 }
 
-function update_tutor($_form, $student)
+function update_student($_form, $student)
 {
     $propic = $_form["profile_photo"];
     $fname = $_form["fname"];
@@ -21,14 +22,32 @@ function update_tutor($_form, $student)
     $distric = $_form["district"];
     $city = $_form["city"];
     $grade = $_form["grade"];
-    $stid = $_form["studentid"];
 
     $isedit = false;
+    $targetDir = "../../uploads/";
+    $fileName = basename($_FILES["profile_photo"]["name"]);
+    $targetFilePath = $targetDir . $fileName;
+    $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
-    if ($propic) {
-        $student->setProfilePic($propic);
-        $isedit = true;
+    if (!empty($_FILES["profile_photo"]["name"])) {
+        // Allow certain file formats
+        $allowTypes = array('jpg','png','jpeg','gif','pdf');
+        if(in_array($fileType, $allowTypes)){
+            // Upload file to server
+            if(move_uploaded_file($_FILES["profile_photo"]["tmp_name"],  $targetFilePath)){
+                // Insert image file name into database
+                $student->setProfilePic($fileName);
+                $statusMsg = "profile pic changed";
+            }else{
+                $statusMsg = "profile pic uploading fail";
+            }
+        }else{
+            $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
+        }
+    $isedit = true;
     }
+
+
     if ($fname != $student->getFName()) {
         $student->setFName($fname);
         $isedit = true;
@@ -52,6 +71,7 @@ function update_tutor($_form, $student)
     if ($isedit) {
         $msg = "Updated successfully";
         set_session_success($msg);
+        set_session_specail($statusMsg);
     } else {
         $msg = "no changes";
         set_session_success($msg);
