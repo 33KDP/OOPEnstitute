@@ -13,11 +13,12 @@
     <head>
         <?php require_once "../bootstrap.php"; ?>
         <?php require_once "../Student/head.php"; ?>
+        <link rel="stylesheet" href="../Student/css/style.css" />
     </head>
     <body>
         <?php require_once "navbar.php"; ?>
-        <div class="container p-5 shadow my-5 rounded-3">
-            <table>
+        <div class="container p-5 shadow my-5 rounded-3" style="color: #dddddd">
+            <table style="color: #dddddd">
                 <tr>
                     <th>First name: </th>
                     <td><?= htmlentities($curTutor->getFName())?></td></tr>
@@ -55,8 +56,8 @@
                     <?php
                     $lastURL = $_SESSION['lastURL'];
                     echo '<a href="form.php?subId='.$lastURL['subId'].
-                        '&district='.$lastURL['district'].'&rating='.$lastURL['rating'].'" class="btn btn-secondary">Cancel</a>';
-                    echo '<a href="submit.php?id='.$_GET['id'].'&sid='.$_GET['sid'].'" class="btn btn-primary">Enroll</a>';
+                        '&district='.$lastURL['district'].'&rating='.$lastURL['rating'].'"><button>Cancel</button></a>';
+                    echo '<a href="submit.php?id='.$_GET['id'].'&sid='.$_GET['sid'].' "><button>Enroll</button></a>';
                     ?>
                 </div>
         </div>
