@@ -1,13 +1,13 @@
 <?php
-include_once 'head.php' ;
+include_once 'head.php';
 require_once "../classes/Session.class.php";
 require_once "../classes/DBConn.class.php";
 require_once "../classes/Student.class.php";
 
-if (!isset($_SESSION['user_id'])){
+if (!isset($_SESSION['user_id'])) {
     header("location: ../index.php");
 }
-$curGroup=  GroupClass::getInstance($_SESSION['user_id']);
+$curGroup = GroupClass::getInstance($_SESSION['user_id']);
 
 require_once "../bootstrap.php";
 require_once "navbar.php";
@@ -21,42 +21,47 @@ require_once "navbar.php";
             <label for="propic" class="form-label">Profile Photo</label><br>
             <?php
             //$propic = $curTutor->getProfilePic();
-            $propic = false ;
+            $propic = false;
 
-            if($propic=!false){
+            if ($propic = !false) {
 
-                echo "<image id='profileImage' src='https://i.stack.imgur.com/YQu5k.png' style='width:110px; height:130px; object-fit:cover;' />" ;
-            }else{
-                echo "<image id='profileImage' src='{$propic}' class='img-thumbnail' style='width:110px; height:130px; object-fit:cover;'/>" ;
+                echo "<image id='profileImage' src='https://i.stack.imgur.com/YQu5k.png' style='width:110px; height:130px; object-fit:cover;' />";
+            } else {
+                echo "<image id='profileImage' src='{$propic}' class='img-thumbnail' style='width:110px; height:130px; object-fit:cover;'/>";
             }
             ?>
-            <input  id="imageUpload" type="file"  name="profile_photo" class="form-control" placeholder="Photo"  onchange="loadFile(event)" >
+            <input id="imageUpload" type="file" name="profile_photo" class="form-control" placeholder="Photo"
+                   onchange="loadFile(event)">
         </div>
 
         <div class="mb-3">
             <label for="fname" class="form-label">First name</label>
-            <input type="text"  name="fname" class="form-control" id="fname" value="<?= htmlentities($curGroup->getFName())?>">
+            <input type="text" name="fname" class="form-control" id="fname"
+                   value="<?= htmlentities($curGroup->getFName()) ?>">
         </div>
         <div class="mb-3">
             <label for="lname" class="form-label">Last name</label>
-            <input type="text"  name="lname" class="form-control" id="lname" value="<?= htmlentities($curGroup->getLName())?>">
+            <input type="text" name="lname" class="form-control" id="lname"
+                   value="<?= htmlentities($curGroup->getLName()) ?>">
         </div>
         <div class="mb-3">
             <label for="district" class="form-label">District</label>
-            <input type="text"  name="district" class="form-control" id="district" value="<?= htmlentities($curGroup->getDistrict())?>">
+            <input type="text" name="district" class="form-control" id="district"
+                   value="<?= htmlentities($curGroup->getDistrict()) ?>">
         </div>
         <div class="mb-3">
             <label for="city" class="form-label">City</label>
-            <input type="text"  name="city" class="form-control" id="city" value="<?= htmlentities($curGroup->getCity())?>">
+            <input type="text" name="city" class="form-control" id="city"
+                   value="<?= htmlentities($curGroup->getCity()) ?>">
         </div>
 
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea class="form-control"  name="description" id="description" >
+            <textarea class="form-control" name="description" id="description">
                      <?php
-                     if(!empty($curGroup->getDescription())){
+                     if (!empty($curGroup->getDescription())) {
                          echo htmlentities($curGroup->getDescription());
-                     }else{
+                     } else {
                          echo "add a bio";
                      }
                      ?>
@@ -68,8 +73,8 @@ require_once "navbar.php";
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="flag" name="cbox" value="1"
                 <?php
-                if ($curGroup->isNotAvailable()){
-                    echo'checked';
+                if ($curGroup->isNotAvailable()) {
+                    echo 'checked';
                 }
                 ?>
             >
@@ -78,7 +83,7 @@ require_once "navbar.php";
         <div>
             <button type="submit" name="set" class="btn btn-primary">Edit</button>
         </div>
-        <input type="hidden" name="tutorid" value="<?= $curGroup->getTutorId()?>">
+        <input type="hidden" name="tutorid" value="<?= $curGroup->getTutorId() ?>">
     </form>
 
     <br>
@@ -88,15 +93,15 @@ require_once "navbar.php";
     <form action="controllers/profileController.php" method="POST">
         <div class="mb-3">
             <label for="city" class="form-label">Old Password</label>
-            <input type="password"  name="old_pwd" class="form-control" id="pwd" >
+            <input type="password" name="old_pwd" class="form-control" id="pwd">
         </div>
         <div class="mb-3">
             <label for="city" class="form-label">New Password</label>
-            <input type="password"  name="new_pwd" class="form-control" id="pwd" >
+            <input type="password" name="new_pwd" class="form-control" id="pwd">
         </div>
         <div class="mb-3">
             <label for="city" class="form-label">Confirm Password</label>
-            <input type="password"  name="confirm_pwd" class="form-control" id="pwd" >
+            <input type="password" name="confirm_pwd" class="form-control" id="pwd">
         </div>
         <div class="mb-3">
             <button type="submit" name="reset" class="btn btn-danger">Reset password</button>

@@ -1,5 +1,5 @@
-$(document).ready(function(){
-    $(".subject" ).autocomplete({
+$(document).ready(function () {
+    $(".subject").autocomplete({
         source: 'subjectList.php',
         select: function (event, ui) {
             // Set autocomplete element to display the label
@@ -14,13 +14,13 @@ $(document).ready(function(){
     });
 });
 
-$("#profileImage").click(function(e) {
+$("#profileImage").click(function (e) {
     $("#imageUpload").click();
-  });
-  
-var loadFile = function(event) {
-	var image = document.getElementById('profileImage');
-	image.src = URL.createObjectURL(event.target.files[0]);
+});
+
+var loadFile = function (event) {
+    var image = document.getElementById('profileImage');
+    image.src = URL.createObjectURL(event.target.files[0]);
 };
 
 function kevin() {

@@ -1,10 +1,8 @@
-#imageUpload
-{
+#imageUpload {
     display: none;
 }
 
-#profileImage
-{
+#profileImage {
     cursor: pointer;
 }
 
@@ -175,6 +173,7 @@ button:hover::after {
     line-height: .75;
     margin: 10px 0;
 }
+
 /* styling my button */
 
 .white-mode {
@@ -192,7 +191,7 @@ button:hover::after {
     color: #122;
 }
 
-.butns{
+.butns {
     position: absolute;
     top: 50%;
     left: 50%;

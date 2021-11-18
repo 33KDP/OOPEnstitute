@@ -1,5 +1,5 @@
-$(document).ready(function(){
-    $(".subject" ).autocomplete({
+$(document).ready(function () {
+    $(".subject").autocomplete({
         source: 'subjectList.php',
         select: function (event, ui) {
             // Set autocomplete element to display the label
