@@ -42,7 +42,7 @@ if (isset($_POST['Send'])) {
         ':id' => $id
     ));
 
-    header('location: ../Student/index.php');
+    header('location: ../Student/group_index.php');
 }
 ?>
 

@@ -3,7 +3,7 @@ require_once "_Class.class.php";
 require_once "DBConn.class.php";
 class GroupClass extends _Class
 {
-    private $student_id;
+    private $student_list;
 
     /**
      * IndividualClass constructor.
@@ -17,7 +17,7 @@ class GroupClass extends _Class
         $class_id = $row['id'];
         $tutor_id = $row['tutor_id'];
         $subject_id = $row['subject_id'];
-        $this->student_id = $row['student_id'];
+        $this->student_list = $row['student_list'];
         parent::__construct($class_id, $tutor_id, $subject_id);
     }
 

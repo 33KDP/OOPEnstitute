@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once "../classes/DBConn.class.php";
+$dbCon = DBConn::getInstance();
+$pdo = $dbCon->getPDO();
 
 if (empty($_GET['subId'])) {
     header('location: joinGroup.php');
@@ -12,8 +14,9 @@ $rating = $_GET['rating'];
 $lastURL = array('subId' => $subjectID, 'district' => $district, 'rating' => $rating);
 $_SESSION ['lastURL'] = $lastURL;
 
-$search_query = "SELECT `User`.id, `User`.first_name, `User`.last_name, District.district, `User`.rating FROM Tutor 
-                            JOIN District Join Tutor_Subject Join `User` ON `User`.id = tutor.user_id and `User`.district_id = district.id and 
+$search_query = "SELECT `User`.id, `User`.first_name, `User`.last_name, District.district, `User`.rating,  FROM Tutor 
+                            JOIN District Join Tutor_Subject Join `User` Join individualclass Join 
+                                ON `User`.id = tutor.user_id and `User`.district_id = district.id and 
                                 Tutor.id = Tutor_Subject.tutor_id WHERE Tutor_Subject.Subject_id = '$subjectID' AND Tutor.availability_flag=0";
 if ($district != "") {
     $search_query .= " AND District.district='$district'";

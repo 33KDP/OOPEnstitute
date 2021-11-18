@@ -170,4 +170,10 @@ class Tutor extends User
         return $this->usersWithConversations;
     }
 
+    public static function getUserId($tutorId){
+        $qry = DBConn::getInstance()->getPDO()->prepare("SELECT `User`.id FROM `User` JOIN Tutor ON `User`.id = Tutor.user_id WHERE Tutor.id=:tid");
+        $qry->execute(array(':tid'=>$tutorId));
+        $row = $qry->fetch(PDO::FETCH_ASSOC);
+        return$row['id'];
+    }
 }

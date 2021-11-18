@@ -26,44 +26,54 @@ echo '
                 </div>'
 ?>
 
-<a href="../Class/joinClass.php" style="position: absolute; top: 45%; left: 42%;">
-    <button>Join a Class</button>
-</a><br/>
+            <ul class="ul_li" style="position: absolute; top: 37%; left: 43%;">
+                <li>
+                    <a href="../Class/joinClass.php">
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
+                background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Join a <br/> Class</span>
+                    </a>
+                </li>
+            </ul>
+            <br/>
 
 
 <?php
 echo '
-            <ul class="ul_li" style="position: absolute; top: 60%; left: 15%;">
+            <ul class="ul_li" style="position: absolute; top: 62%; left: 15%;">
                 <li>
                     <a href="../Class/individualClassList.php?id=' . $_SESSION['user_id'] . '">
                     ' ?>
-<span class="ul_li_span"></span>
-<span class="ul_li_span"></span>
-<span class="ul_li_span"></span>
-<span class="ul_li_span"></span>
-<span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
-                background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Individual <br/> Classes</span>
-</a>
-</li>
-</ul><br/>
+                    <span class="ul_li_span"></span>
+                    <span class="ul_li_span"></span>
+                    <span class="ul_li_span"></span>
+                    <span class="ul_li_span"></span>
+                    <span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
+                                    background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Individual <br/> Classes</span>
+                    </a>
+                    </li>
+                    </ul><br/>
 
 <?php
 echo '
-            <ul class="ul_li" style="position: absolute; top: 60%; left: 29%;">
+            <ul class="ul_li" style="position: absolute; top: 62%; left: 29%;">
                 <li>
                     <a href="../Class/groupClassList.php?id=' . $_SESSION['user_id'] . '" > ' ?>
-<span class="ul_li_span"></span>
-<span class="ul_li_span"></span>
-<span class="ul_li_span"></span>
-<span class="ul_li_span"></span>
-<span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
-                background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Group <br/> Classes</span>
-</a>
-</li>
-</ul><br/>
+                    <span class="ul_li_span"></span>
+                    <span class="ul_li_span"></span>
+                    <span class="ul_li_span"></span>
+                    <span class="ul_li_span"></span>
+                    <span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
+                                    background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Group <br/> Classes</span>
+                    </a>
+                    </li>
+                    </ul><br/>
 
 
-<ul class="ul_li" style="position: absolute; top: 60%; left: 43%;">
+<ul class="ul_li" style="position: absolute; top: 62%; left: 43%;">
     <li>
         <a href="../Group/create_group.php">
             <span class="ul_li_span"></span>
@@ -77,7 +87,7 @@ echo '
 </ul>
 <br/>
 
-<ul class="ul_li" style="position: absolute; top: 60%; left: 57%;">
+<ul class="ul_li" style="position: absolute; top: 62%; left: 57%;">
     <li>
         <a href="../Group/join_group.php">
             <span class="ul_li_span"></span>
@@ -91,7 +101,7 @@ echo '
 </ul>
 <br/>
 
-<ul class="ul_li" style="position: absolute; top: 60%; left: 71%;">
+<ul class="ul_li" style="position: absolute; top: 62%; left: 71%;">
     <li>
         <a href="../Group/manage_group.php"" >
         <span class="ul_li_span"></span>
