@@ -66,12 +66,15 @@ class Student extends User
     public function disenrollClass() {
 
     }
+
     public function getstudentId(){
         return $this->studentId;
     }
+
     public function getgrade(){
         return $this->grade;
     }
+    
     public function setgrade($grade){
         $qry = $this->dbCon->getPDO()->prepare("UPDATE student SET grade=:phld WHERE id=:siid");
         $qry->execute(array(
@@ -84,7 +87,7 @@ class Student extends User
         $qry = DBConn::getInstance()->getPDO()->prepare("SELECT `User`.id FROM `User` JOIN Student ON `User`.id = Student.user_id WHERE Student.id=:sid");
         $qry->execute(array(':sid'=>$studentId));
         $row = $qry->fetch(PDO::FETCH_ASSOC);
-       return$row['id'];
+        return$row['id'];
     }
 
 }

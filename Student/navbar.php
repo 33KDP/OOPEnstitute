@@ -20,7 +20,7 @@ require_once "../bootstrap.php";
 
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.php">Profile Settings</a>
+                    <a class="nav-link" href="../student/profile.php">Profile Settings</a>
                 </li>
 
                 <li class="nav-item">

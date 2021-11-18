@@ -7,6 +7,7 @@
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
     }
+
     $curTutor=  Tutor::getInstance($_SESSION['user_id']);
 ?>
 
@@ -23,17 +24,27 @@
                 $student = Student::getInstance(Student::getUserId($_GET['sid']));
                 echo'
                     <div class="container p-5">
-                        <div>'.
+                        <div>Full Name : '.
                             $student->getFName().' '.$student->getLName()
                         .'</div>
-                        <div>'.
+                        <div>Email : '.
+                            $student->getEmail()
+                        .'</div>
+                        <div>Grade : '.
+                            $student->getgrade()
+                        .'</div>                  
+                        <div>District : '.
                             $student->getDistrict()
                         .'</div>
+                        <div>City : '.
+                            $student->getCity()
+                        .'</div><br>
                         <div>
-                            <button class="btn btn-primary">Send Message</button>
-                        </div>
-                    </div>
+                            <a class="btn btn-primary" href="../User/message.php?receiver_id='.$student->getId().'">Send Message</a>
+                        </div><br>
                 ';
+                require_once "../User/reviewForm.php";
+                echo '</div>';
             ?>
         </body>
     </html>

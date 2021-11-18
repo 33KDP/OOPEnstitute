@@ -13,6 +13,7 @@ class Tutor extends User
     private $timeSlots;
     private $subjects;
     private static $instances;
+    private $usersWithConversations;
 
     private function __construct($userId)
     {
@@ -22,6 +23,7 @@ class Tutor extends User
         $row = $qry->fetch(PDO::FETCH_ASSOC);
         $this->timeSlots = array();
         $this->subjects = array();
+        $this->usersWithConversations = array();
         $this->tutorId=$row['id'];
         $this->notAvailable=$row['availability_flag'];
         $this->description=$row['description'];
@@ -146,4 +148,26 @@ class Tutor extends User
         }
         return $classes;
     }
+
+    public function setUsersWithConversations() {
+        $user_id = $this->getId();
+        $usersWithConversations = array();
+        $qry = $this->dbCon->getPDO()->prepare("SELECT * FROM `Message` WHERE (user_id = :userId OR receiver = :userId)");
+        $qry->execute(array(':userId'=>$user_id));
+        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            if ($row['user_id'] == $user_id and !in_array($row['receiver'], $usersWithConversations))
+                array_push($usersWithConversations, $row['receiver']);
+            elseif($row['receiver'] == $user_id and !in_array($row['user_id'], $usersWithConversations))
+                array_push($usersWithConversations, $row['user_id']);
+        }
+
+        $this->usersWithConversations = $usersWithConversations;
+
+    }
+
+    public function getUsersWithConversations()
+    {
+        return $this->usersWithConversations;
+    }
+
 }
