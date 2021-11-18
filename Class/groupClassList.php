@@ -3,6 +3,7 @@ session_start();
 
 require_once "../classes/Tutor.class.php";
 require_once "../classes/Student.class.php";
+require_once "../classes/DBConn.class.php";
 
 
 if (!isset($_GET['id'])){
@@ -10,6 +11,9 @@ if (!isset($_GET['id'])){
 }
 
 $curStudent=  Student::getInstance($_GET['id']);
+$dbCon = DBConn::getInstance();
+$pdo = $dbCon->getPDO();
+
 ?>
 
 

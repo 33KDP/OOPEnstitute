@@ -26,51 +26,47 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                 </div>'
 ?>
 
-            <div class="butns">
-                <div class="row">
-                    <div class="column">
-                        <a href="../Class/joinClass.php">
-                            <button>Join a Tutor</button>
-                        </a><br/>
-                    </div>
-
-                    <?php
-                    echo '
-                    <div class="column">
-                        <a href="../Class/individualClassList.php?id='.$_SESSION['user_id'].'">
-                            <button>Individual Classes</button>
-                        </a><br/>
-                    </div>
-                    <div class="column">
-                        <a href="../Class/groupClassList.php?id='.$_SESSION['user_id'].'">
-                        <button>Group Classes</button>
-                        </a><br/>
-                    </div>
-                    '?>
-
-                </div>
+            <a href="../Class/joinClass.php" style="position: absolute; top: 45%; left: 42%;">
+                <button>Join a Tutor</button>
+            </a><br/>
 
 
-                <div class="row">
-                    <div class="column">
-                        <a href="../Group/manage_group.php">
-                            <button>Manage Groups</button>
-                        </a><br/>
-                    </div>
-                    <div class="column">
-                        <a href="../Group/join_group.php">
-                            <button>Join Groups</button>
-                        </a><br/>
-                    </div>
-                </div>
-            </div>
 
-            <br/>
-            <br/>
-
-            <ul class="ul_li">
+            <?php
+            echo '
+            <ul class="ul_li" style="position: absolute; top: 60%; left: 15%;">
                 <li>
-                    <a href="../Group/create_group.php" onclick="kevin()">
+                    <a href="../Class/individualClassList.php?id='.$_SESSION['user_id'].'">
+                    '?>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
+                background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Individual <br/> Classes</span>
+                    </a>
+                </li>
+            </ul><br/>
+
+            <?php
+            echo '
+            <ul class="ul_li" style="position: absolute; top: 60%; left: 29%;">
+                <li>
+                    <a href="../Class/groupClassList.php?id='.$_SESSION['user_id'].'" > '?>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
+                background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Group <br/> Classes</span>
+                    </a>
+                </li>
+            </ul><br/>
+
+
+            <ul class="ul_li" style="position: absolute; top: 60%; left: 43%;">
+                <li>
+                    <a href="../Group/create_group.php" >
                         <span class="ul_li_span"></span>
                         <span class="ul_li_span"></span>
                         <span class="ul_li_span"></span>
@@ -81,6 +77,31 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                 </li>
             </ul><br/>
 
+            <ul class="ul_li" style="position: absolute; top: 60%; left: 57%;">
+                <li>
+                    <a href="../Group/join_group.php" >
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
+                background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Join <br/> Group</span>
+                    </a>
+                </li>
+            </ul><br/>
+
+            <ul class="ul_li" style="position: absolute; top: 60%; left: 71%;">
+                <li>
+                    <a href="../Group/manage_group.php"" >
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span"></span>
+                        <span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
+                            background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Manage <br/> Groups</span>
+                    </a>
+                </li>
+            </ul><br/>
 
         <footer class="py-4 bg-dark mt-auto">
             <div class="container-fluid px-4">

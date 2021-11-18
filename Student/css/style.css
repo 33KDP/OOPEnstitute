@@ -28,7 +28,7 @@ button, button::after {
     line-height: 88px;
     box-shadow: 6px 0px 0px #00E6F6;
     outline: transparent;
-    position: relative;
+    /*position: relative;*/
 }
 
 button::after {
@@ -105,9 +105,7 @@ button:hover::after {
 
 
 .ul_li {
-    position: absolute;
-    top: 50%;
-    left: 60%;
+
     list-style: none;
     width: 250px;
     height: 250px;
@@ -197,5 +195,5 @@ button:hover::after {
 .butns{
     position: absolute;
     top: 50%;
-    left: 30%;
+    left: 50%;
 }
