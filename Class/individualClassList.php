@@ -1,21 +1,30 @@
 <?php
-require_once "../classes/DBConn.class.php";
-require_once "../bootstrap.php";
-$dbCon = DBConn::getInstance();
-$pdo = $dbCon->getPDO();
 session_start();
+
+require_once "../classes/Tutor.class.php";
+require_once "../classes/Student.class.php";
+
+if (!isset($_GET['id'])){
+    header("location: ../index.php");
+}
+
+$curStudent=  Student::getInstance($_GET['id']);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Enrolled Classes</title>
+        <title>Enrolled Individual Classes</title>
+        <?php require_once "../bootstrap.php"; ?>
+        <?php require_once "../Student/head.php"; ?>
+        <link rel="stylesheet" href="../Student/css/style.css" />
     </head>
 
     <body>
         <?php require_once "navbar.php"; ?>
         <div class="container">
-            <h1>All Enrolled Classes</h1>
+            <h1>All Enrolled Individual Classes</h1>
             <?php
                 $stmt = $pdo->query("SELECT id FROM `User` WHERE usertype_id=2;");
 

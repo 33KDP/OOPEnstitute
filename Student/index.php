@@ -33,11 +33,21 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                             <button>Join a Tutor</button>
                         </a><br/>
                     </div>
+
+                    <?php
+                    echo '
                     <div class="column">
-                        <a href="../Class/individualClassList.php">
-                            <button>Manage Classes</button>
+                        <a href="../Class/individualClassList.php?id='.$_SESSION['user_id'].'">
+                            <button>Individual Classes</button>
                         </a><br/>
                     </div>
+                    <div class="column">
+                        <a href="../Class/groupClassList.php?id='.$_SESSION['user_id'].'">
+                        <button>Group Classes</button>
+                        </a><br/>
+                    </div>
+                    '?>
+
                 </div>
 
 
@@ -68,7 +78,6 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                         <span class="ul_li_span" style="align-content: center; font-family: 'Bebas Neue', cursive;
     background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);">Create <br/> Group</span>
                     </a>
-
                 </li>
             </ul><br/>
 
