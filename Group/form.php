@@ -3,7 +3,7 @@ session_start();
 require_once "../classes/DBConn.class.php";
 
 if (empty($_GET['subId'])) {
-    header('location: joinClass.php');
+    header('location: joinGroup.php');
 
 } else{
 $subjectID = $_GET['subId'];
