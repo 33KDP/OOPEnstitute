@@ -27,7 +27,7 @@ echo '
 ?>
 
 <a href="../Class/joinClass.php" style="position: absolute; top: 45%; left: 42%;">
-    <button>Join a Tutor</button>
+    <button>Join a Class</button>
 </a><br/>
 
 
