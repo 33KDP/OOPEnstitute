@@ -11,14 +11,11 @@ if (!isset($_GET['id'])) {
 $curTutor = Tutor::getInstance($_GET['id']);
 $curStudent = Student::getInstance($_SESSION['user_id']);
 
-
 if (isset($_POST['Send'])) {
     $tutorid = $_POST['tutorid'];
     $subjectid = $_POST['subjectid'];
     $req_type = $_POST['req_type'];
     $message = $_POST['message'];
-
-    //var_dump($_POST);
 
     $stmt = 'INSERT INTO Request (tutor_id, subject_id, message, `type`';
     if ($req_type == 0) {
@@ -33,7 +30,6 @@ if (isset($_POST['Send'])) {
     $stmt .= 'values (:tid, :sid, :message, :ty, :id)';
     $pdo = DBConn::getInstance()->getPDO();
     $query = $pdo->prepare($stmt);
-
     $query->execute(array(
         ':tid' => $tutorid,
         ':sid' => $subjectid,
@@ -55,24 +51,32 @@ if (isset($_POST['Send'])) {
 </head>
 <body>
 
+<?php
 
-<form method="POST">
-    <input type="hidden" name="tutorid" value="<?= $curTutor->getTutorId() ?>">
-    <input type="hidden" name="subjectid" value="<?= $_GET['sid'] ?>">
-    <input type="hidden" name="req_type" value=0>
-    <div class="mb-3">
-        <label for="message" class="form-label">message</label>
-        <textarea class="form-control" name="message" id="message">Type your message here...</textarea>
-    </div>
+    if($_GET['type'] == 'enroll') {
+        echo '
+    <form method="POST">
+        <input type="hidden" name="tutorid" value=" '.$curTutor->getTutorId().'">
+        <input type="hidden" name="subjectid" value=" '.$_GET['sid'].'">
+        <input type="hidden" name="req_type" value=0>
+        <div class="mb-3">
+            <label for="message" class="form-label">message</label>
+            <textarea class="form-control" name="message" id="message">Type your message here...</textarea>
+        </div>
+    
+        <div> ';
 
-    <div>
-        <?php
+            $lastURL = $_SESSION['lastURL'];
 
-        $lastURL = $_SESSION['lastURL'];
-        echo '<a href="form.php?subId=' . $lastURL['subId'] .
-            '&district=' . $lastURL['district'] . '&rating=' . $lastURL['rating'] . '" class="btn btn-secondary">Cancel</a>'; ?>
-        <input type="submit" name="Send" value="Send" class="btn btn-primary">
-    </div>
+                echo '
+            <a href = "form.php?subId=' . $lastURL['subId'] . '&district=' . $lastURL['district'] . '&rating=' . $lastURL['rating'] . '" class="btn btn-secondary" > Cancel</a>
+            <input type="submit" name="Send" value="Send" class="btn btn-primary">
+        </div>
+    
+    </form>';
+    } else if($_GET['type'] == 'disenroll') {
+        //code here!
+    }
 
-</form>
+?>
 

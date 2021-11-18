@@ -19,7 +19,7 @@
         <body>
             <?php require_once "navbar.php";
                 if (!isset($_GET['sid'])){
-                    header("location: ../index.php");
+                    header("location: ../group_index.php");
                 }
                 $student = Student::getInstance(Student::getUserId($_GET['sid']));
                 echo'

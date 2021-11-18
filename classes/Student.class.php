@@ -90,4 +90,15 @@ class Student extends User
         return$row['id'];
     }
 
+    public function getIndClasses(){
+        $qry = $this->dbCon->getPDO()->prepare("SELECT IndividualClass.id FROM Student JOIN IndividualClass ON Student.id=IndividualClass.student_id WHERE Student.id=:sid");
+        $qry->execute(array(
+            ':sid'=>$this->studentId
+        ));
+        $classes = array();
+        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            array_push($classes, new IndividualClass($row['id']));
+        }
+        return $classes;
+    }
 }

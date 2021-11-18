@@ -20,7 +20,7 @@ if ($district != "") {
 }
 
 if ($rating != "") {
-    $search_query .= " AND User.rating='$rating'";
+    $search_query .= " AND User.rating>='$rating'";
 }
 
 $search_query = DBConn::getInstance()->getPDO()->prepare($search_query);
@@ -31,6 +31,7 @@ $id = $row['id'];
 $name = $row['first_name'] . ' ' . $row['last_name'];
 $dis = $row['district'];
 $rate = $row['rating'];
+$type = 0;
 
 if (is_null($id)) {
     header('location: joinClass.php');
@@ -55,7 +56,7 @@ echo '<div class="card" style="background-color:black;color: #dddddd ">
                         <h5 class="card-title">Rating: ' . $rate . '</h5>
                         <h5 class="card-title">District: ' . $district . '</h5>
                         <a href="tutorDetails.php?id=' . $id . '&sid=' . $subjectID . '"><button>View</button></a>
-                        <a href="submit.php?id=' . $id . '&sid=' . $subjectID . '" ><button>Enroll</button></a>
+                        <a href="submit.php?id=' . $id . '&sid=' . $subjectID . '&type=enroll" ><button>Enroll</button></a>
                       </div>
                     </div>';
 }

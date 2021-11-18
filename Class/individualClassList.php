@@ -1,45 +1,43 @@
 <?php
 session_start();
-
+require_once "../classes/Timeslot.class.php";
 require_once "../classes/Tutor.class.php";
 require_once "../classes/Student.class.php";
-require_once "../classes/DBConn.class.php";
+require_once "../classes/Subject.class.php";
 
-
-if (!isset($_GET['id'])) {
+if (!isset($_SESSION['user_id'])){
     header("location: ../index.php");
 }
-$curStudent = Student::getInstance($_GET['id']);
-$dbCon = DBConn::getInstance();
-$pdo = $dbCon->getPDO();
-
+$curStudent=  Student::getInstance($_SESSION['user_id']);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Enrolled Individual Classes</title>
     <?php require_once "../bootstrap.php"; ?>
     <?php require_once "../Student/head.php"; ?>
-    <link rel="stylesheet" href="../Student/css/style.css"/>
 </head>
-
 <body>
 <?php require_once "navbar.php"; ?>
-<div class="container">
-    <h1>All Enrolled Individual Classes</h1>
-    <?php
+<?php
+echo '<div class="container p-4">';
+echo '<div class="row">';
+foreach ($curStudent->getIndClasses() as $class) {
+    $subject = Subject::getInstance($class->getSubject());
 
-    $stmt = $pdo->query("SELECT * FROM `User` WHERE usertype_id=2;");
-
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo(htmlentities($row['first_name']) . ' ' . htmlentities($row['last_name']));
-        echo '<div class="text-end" >';
-        echo('<a href="../Class/index.php?class_id=' . $row['id'] . '">View details</a> &emsp;');
-        echo '</div>';
-        echo '<hr>';
-    }
-    ?>
-</div>
+    $tutor = Tutor::getInstance(Tutor::getUserId($class->getTutor()));
+    echo '<div class="col-4">';
+    echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
+                            <div class="card-body">
+                                <h5 class="card-title">'.htmlentities($subject->getName()).': Grade'.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' medium</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    <a href="individual_index.php?tid='.$tutor->getUserId($class->getTutor()).'">'.htmlentities($tutor->getFName()).': '.htmlentities($tutor->getLName()).'</a>
+                                </h6>
+                            </div>
+                        </div>';
+    echo '</div>';
+}
+echo '</div>';
+echo '</div>';
+?>
 </body>
 </html>

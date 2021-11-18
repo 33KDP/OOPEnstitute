@@ -3,6 +3,7 @@ require_once "_Class.class.php";
 require_once "DBConn.class.php";
 class IndividualClass extends _Class
 {
+    private $timeslot;
     private $student_id;
 
     /**
@@ -38,14 +39,4 @@ class IndividualClass extends _Class
         }
         header("location: ../requests.php");
     }
-
-    /**
-     * @return mixed
-     */
-    public function getStudentId()
-    {
-        return $this->student_id;
-    }
-
-
 }
