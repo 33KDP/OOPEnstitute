@@ -5,51 +5,51 @@ require_once "../classes/DBConn.class.php";
 if (empty($_GET['subId'])) {
     header('location: joinClass.php');
 
-} else{
-$subjectID = $_GET['subId'];
-$district = $_GET['district'];
-$rating = $_GET['rating'];
-$lastURL = array('subId' => $subjectID, 'district' => $district, 'rating' => $rating);
-$_SESSION ['lastURL'] = $lastURL;
+} else {
+    $subjectID = $_GET['subId'];
+    $district = $_GET['district'];
+    $rating = $_GET['rating'];
+    $lastURL = array('subId' => $subjectID, 'district' => $district, 'rating' => $rating);
+    $_SESSION ['lastURL'] = $lastURL;
+}
 
 $search_query = "SELECT `User`.id, `User`.first_name, `User`.last_name, District.district, `User`.rating FROM Tutor 
-                            JOIN District Join Tutor_Subject Join `User` ON `User`.id = tutor.user_id and `User`.district_id = district.id and 
-                                Tutor.id = Tutor_Subject.tutor_id WHERE Tutor_Subject.Subject_id = '$subjectID' AND Tutor.availability_flag=0";
-if ($district != "") {
-    $search_query .= " AND District.district='$district'";
-}
+                    JOIN District Join Tutor_Subject Join `User` ON `User`.id = tutor.user_id and 
+                        `User`.district_id = district.id and Tutor.id = Tutor_Subject.tutor_id WHERE 
+                            Tutor_Subject.Subject_id = '$subjectID' AND Tutor.availability_flag=0";
 
-if ($rating != "") {
-    $search_query .= " AND User.rating>='$rating'";
-}
+if ($district != "") { $search_query .= " AND District.district='$district'";}
+if ($rating != "") { $search_query .= " AND User.rating>='$rating'";}
 
 $search_query = DBConn::getInstance()->getPDO()->prepare($search_query);
 $search_query->execute();
 
 while ($row = $search_query->fetch(PDO::FETCH_ASSOC)) {
-$id = $row['id'];
-$name = $row['first_name'] . ' ' . $row['last_name'];
-$dis = $row['district'];
-$rate = $row['rating'];
-$type = 0;
+    $id = $row['id'];
+    $name = $row['first_name'] . ' ' . $row['last_name'];
+    $dis = $row['district'];
+    $rate = $row['rating'];
+    $type = 0;
 
-if (is_null($id)) {
-    header('location: joinClass.php');
+    if (is_null($id)) {
+        header('location: joinClass.php');
+    }
 }
 ?>
 
-<html>
+<html lang="en">
 <head>
     <?php require_once "../bootstrap.php"; ?>
     <?php require_once "../Student/head.php"; ?>
     <link rel="stylesheet" href="../Student/css/style.css"/>
+    <title>Results</title>
 </head>
 
 <body class="sb-nav-fixed">
 <?php require_once "../Student/navbar.php";
 
 echo '<div class="card" style="background-color:black;color: #dddddd ">
-                      <div class="card-header">
+                      <div class="card-header" style="">
                         ' . $name . '
                       </div>
                       <div class="card-body">
@@ -59,6 +59,4 @@ echo '<div class="card" style="background-color:black;color: #dddddd ">
                         <a href="submit.php?id=' . $id . '&sid=' . $subjectID . '&type=enroll" ><button>Enroll</button></a>
                       </div>
                     </div>';
-}
-}
 ?>
