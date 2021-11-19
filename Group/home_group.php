@@ -1,6 +1,4 @@
 <?php
-include_once 'head.php';
-require_once "../classes/Session.class.php";
 require_once "../classes/DBConn.class.php";
 require_once "../classes/Student.class.php";
 
@@ -11,8 +9,8 @@ $curGroup = GroupClass::getInstance($_SESSION['user_id']);
 
 require_once "../bootstrap.php";
 require_once "navbar.php";
+require_once "../Student/head.php";
 ?>
-
 
 <div class="container p-5 shadow my-5 rounded-3">
     <form action="controllers/profileController.php" method="post">

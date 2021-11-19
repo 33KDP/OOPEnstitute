@@ -9,13 +9,7 @@ if (!isset($_GET['id'])) {
 $curTutor = Tutor::getInstance($_GET['id']);
 ?>
 
-<html xmlns="http://www.w3.org/1999/html">
-<head>
-    <?php require_once "../bootstrap.php"; ?>
-    <?php require_once "../Student/head.php"; ?>
-    <link rel="stylesheet" href="../Student/css/style.css"/>
-</head>
-<body>
+<?php require_once "../Student/head.php"; ?>
 <?php require_once "navbar.php"; ?>
 <div class="container p-5 shadow my-5 rounded-3" style="color: #dddddd">
     <table style="color: #dddddd">

@@ -11,19 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 $curStudent = Student::getInstance($_SESSION['user_id']);
 ?>
 
-<html lang="en">
-<head>
-    <?php require_once "../bootstrap.php"; ?>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"/>
-    <script src="https://kit.fontawesome.com/afd6aa68df.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../Student/css/style.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-    <title>join group</title>
-</head>
-
+<?php require_once "../Student/head.php"; ?>
 <?php require_once "navbar.php"; ?>
 <body class="sb-nav-fixed">
 

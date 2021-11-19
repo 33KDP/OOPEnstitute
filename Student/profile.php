@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'head.php';
+
 require_once "../classes/DBConn.class.php";
 require_once "../classes/Student.class.php";
 require_once("../includes/utils.php");
@@ -11,6 +11,7 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
 
 require_once "../bootstrap.php";
 require_once "navbar.php";
+include_once 'head.php';
 ?>
 
     <body>

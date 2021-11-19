@@ -1,5 +1,5 @@
 <?php
-require_once "../includes/dbh.inc.php";
+require_once "../classes/DBConn.class.php";
 
 function getMinutes($time)
 {

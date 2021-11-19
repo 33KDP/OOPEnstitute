@@ -12,12 +12,10 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
 
 ?>
 
-
 <?php require_once "../bootstrap.php"; ?>
 <?php require_once "head.php"; ?>
 
-
-<body class="sb-nav-fixed">
+<body>
 <?php require_once "navbar.php";
 
 echo '

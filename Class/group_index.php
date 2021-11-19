@@ -12,12 +12,7 @@ if (empty($_GET['id'])) {
 
 ?>
 
-<html>
-<head>
-    <?php require_once "../bootstrap.php"; ?>
-    <?php require_once "../Student/head.php"; ?>
-    <link rel="stylesheet" href="../Student/css/style.css"/>
-</head>
+<?php require_once "../Student/head.php"; ?>
 
 <body class="sb-nav-fixed">
 

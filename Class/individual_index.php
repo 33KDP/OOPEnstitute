@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once '../Student/head.php';
 require_once "../classes/DBConn.class.php";
 require_once "../classes/Student.class.php";
 require_once "../classes/Tutor.class.php";
@@ -16,8 +15,10 @@ require_once "../bootstrap.php";
 require_once "navbar.php";
 ?>
 
+<?php require_once "../Student/head.php"; ?>
+
     <body>
-    <div class="container p-5 shadow my-5 rounded-3" style="color: #dddddd">
+    <div class="container p-5 shadow my-5 rounded-3" style="color: #111111;">
         <table style="color: #dddddd">
 
             <tr>

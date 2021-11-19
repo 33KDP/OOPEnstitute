@@ -37,13 +37,7 @@ while ($row = $search_query->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
 
-<html lang="en">
-<head>
-    <?php require_once "../bootstrap.php"; ?>
-    <?php require_once "../Student/head.php"; ?>
-    <link rel="stylesheet" href="../Student/css/style.css"/>
-    <title>Results</title>
-</head>
+<?php require_once "../Student/head.php"; ?>
 
 <body class="sb-nav-fixed">
 <?php require_once "../Student/navbar.php";
