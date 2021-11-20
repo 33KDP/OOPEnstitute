@@ -7,8 +7,6 @@
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
     }
-
-    $curTutor=  Tutor::getInstance($_SESSION['user_id']);
 ?>
 
     <html>

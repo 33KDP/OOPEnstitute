@@ -137,6 +137,13 @@ abstract class User
         return $this->userTypeId;
     }
 
+    final public static function getUserType($userId)
+    {
+        $qry = DBConn::getInstance()->getPDO()->prepare("SELECT usertype_id FROM `User` WHERE id=:userId");
+        $qry->execute(array(':userId'=>$userId));
+        $row = $qry->fetch(PDO::FETCH_ASSOC);
+        return $row['usertype_id'];
+    }
 
     public function getProfilePic()
     {

@@ -1,0 +1,18 @@
+p {
+    font-size: 13px;
+}
+
+.message {
+    position: relative;
+    padding: 3px;
+}
+
+.right {
+    left: 972px;
+    background-color: #f0fff7;
+    
+}
+
+.left {
+    background-color: #F0F8FF;
+}

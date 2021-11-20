@@ -101,4 +101,15 @@ class Student extends User
         }
         return $classes;
     }
+
+    public function getEnrolledTutors(){
+        $enrolledTutors = array();
+        $qry = $this->dbCon->getPDO()->prepare("SELECT id FROM `User` WHERE usertype_id=2;");
+        $qry->execute();
+        while ($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            array_push($enrolledTutors, Tutor::getInstance($row['id']));
+        }
+        return $enrolledTutors;
+    }
+
 }

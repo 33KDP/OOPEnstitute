@@ -1,13 +1,10 @@
 <?php
     session_start();
-    unset($_SESSION['receiver_id']);
     require_once "head.php";
-    require_once "../classes/DBConn.class.php";
     require_once "../classes/Tutor.class.php";
     require_once "../classes/Student.class.php";
     require_once "../bootstrap.php";
     require_once "navbar.php";
-    $pdo = DBConn::getInstance()->getPDO();
 
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
