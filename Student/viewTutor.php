@@ -7,18 +7,14 @@
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
     }
-?>
+    
+    require_once "../bootstrap.php";
+    require_once "head.php"; ?>
+    <style>
+        <?php include "../User/css/style.css" ?>
+    </style>
 
-<html>
-    <head>
-        <?php require_once "../bootstrap.php"; ?>
-        <!-- <?php require_once "head.php"; ?> -->
-    </head>
-    <body>
-        <style>
-            <?php include "../User/css/style.css"; ?>
-        </style>
-
+<body>
         <?php require_once "navbar.php";
             if (!isset($_GET['tid'])){
                 header("location: ../group_index.php");

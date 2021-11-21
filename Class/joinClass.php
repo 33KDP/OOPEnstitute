@@ -11,44 +11,46 @@ if (!isset($_SESSION['user_id'])) {
 $curStudent = Student::getInstance($_SESSION['user_id']);
 ?>
 
+<?php require_once "../bootstrap.php"; ?>
 <?php require_once "../Student/head.php"; ?>
 
-<body class="sb-nav-fixed">
+<body>
+<?php require_once "navbar.php"?>
 
-<div class="container p-5">
-    <div>
-        <form action='form.php' method="GET">
-            <div>
-                <div><h3 style="color: #dddddd; font-family: 'Bebas Neue', cursive;"> Filters </h3>
-                    <div>
-                        <label for="district"
-                               style="color: #dddddd; font-family: 'Bebas Neue', cursive;">District:</label>
-                        <select class="form-control" id="district" name="district" placeholder="district...">
-                            <?php
-                            $districts = "SELECT * FROM district";
-                            $districts = DBConn::getInstance()->getPDO()->prepare($districts);
-                            $districts->execute();
+    <div class="container">
+        <div style="padding: 10%">
+            <form action='form.php' method="GET">
+                <div>
+                    <div><h3> Filters </h3>
 
-                            while ($row = $districts->fetch(PDO::FETCH_ASSOC)) {
-                                $district = $row['district'];
-                                echo '<option placeholder="NULL">' . $district . '</option>';
-                            }
-                            ?>
-                        </select>
+                            <label for="district"
+                                   style="color: #dddddd; font-family: 'Bebas Neue', cursive;">District:</label>
+                            <select class="form-control" id="district" name="district" placeholder="district...">
+                                <?php
+                                $districts = "SELECT * FROM district";
+                                $districts = DBConn::getInstance()->getPDO()->prepare($districts);
+                                $districts->execute();
 
-                        <label for="rating" style="color: #dddddd; font-family: 'Bebas Neue', cursive;">Rating:</label>
-                        <select class="form-control" id="rating" name="rating" placeholder="Rating...">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
+                                while ($row = $districts->fetch(PDO::FETCH_ASSOC)) {
+                                    $district = $row['district'];
+                                    echo '<option placeholder="NULL">' . $district . '</option>';
+                                }
+                                ?>
+                            </select>
+
+                            <label for="rating" style="color: #dddddd; font-family: 'Bebas Neue', cursive;">Rating:</label>
+                            <select class="form-control" id="rating" name="rating" placeholder="Rating...">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
                     </div>
                     <br>
                     <br>
@@ -60,12 +62,11 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
                     </div>
 
                     <div><input type="hidden" name="subId" id="subId"></div>
-        </form>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<hr>
-<br>
 
 <script src="js/subjects.js"></script>
 </body>

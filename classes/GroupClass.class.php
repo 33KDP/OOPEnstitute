@@ -11,7 +11,7 @@ class GroupClass extends _Class
     function __construct($class_id)
     {
         $dbConn =DBConn::getInstance();
-        $qry = $dbConn->getPDO()->prepare("SELECT * FROM GroupClass WHERE id=:clsid");
+        $qry = $dbConn->getPDO()->prepare("SELECT * FROM GroupClass JOIN Group_Student WHERE id=:clsid");
         $qry->execute(array(':clsid'=>$class_id));
         $row = $qry->fetch(PDO::FETCH_ASSOC);
         $class_id = $row['id'];

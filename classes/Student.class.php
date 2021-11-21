@@ -100,6 +100,18 @@ class Student extends User
         return $classes;
     }
 
+    public function getGroupClasses(){
+        $qry = $this->dbCon->getPDO()->prepare("SELECT GroupClass.id FROM Group_Student JOIN GroupClass ON Student.id=GroupClass.student_id WHERE Student.id=:sid");
+        $qry->execute(array(
+            ':sid'=>$this->studentId
+        ));
+        $classes = array();
+        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            array_push($classes, new GroupClass($row['id']));
+        }
+        return $classes;
+    }
+
     public function getEnrolledTutors(){
         $enrolledTutors = array();
         $qry = $this->dbCon->getPDO()->prepare("SELECT id FROM `User` WHERE usertype_id=2;");
