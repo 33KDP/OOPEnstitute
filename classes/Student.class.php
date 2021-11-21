@@ -1,7 +1,5 @@
 <?php
 require_once("User.class.php");
-require_once("Message.class.php");
-require_once ("DBConn.class.php");
 
 class Student extends User
 {

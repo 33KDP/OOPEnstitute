@@ -1,5 +1,4 @@
 <?php
-require_once "DBConn.class.php";
 require_once "User.class.php";
 require_once "Timeslot.class.php";
 require_once "Subject.class.php";
