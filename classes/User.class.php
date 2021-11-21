@@ -1,4 +1,7 @@
 <?php
+require_once "DBConn.class.php";
+require_once("Message.class.php");
+require_once "Review.class.php";
 
 abstract class User
 {
@@ -10,6 +13,7 @@ abstract class User
     private $city;
     private $userTypeId;
     private $messageList;
+    private $reviewList;
     private $propic;
     // private $privateMessageList;
     // private $groupMessageList;
@@ -33,26 +37,7 @@ abstract class User
 
         // $this->privateMessageList = $this->getMessages($userId, 0);
         // $this->groupMessageList = $this->getMessages($userId, 1);
-
-
-
     }
-
-    // private function getMessages($userId, $messageType)
-    // {
-    //     if ($messageType == 0)
-    //     {
-    //         $qry = $this->dbCon->getPDO()->prepare("SELECT * FROM `Message` WHERE (user_id = :senderId OR receiver = :receiverId) AND type = :messageType");
-    //         $qry->execute(array(':senderId'=>$userId,
-    //                             ':receiverId'=>$userId,
-    //                             ':messageType'=>$messageType));
-    //     }
-    //     else
-    //     {
-    //         echo 'Hi';
-    //     }
-    //     echo 'Hi';
-    // }
 
     public function getId()
     {
@@ -252,14 +237,14 @@ abstract class User
     public function composeMessage($sender, $receiver, $messageBody, $messageType)
     {
         $message = new Message($sender, $receiver, $messageBody, $messageType, 0);
-        $message->send($message);
+        $message->send();
     }
 
     public function readMessages($userId, $tutorId, $messageType)
     {
         $this->messageList = array();
 
-        $stmt = Message::receive($userId, $tutorId, $messageType);
+        $stmt = Message::receiveMessages($userId, $tutorId, $messageType);
 
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if ($messageType == 0)
@@ -285,8 +270,50 @@ abstract class User
 
         }
         
-        return $this->messageList;
+    }
 
+    public function getMessageList()
+    {
+        return $this->messageList;
+    }
+
+    public function writeReview($reviewer, $reviewee, $starRating, $reviewText)
+    {
+        $review = new Review($reviewer, $reviewee, $starRating, $reviewText);
+        $review->submit();
+    }
+
+    public function readReviews()
+    {
+        $this->reviewList = array();
+        $stmt = Review::receiveReviews($this);
+
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $reviewId = $row['id'];
+            $reviewerId = $row['reviewer_id'];
+
+            if ($this->getUserTypeId($reviewerId) == 2)
+                $reviewer = Student::getInstance($reviewerId);
+            else
+                $reviewer = Tutor::getInstance($reviewerId);
+
+            $starRating = $row['star_rating'];
+            $reviewText = htmlentities($row['review_text']);
+            $date = $row['review_date'];
+            
+            $newReview = new Review($reviewer, $this, $starRating, $reviewText);
+            $newReview->setReviewId($reviewId);
+            $newReview->setDate($date);
+
+            array_unshift($this->reviewList, $newReview);
+
+        }
+
+    }
+
+    public function getReviewList()
+    {
+        return $this->reviewList;
     }
 
     public abstract function getIndClasses();

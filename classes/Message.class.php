@@ -57,37 +57,37 @@ class Message
         $this->time = $time;
     }
 
-    public function send($message)
+    public function send()
     {
         $pdo = self::$dbConn->getPDO();
-        $msgTtype = $message->messageType;
+        $msgTtype = $this->messageType;
         if ($msgTtype == 0){
             $sql = "INSERT INTO message (user_id, user_first_name, user_last_name, receiver, message, state, type) VALUES (:user_id, :user_first_name, :user_last_name, :receiver, :message, :state, :type)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array(
-                ':user_id' => $message->sender,
-                ':user_first_name' => $message->senderFirstName,
-                ':user_last_name' => $message->senderLastName,
-                ':receiver' => $message->receiver,
-                ':message' => $message->messageBody,
-                ':state' => $message->state,             
-                ':type' => $message->messageType ));
+                ':user_id' => $this->sender,
+                ':user_first_name' => $this->senderFirstName,
+                ':user_last_name' => $this->senderLastName,
+                ':receiver' => $this->receiver,
+                ':message' => $this->messageBody,
+                ':state' => $this->state,             
+                ':type' => $this->messageType ));
         }
         else {
             $sql = "INSERT INTO message (group_id, user_first_name, user_last_name, receiver, message, state, type) VALUES (:group_id, :user_first_name, :user_last_name, :receiver, :message, :state, :type)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array(
-                ':group_id' => $message->sender,
-                ':user_first_name' => $message->senderFirstName,
-                ':user_last_name' => $message->senderLastName,
-                ':receiver' => $message->receiver,
-                ':message' => $message->messageBody,
-                ':state' => $message->state,             
-                ':type' => $message->messageType ));
+                ':group_id' => $this->sender,
+                ':user_first_name' => $this->senderFirstName,
+                ':user_last_name' => $this->senderLastName,
+                ':receiver' => $this->receiver,
+                ':message' => $this->messageBody,
+                ':state' => $this->state,             
+                ':type' => $this->messageType ));
         }
     }
 
-    public static function receive($userId, $receiverId, $messageType)
+    public static function receiveMessages($userId, $receiverId, $messageType)
     {
         $sql0 = "SELECT * FROM `Message` WHERE (((user_id = :userId AND receiver = :receiverId) OR (user_id = :receiverId AND receiver = :userId)) AND type = :messageType)";
         $sql1 = "UPDATE `Message` SET state = 1 WHERE ((user_id = :receiverId AND receiver = :userId) AND type = :messageType)";
