@@ -28,6 +28,7 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
 
                             <label for="district">District:</label>
                             <select class="form-control" id="district" name="district" placeholder="district...">
+                                <option>-All-</option>
                                 <?php
                                 $districts = "SELECT * FROM district";
                                 $districts = DBConn::getInstance()->getPDO()->prepare($districts);
@@ -42,6 +43,7 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
 
                             <label for="rating">Rating:</label>
                             <select class="form-control" id="rating" name="rating" placeholder="Rating...">
+                                <option value="0">-All-</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -59,7 +61,7 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
 
                     <div>
                         <input class="form-control me-2 subject" type="search" placeholder="Search subjects" id="search"
-                               name="search" aria-label="Search">
+                               name="search" aria-label="Search" required>
                         <input class="btn btn-outline-success" name="Search" value="Search" type="submit">
                     </div>
 
