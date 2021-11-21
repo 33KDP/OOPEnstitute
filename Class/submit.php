@@ -42,20 +42,20 @@ if (isset($_POST['Send'])) {
 }
 ?>
 
-
+<?php require_once "../bootstrap.php"; ?>
 <?php require_once "../Student/head.php"; ?>
 
 <?php
-
+    require_once "navbar.php";
     if($_GET['type'] == 'enroll') {
         echo '
-    <form method="POST">
+    <form method="POST" style="padding: 3%">
         <input type="hidden" name="tutorid" value=" '.$curTutor->getTutorId().'">
         <input type="hidden" name="subjectid" value=" '.$_GET['sid'].'">
         <input type="hidden" name="req_type" value=0>
         <div class="mb-3">
             <label for="message" class="form-label">message</label>
-            <textarea class="form-control" name="message" id="message">Type your message here...</textarea>
+            <textarea class="form-control" name="message" id="message" placeholder="Type your message here..."></textarea>
         </div>
     
         <div> ';

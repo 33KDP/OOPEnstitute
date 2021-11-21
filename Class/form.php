@@ -29,7 +29,6 @@ while ($row = $search_query->fetch(PDO::FETCH_ASSOC)) {
     $name = $row['first_name'] . ' ' . $row['last_name'];
     $dis = $row['district'];
     $rate = $row['rating'];
-    $type = 0;
 
     if (is_null($id)) {
         header('location: joinClass.php');
@@ -37,20 +36,24 @@ while ($row = $search_query->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
 
-<?php require_once "../Student/head.php"; ?>
+<?php require_once "head.php";
+    require_once "navbar.php";?>
 
-<body class="sb-nav-fixed">
-<?php require_once "../Student/navbar.php";
+<body style="background-color: #111111; color: #dddddd">
+<?php
 
-echo '<div class="card" style="background-color:black;color: #dddddd ">
-                      <div class="card-header" style="">
-                        ' . $name . '
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">Rating: ' . $rate . '</h5>
-                        <h5 class="card-title">District: ' . $district . '</h5>
-                        <a href="tutorDetails.php?id=' . $id . '&sid=' . $subjectID . '"><button>View</button></a>
-                        <a href="submit.php?id=' . $id . '&sid=' . $subjectID . '&type=enroll" ><button>Enroll</button></a>
-                      </div>
-                    </div>';
-?>
+    echo '<br/>';
+    echo '<div class="container " style="padding: 3%">';
+    echo '<h1>Search Results for Tutors</h1><br/>';
+    echo '<br/>';
+        echo '<div class="card mx-auto rounded-3 border-0 shadow my-3 bg-dark">
+                    <div class="card-body" style="color: #dddddd">
+                            <h5 class="card-title"> ' . $name . '</h5>
+                            <h5 class="card-title">Rating: ' . $rate . '</h5>
+                            <h5 class="card-title">District: ' . $district . '</h5>
+                            <a href="tutorDetails.php?id=' . $id . '&sid=' . $subjectID . '"><button>View</button></a>
+                            <a href="submit.php?id=' . $id . '&sid=' . $subjectID . '&type=enroll" ><button>Enroll</button></a>
+                    </div>
+                </div>';
+    echo '</div>';
+
