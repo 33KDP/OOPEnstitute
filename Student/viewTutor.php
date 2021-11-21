@@ -8,15 +8,10 @@
         header("location: ../index.php");
     }
     
-?>
+    require_once "../bootstrap.php";
+    require_once "head.php"; ?>
 
-<html>
-    <head>
-        <?php require_once "../bootstrap.php"; ?>
-        <!-- <?php require_once "head.php"; ?> -->
-    </head>
-    <body>
-
+<body>
         <?php require_once "navbar.php";
             // if (!isset($_GET['sid'])){
             //     header("location: ../group_index.php");
