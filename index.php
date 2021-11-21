@@ -5,9 +5,10 @@
     <link rel="stylesheet" href="assets/css/demo.css">
     <section class="index-categories">
         <?php
-        if(isset($_GET['error'])){
-            var_dump($_GET['error']);
-            echo '<body onload="triggerMe()"></body>';
+        if(isset($_SESSION['error'])){
+            echo '
+            <body onload="triggerMe()"></body>
+            ';
         }
         ?>
         <!-- ======= Hero Section ======= -->
