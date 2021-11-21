@@ -62,12 +62,12 @@ class LogIn
            } else {
                 $error_msg = "Incorrect username or password";
                 set_session_fail($error_msg);
-                header("location: ../login.php");
+                header("location: ../index.php");
            }
        } else {
             $error_msg = "please fill all fields";
             set_session_fail($error_msg);
-            header("location: ../login.php");
+            header("location: ../index.php");
        }
     }
 }

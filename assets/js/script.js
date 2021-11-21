@@ -23,7 +23,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
   x.style.display = "none";
 });
 
+function triggerMe() {
+    //button trigger even though you do not click on it
+    $('#login').trigger('click');    
 
+ }
 
 
 //Logout special animation line 29 to 346

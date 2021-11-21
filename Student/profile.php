@@ -14,9 +14,8 @@ require_once "navbar.php";
 include_once 'head.php';
 ?>
 
-    <body>
     <div class="container p-5 shadow my-5 rounded-3 st">
-
+        <?php check_session();?>
         <form action="controllers/profileController.php" enctype="multipart/form-data" method="post">
 
             <div class="mb-3">
@@ -33,44 +32,89 @@ include_once 'head.php';
                 <input id="imageUpload" type="file" name="profile_photo" class="form-control" placeholder="Photo" onchange="loadFile(event)">
             </div>
 
-            <div class="mb-3">
-                <label for="fname" class="form-label">First name</label>
-                <input type="text" name="fname" class="form-control" id="fname"
-                       value="<?= htmlentities($curStudent->getFName()) ?>">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="fname" class="form-label">First name</label>
+                        <input type="text" name="fname" class="form-control" id="fname"
+                            value="<?= htmlentities($curStudent->getFName()) ?>">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="lname" class="form-label">Last name</label>
+                        <input type="text" name="lname" class="form-control" id="lname"
+                            value="<?= htmlentities($curStudent->getLName()) ?>">
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="lname" class="form-label">Last name</label>
-                <input type="text" name="lname" class="form-control" id="lname"
-                       value="<?= htmlentities($curStudent->getLName()) ?>">
+
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="lname" class="form-label">Grade</label>
+                        <select class="form-select" name="grade" class="form-control" id="grd">
+                            <option selected> <?php echo($curStudent->getgrade()); ?> </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col"><div class="mb-3"></div></div>
+                <div class="col"><div class="mb-3"></div></div>
             </div>
-            <div class="mb-3">
-                <label for="lname" class="form-label">Grade</label>
-                <select name="grade" class="form-control" id="grd">
-                    <option value="<?= htmlentities($curStudent->getgrade()) ?>"> <?php echo($curStudent->getgrade()); ?> </option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="district" class="form-label">District</label>
-                <input type="text" name="district" class="form-control" id="district"
-                       value="<?= htmlentities($curStudent->getDistrict()) ?>">
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">City</label>
-                <input type="text" name="city" class="form-control" id="city"
-                       value="<?= htmlentities($curStudent->getCity()) ?>">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="district" class="form-label">District</label>
+                        <select class="form-select" name="district" class="form-control" id="district">
+                            <option selected> <?php echo($curStudent->getDistrict()); ?> </option>
+                            <option value="Ampara">Ampara</option>
+                            <option value="Anuradhapura">Anuradhapura</option>
+                            <option value="Badulla">Badulla</option>
+                            <option value="Batticaloa">Batticaloa</option>
+                            <option value="Colombo">Colombo</option>
+                            <option value="Galle">Galle</option>
+                            <option value="Gampaha">Gampaha</option>
+                            <option value="Hambantota">Hambantota</option>
+                            <option value="Jaffna">Jaffna</option>
+                            <option value="Kalutara">Kalutara</option>
+                            <option value="Kandy">Kandy</option>
+                            <option value="Kegalle">Kegalle</option>
+                            <option value="Kilinochchi">Kilinochchi</option>
+                            <option value="Kurunegala">Kurunegala</option>
+                            <option value="Mannar">Mannar</option>
+                            <option value="Matale">Matale</option>
+                            <option value="Matara">Matara</option>
+                            <option value="Monaragala">Monaragala</option>
+                            <option value="Mullaitivu">Mullaitivu</option>
+                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                            <option value="Polonnaruwa">Polonnaruwa</option>
+                            <option value="Puttalam">Puttalam</option>
+                            <option value="Ratnapura">Ratnapura</option>
+                            <option value="Trincomalee">Trincomalee</option>
+                            <option value="Vavuniya">Vavuniya</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" name="city" class="form-control" id="city"
+                            value="<?= htmlentities($curStudent->getCity()) ?>">
+                    </div>
+                </div>
             </div>
             <div>
                 <button type="submit" name="set" class="btn btn-primary">Edit</button>
@@ -78,39 +122,42 @@ include_once 'head.php';
             <input type="hidden" name="studentid" value="<?= $curStudent->getstudentId() ?>">
         </form>
 
-        <br>
+        <hr class="my-5">
         <div class="mb-3">
-            <h4>Do you want to reset your password ?</h4>
+            <h4>Do you want to change your password ?</h4>
         </div>
-        <form action="controllers/profileController.php" method="POST">
-            <div class="mb-3">
-                <label for="city" class="form-label">Old Password</label>
-                <input type="password" name="old_pwd" class="form-control" id="pwd">
+
+        <form class="my-5" action="controllers/profileController.php" method="POST">
+
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Old Password</label>
+                        <input type="password"  name="old_pwd" class="form-control" id="pwd" >
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="city" class="form-label">New Password</label>
+                        <input type="password"  name="new_pwd" class="form-control" id="pwd" >
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Confirm Password</label>
+                        <input type="password"  name="confirm_pwd" class="form-control" id="pwd" >
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">New Password</label>
-                <input type="password" name="new_pwd" class="form-control" id="pwd">
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">Confirm Password</label>
-                <input type="password" name="confirm_pwd" class="form-control" id="pwd">
-            </div>
-            <div class="mb-3">
-                <button type="submit" name="reset" class="btn btn-danger">Reset password</button>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-dark" name="Cancel" value="Cancel" href="home.php">Cancel</button>
-            </div>
+
+            
+            <div class="mb-3 py-3"> 
+                <button class="btn btn-danger " type="submit" name="reset" >Change password</button>
+                <button class="btn btn-dark mx-2" name="Cancel" value="Cancel" href="home.php">Cancel</button>
+            </div>   
         </form>
-
-        <div class="mb-3">
-            <?php
-            check_session();
-            ?>
-        </div>
-
     </div>
-    </body>
+    
 
 <?php
 require_once "foot.php";
