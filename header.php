@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "bootstrap.php";
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@ session_start();
     <!-- Style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Demo CSS -->
-    <link rel="stylesheet" href="assets/css/demo.css">
+    <!-- <link rel="stylesheet" href="assets/css/demo.css"> -->
 
 
 </head>
@@ -32,9 +33,8 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="login.php">Log in</a></li>
-                <li class="nav-item"><a class="nav-link" href="signup.php">Sign up</a></li>
-
+                <li class="nav-item"><a class="nav-link" type="button"  data-bs-toggle="modal" data-bs-target="#login">Log in</a></li>
+                <li class="nav-item"><a class="nav-link" type="button"  data-bs-toggle="modal" data-bs-target="#signup">Sign up</a></li>
             </ul>
         </div>
     </div>

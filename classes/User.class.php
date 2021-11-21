@@ -237,7 +237,7 @@ abstract class User
                 ':phld'=>$hashedpwd,
                 ':uiid'=>$this->userId));
 
-            $msg = "Password reset";
+            $msg = "Password has been changed";
             set_session_success($msg);
             if($this->userTypeId==1){
                 header("location: ../../Student/profile.php");
