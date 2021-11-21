@@ -19,15 +19,15 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 
     <?php
         echo '<div class="container">';
-        echo '<h1>All Individual Groups</h1><br/>';
+        echo '<br/><h1>All Individual Classes</h1><br/>';
 
         foreach ($curStudent->getIndClasses() as $class) {
             $subject = Subject::getInstance($class->getSubject());
 
             $tutor = Tutor::getInstance(Tutor::getUserId($class->getTutor()));
             echo '<br/>';
-            echo '<div class="card mx-auto rounded-3 border-0 shadow my-3 bg-dark">
-                                    <div class="card-body" style="color: #dddddd">
+            echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
+                                    <div class="card-body">
                                         <h5 class="card-title">'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
                                         <h5 class="card-title" >Tutor: 
                                             <a href="individual_index.php?tid='.$tutor->getUserId($class->getTutor()).'">'.htmlentities($tutor->getFName()).': '.htmlentities($tutor->getLName()).'</a>

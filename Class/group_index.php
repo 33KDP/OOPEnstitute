@@ -12,7 +12,7 @@ if (empty($_GET['id'])) {
 
 ?>
 
-<?php require_once "../Student/head.php"; ?>
+<?php require_once "head.php"; ?>
 
 <body class="sb-nav-fixed">
 

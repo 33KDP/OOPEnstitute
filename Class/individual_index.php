@@ -18,8 +18,8 @@ require_once "navbar.php";
 <?php require_once "../Student/head.php"; ?>
 
     <body>
-    <div class="container p-5 shadow my-5 rounded-3" style="color: #111111;">
-        <table style="color: #dddddd">
+    <div class="container p-5 shadow my-5 rounded-3">
+        <table>
 
             <tr>
                 <th>First name:</th>
@@ -59,7 +59,7 @@ require_once "navbar.php";
         <div>
             <?php
 
-            echo '<a href="submit.php?id=' . $_GET['tid'] . '&type=disenroll "><button>Disenroll</button></a>';
+            echo '<a href="submit.php?id=' . $_GET['tid'] . '&type=disenroll " class="btn btn-primary">Disenroll</a>';
             ?>
         </div>
 

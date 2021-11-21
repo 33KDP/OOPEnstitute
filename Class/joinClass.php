@@ -17,14 +17,16 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
 <body>
 <?php require_once "navbar.php"?>
 
+    <br/><h1 style="text-align: center"> Search and Join Tutors</h1>
+    <p style="text-align: center"> You can Search Tutors Using below Search box. You can add additional filters as well ...</p>
+
     <div class="container">
         <div style="padding: 10%">
             <form action='form.php' method="GET">
                 <div>
                     <div><h3> Filters </h3>
 
-                            <label for="district"
-                                   style="color: #dddddd;">District:</label>
+                            <label for="district">District:</label>
                             <select class="form-control" id="district" name="district" placeholder="district...">
                                 <?php
                                 $districts = "SELECT * FROM district";
@@ -38,7 +40,7 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
                                 ?>
                             </select>
 
-                            <label for="rating" style="color: #dddddd;">Rating:</label>
+                            <label for="rating">Rating:</label>
                             <select class="form-control" id="rating" name="rating" placeholder="Rating...">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
