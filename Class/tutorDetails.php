@@ -49,9 +49,19 @@ $curTutor = Tutor::getInstance($_GET['id']);
 
         <tr>
             <th>Available Time Slots:</th>
-            <?php $timeslots = $curTutor->getTimeSlots();
-            foreach ($timeslots as $value) {
-                echo '<td><?= htmlentities(' . $value . ')?></td><br>';
+            <?php
+            foreach ($curTutor->getTimeSlots() as $timeSlot) {
+                echo '<div class="col-3">';
+                echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
+                          <div class="card-body">
+                            <h5 class="card-title">' . htmlentities($timeSlot->getDay()) . '</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">' . htmlentities(Timeslot::getTime12($timeSlot->getStartTime())) . ' - ' . htmlentities(Timeslot::getTime12($timeSlot->getEndTime())) . '</h6>
+                            <div class="my-3">';
+                if (!$timeSlot->getNotAvailable()) {
+                    echo '<span class="badge rounded-pill bg-success">Vacant</span>';
+                } else {
+                    echo '<span class="badge rounded-pill bg-warning text-dark">Occupied</span>';
+                }
             }
             ?></tr>
 

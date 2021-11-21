@@ -11,12 +11,14 @@ if (!isset($_SESSION['user_id'])) {
 $curStudent = Student::getInstance($_SESSION['user_id']);
 ?>
 
+<?php require_once "../bootstrap.php"; ?>
 <?php require_once "../Student/head.php"; ?>
 
-<body class="sb-nav-fixed">
+<body>
+<?php require_once "navbar.php"?>
 
 <div class="container p-5">
-    <div>
+    <div style="padding: 20%">
         <form action='form.php' method="GET">
             <div>
                 <div><h3 style="color: #dddddd; font-family: 'Bebas Neue', cursive;"> Filters </h3>

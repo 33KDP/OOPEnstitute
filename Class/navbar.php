@@ -6,6 +6,7 @@ require_once "../bootstrap.php";
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; top: 1%; left: 43%;">
     <div class="container-fluid">
         <a class="navbar-brand" href="../Student/index.php">Home</a>
+
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a class="nav-link" href="../Student/tutorList.php">Tutors</a>
@@ -21,6 +22,7 @@ require_once "../bootstrap.php";
                 <a class="nav-link" href="../logout.php">Log out</a>
             </li>
         </ul>
+
     </div>
-</nav><br/>
+</nav>
 
