@@ -7,6 +7,7 @@
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
     }
+    $curTutor=  Tutor::getInstance($_SESSION['user_id']);
 ?>
 
     <html>
@@ -17,7 +18,7 @@
         <body>
             <?php require_once "navbar.php";
                 if (!isset($_GET['sid'])){
-                    header("location: ../group_index.php");
+                    header("location: ../index.php");
                 }
                 $student = Student::getInstance(Student::getUserId($_GET['sid']));
                 echo'
