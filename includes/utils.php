@@ -9,6 +9,30 @@ function set_session_success($msg){
 function set_session_specail($msg){
     $_SESSION['special'] = $msg ;
 }
+function set_try_login($msg){
+    $_SESSION['try_login'] = $msg ;
+}
+function set_try_signup($msg){
+    $_SESSION['try_signup'] = $msg ;
+}
+function check_signup(){
+    if(isset($_SESSION['try_signup'])){
+        $msg = $_SESSION['try_signup'] ;
+        unset($_SESSION['try_signup']);
+        return true;  
+    }else{
+        return false;
+    }
+}
+function check_login(){
+    if(isset($_SESSION['try_login'])){
+        $msg = $_SESSION['try_login'] ;
+        unset($_SESSION['try_login']);
+        return true;
+    }else{
+        return false;
+    }
+}
 function check_session(){
     if(isset($_SESSION['special'])){
         $msg = $_SESSION['special'] ;

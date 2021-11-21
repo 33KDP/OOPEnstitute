@@ -6,14 +6,27 @@
     <section class="index-categories">
         <?php
         if(isset($_SESSION['error'])){
-            echo '<script>
-                    document.onreadystatechange = function () {
-                      var myModal = new bootstrap.Modal(document.getElementById("login"));
-                      document.onreadystatechange = function () {
-                        myModal.show();
-                      };
-                    };
-                </script>';
+            if(check_signup()){
+                echo '<script>
+                        document.onreadystatechange = function () {
+                        var myModal = new bootstrap.Modal(document.getElementById("signup"));
+                        document.onreadystatechange = function () {
+                            myModal.show();
+                        };
+                        };
+                    </script>';
+            }elseif(check_login()){
+                echo '<script>
+                        document.onreadystatechange = function () {
+                        var myModal = new bootstrap.Modal(document.getElementById("login"));
+                        document.onreadystatechange = function () {
+                            myModal.show();
+                        };
+                        };
+                    </script>';
+            }
+
+
         }
         ?>
         <!-- ======= Hero Section ======= -->
@@ -60,12 +73,13 @@
     <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header ">
                 <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <?php  check_session(); ?>
+                var_dump("checking session");
+                ?>
                 <form action="includes/loginController.php" method="post">
                     <div class="form-group">
                         <input type="text" class="form-control" id="email1" name="uemail" placeholder="Email...">
@@ -91,13 +105,14 @@
         <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Signup</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <?php  check_session(); ?>
+                    <?php  check_session();
+                    ?>
                     <form action="includes/signupController.php" method="post">
-                        <div class="form-group">
+                        <div class="form-group mx-5">
                         <p>You are a</p>
                         <input type="radio"  id="student_ut" name="usertype" value="student" onclick="show();">
                         <label for="student_ut">Student</label>

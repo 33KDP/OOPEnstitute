@@ -160,11 +160,13 @@ class Signup
         if($profile_id){          
             $msg = "You have signup successfully";
             set_session_success($msg);
-            header("location: ../signup.php");
+            set_try_signup("tried to signup");
+            header("location: ../index.php");
         }else{
             $error_msg = "stmt is fail to connect";
             set_session_fail($error_msg);
-            header("location: ../signup.php");
+            set_try_signup("tried to signup");
+            header("location: ../index.php");
         }
         
     }
@@ -184,26 +186,30 @@ class Signup
         $conn = $this->dbCon->getPDO();
         if($this->emptyInputSignup($fname,$fname,$email,$pwd,$pwdrepeat,$user_type,$grade,$distric,$city) !== false){         
             $error_msg = "please fill all fields";
+            set_try_signup("tried to signup");
             set_session_fail($error_msg);
-            header("location: ../signup.php");
+            header("location: ../index.php");
             exit();
         }
         if($this->invalidEmail($email) !== false){
             $error_msg = "Invalid email";
             set_session_fail($error_msg);
-            header("location: ../signup.php");
+            set_try_signup("tried to signup");
+            header("location: ../index.php");
             exit();
         }
         if($this->pwdnotMatch($pwd,$pwdrepeat) !== false){
             $error_msg = "Passwords are not matching";
             set_session_fail($error_msg);
-            header("location: ../signup.php");
+            set_try_signup("tried to signup");
+            header("location: ../index.php");
             exit();
         }
         if($this->UidExists($conn,$email) !== false){
             $error_msg = "Email is already exist";
             set_session_fail($error_msg);
-            header("location: ../signup.php");
+            set_try_signup("tried to signup");
+            header("location: ../index.php");
             exit();
         }
         $this->createUser($conn,$fname,$lname,$email,$pwd,$user_type,$grade,$distric,$city);
