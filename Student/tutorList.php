@@ -17,7 +17,7 @@
 
 <body>
     <div class="container">
-        <h1>All Tutors</h1><br/>
+        <h1>Enrolled Tutors</h1><br/>
                 <?php
                     foreach ($enrolledTutors as $tutor) {
                         echo '
