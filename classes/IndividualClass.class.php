@@ -39,4 +39,14 @@ class IndividualClass extends _Class
         }
         header("location: ../requests.php");
     }
+
+    /**
+     * @return mixed
+     */
+    public function getStudentId()
+    {
+        return $this->student_id;
+    }
+
+
 }
