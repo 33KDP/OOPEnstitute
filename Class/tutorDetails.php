@@ -10,12 +10,13 @@ $curTutor = Tutor::getInstance($_GET['id']);
 $type = 0;
 ?>
 
+<?php require_once "../bootstrap.php"; ?>
 <?php require_once "head.php"; ?>
 <?php require_once "navbar.php"; ?>
 
-<body style="background-color: #111111">
+<body>
     <br/>
-    <div class="container p-5 shadow my-5 rounded-3 bg-dark" style="color: #dddddd">
+    <div class="container p-5 shadow my-5 rounded-3">
         <table>
             <tr>
                 <th>First name:</th>
@@ -50,13 +51,12 @@ $type = 0;
                 </td>
             </tr>
 
-
             <tr>
                 <th>Available Time Slots: </th>
                 <?php
                 foreach ($curTutor->getTimeSlots() as $timeSlot) {
                     echo '<td><div>';
-                    echo '<div class="card bg-dark">
+                    echo '<div class="card">
                               <div class="card-body">
                                 <h5 class="card-title">' . htmlentities($timeSlot->getDay()) . '</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">' . htmlentities(Timeslot::getTime12($timeSlot->getStartTime())) . ' - ' . htmlentities(Timeslot::getTime12($timeSlot->getEndTime())) . '</h6>
@@ -75,8 +75,8 @@ $type = 0;
             <?php
             $lastURL = $_SESSION['lastURL'];
             echo '<a href="form.php?subId=' . $lastURL['subId'] .
-                '&district=' . $lastURL['district'] . '&rating=' . $lastURL['rating'] . '"><button>Cancel</button></a>';
-            echo '<a href="submit.php?id=' . $_GET['id'] . '&sid=' . $_GET['sid'] . '&type=enroll"><button>Enroll</button></a>';
+                '&district=' . $lastURL['district'] . '&rating=' . $lastURL['rating'] . '" class="btn btn-secondary">Cancel</a>';
+            echo '<a href="submit.php?id=' . $_GET['id'] . '&sid=' . $_GET['sid'] . '&type=enroll" class="btn btn-primary">Enroll</a>';
             ?>
         </div>
     </div>

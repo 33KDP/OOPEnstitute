@@ -15,6 +15,9 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
 <?php require_once "navbar.php"; ?>
 <body class="sb-nav-fixed">
 
+<h1 style="text-align: center"> Join Groups</h1>
+<p style="text-align: center"> You can Search Groups Using below Search box. You can add additional filters as well ...</p>
+
 <div class="container p-5">
     <div>
         <form action='form.php' method="GET">

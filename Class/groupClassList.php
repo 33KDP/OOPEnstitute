@@ -14,7 +14,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 <html>
 <head>
     <?php require_once "../bootstrap.php"; ?>
-    <?php require_once "../Student/head.php"; ?>
+    <?php require_once "head.php"; ?>
     <?php require_once "navbar.php"; ?>
 </head>
 <body>
@@ -27,8 +27,8 @@ foreach ($curStudent->getIndClasses() as $class) {
 
     $tutor = Tutor::getInstance(Tutor::getUserId($class->getTutor()));
     echo '<div class="col-4">';
-    echo '<div class="card mx-auto rounded-3 border-0 shadow my-3 bg-dark">
-                            <div class="card-body" style="color: #dddddd">
+    echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
+                            <div class="card-body">
                                 <h5 class="card-title">'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
                                 <h5 class="card-title" >Tutor: 
                                     <a href="individual_index.php?tid='.$tutor->getUserId($class->getTutor()).'">'.htmlentities($tutor->getFName()).': '.htmlentities($tutor->getLName()).'</a>
