@@ -26,7 +26,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function triggerMe() {
     //button trigger even though you do not click on it
     $('#login').trigger('click');    
-
  }
 
 
