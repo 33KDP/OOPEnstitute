@@ -5,9 +5,15 @@
     <link rel="stylesheet" href="assets/css/demo.css">
     <section class="index-categories">
         <?php
-        if(isset($_GET['error'])){
-            var_dump($_GET['error']);
-            echo '<body onload="triggerMe()"></body>';
+        if(isset($_SESSION['error'])){
+            echo '<script>
+                    document.onreadystatechange = function () {
+                      var myModal = new bootstrap.Modal(document.getElementById("login"));
+                      document.onreadystatechange = function () {
+                        myModal.show();
+                      };
+                    };
+                </script>';
         }
         ?>
         <!-- ======= Hero Section ======= -->
