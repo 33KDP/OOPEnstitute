@@ -37,3 +37,19 @@
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+
+.clip-star-checked {
+    background: gold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    display: inline-block;
+    height: 26px;
+    width: 26px;
+}
+
+.clip-star-unchecked {
+    background: #ccc;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    display: inline-block;
+    height: 26px;
+    width: 26px;
+}

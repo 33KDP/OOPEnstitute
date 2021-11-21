@@ -47,9 +47,12 @@
         }     
     }
 
-    $messages = $curUser->readMessages($user_id, $receiver_id, 0);
+    $curUser->readMessages($user_id, $receiver_id, 0);
+    $messages = $curUser->getMessageList();
 
-    if ($curUser->getUserTypeId() == 1){
+    $curUserType = $curUser->getUserTypeId();
+
+    if ($curUserType == 1){
         $receiver = Tutor::getInstance($receiver_id);
         require_once "../Student/navbar.php";
     }
@@ -83,7 +86,7 @@
     <body>
         <div class="container">
             <?php
-                if ($curUser->getUserTypeId() == 1)
+                if ($curUserType == 1)
                     echo '
                         <a href="../Student/tutorList.php">Back</a> &emsp;'.
                             htmlentities($receiver->getFName()).' '.htmlentities($receiver->getLName())

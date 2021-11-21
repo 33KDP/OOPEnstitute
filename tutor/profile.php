@@ -64,7 +64,7 @@
                 </textarea>
             </div>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="flag"
+                <input type="checkbox" name="cbox" class="form-check-input" id="flag"
                     <?php
                         if ($curTutor->isNotAvailable()){
                             echo'checked';

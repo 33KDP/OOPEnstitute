@@ -1,15 +1,43 @@
-<?php 
-    require_once "../bootstrap.php";
+<?php
+    if (!isset($_SESSION['user_id'])){
+        header("location: ../index.php");
+    }
+
+    if (isset($student)){
+        $reviewer = Tutor::getInstance($_SESSION['user_id']);
+        $reviewee = $student;
+    }
+    else if(isset($tutor)){
+        $reviewer = Student::getInstance($_SESSION['user_id']);
+        $reviewee = $tutor;
+    }
+    else{
+        header("location: ../index.php");
+    }
 
     if (isset($_POST['submit'])) {
-        echo $_POST['rate'];
-        echo $_POST['review'];
+        if (isset($_POST['rate'])) {
+            $starRating = $_POST['rate'];
+            $reviewText = trim($_POST['review']);
+            $reviewer->writeReview($reviewer, $reviewee, $starRating, $reviewText);
+
+            if($reviewee instanceof Tutor) {
+                header("Location: ../Student/viewTutor.php?tid=".$reviewee->getTutorId()."");
+                return;
+            }
+            else{
+                header("Location: ../tutor/viewStudent.php?sid=".$reviewee->getstudentId()."");
+                return;
+            }
+
+        }
     }
+
 ?>
 
 <link rel="stylesheet" type="text/css" href="../User/css/style.css">
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ReviewModal" >Review</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ReviewModal" style="float: right;">Rate and Review</button>
 <div class="modal fade" id="ReviewModal" tabindex="-1" aria-labelledby="ReviewModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -22,7 +50,7 @@
                 <div class="modal-body">
                     <div class="row justify-content-start">
                         <div class="col-md-auto" style="padding-right:0">
-                            <label for="rate" class="col-form-label">Star rating :</label>
+                            <label for="rate" class="col-form-label py-2">Star rating :</label>
                         </div>
                         <div class="col-md-auto">
                             <div class="rate" style="padding-left:0">
@@ -40,7 +68,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Review:</label>
+                        <label for="message-text" class="col-form-label p-0">Review:</label>
                         <textarea class="form-control" rows="10" name="review" id="message-text"></textarea>
                     </div>
                 </div>
