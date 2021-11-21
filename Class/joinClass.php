@@ -24,7 +24,7 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
                     <div><h3> Filters </h3>
 
                             <label for="district"
-                                   style="color: #dddddd; font-family: 'Bebas Neue', cursive;">District:</label>
+                                   style="color: #dddddd;">District:</label>
                             <select class="form-control" id="district" name="district" placeholder="district...">
                                 <?php
                                 $districts = "SELECT * FROM district";
@@ -38,7 +38,7 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
                                 ?>
                             </select>
 
-                            <label for="rating" style="color: #dddddd; font-family: 'Bebas Neue', cursive;">Rating:</label>
+                            <label for="rating" style="color: #dddddd;">Rating:</label>
                             <select class="form-control" id="rating" name="rating" placeholder="Rating...">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
