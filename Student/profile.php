@@ -29,7 +29,7 @@ include_once 'head.php';
                     echo "<image id='profileImage' src=".$imageURL." class='img-thumbnail' style='width:110px; height:130px; object-fit:cover;'/>";
                 }
                 ?>
-                <input id="imageUpload" type="file" name="profile_photo" class="form-control" placeholder="Photo" onchange="loadFile(event)">
+                <input id="imageUpload" accept="image/jpeg" type="file" name="profile_photo" class="form-control" placeholder="Photo" onchange="loadFile(event)">
             </div>
 
             <div class="row">

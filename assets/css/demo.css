@@ -193,7 +193,7 @@ code{
  }
  
  #hero .hero-content {
-   height: 100vh;
+   height: 100%;
    text-align: left;
    width: 100%;
    display: flex;
@@ -214,7 +214,7 @@ code{
    letter-spacing: 3px;
    margin-top: 0;
    margin-bottom: 30px;
-   margin-right: 300px;
+   margin-right: 400px;
    text-transform: capitalize;
    color: rgb(34, 31, 31);
    font-weight: 500;
@@ -343,4 +343,47 @@ code{
 .wrapper .youtube:hover .tooltip::before {
     background-color: #de463b;
     color: #ffffff;
+}
+
+
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
+
+
+.button {
+  width: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.button-1 {
+  background-color: transparent;
+  border: 3px solid #ffffff;
+  border-radius: 50px;
+  -webkit-transition: all .15s ease-in-out;
+  transition: all .15s ease-in-out;
+  color: #ffffff;
+}
+.button-1:hover {
+  box-shadow: 0 0 10px 0 #ffffff inset, 0 0 20px 2px #ffffff;
+  border: 3px solid #ffffff;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(.9);
+  }
+    100% {
+    transform: scale(1);
+  }
 }
