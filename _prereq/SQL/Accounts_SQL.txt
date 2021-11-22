@@ -1,31 +1,12 @@
-Tutor Accounts
-================
+john - 17 -4 - 34, 35, 36
+harry - 18 - 5 - 34, 35
+adolf - 19 - 6 - 33, 34, 35, 37, 38
+kumar - 23 - 8 - 33, 34, 35
+mahela - 24 - 9 - 33, 34, 35
 
-/***************/
-test1@gmail.com
-test1
-/***************/
-skpushpakumara@gmail.com
-kal
-/***************/
-
-
-
-
-
-
-SELECT * FROM District JOIN Tutor JOIN User JOIN Subject ON Tutor.user_id=User.id AND Subject.tutor_id=Tutor.id AND User.district_id=District.id WHERE subject.id=$_POST['sid']
-AND District.district=$_POST['district'] AND
-
-
-
-
-
-
-Student Accounts
-================
-
-/***************/
-test2@gmail.com
-test2
-/***************/
+33- Sinhala 6 -Sinhala
+34- Science 6 - Sinhala
+35- English 6 - English
+36- Maths 6 - Sinhala
+37- History 6 - Sinhala
+38- Art 6 - Sinhala

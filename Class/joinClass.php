@@ -69,6 +69,7 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
                 </div>
             </form>
         </div>
+        <div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a><div><br/>
     </div>
 
 

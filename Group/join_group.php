@@ -11,65 +11,69 @@ if (!isset($_SESSION['user_id'])) {
 $curStudent = Student::getInstance($_SESSION['user_id']);
 ?>
 
+<?php require_once "../bootstrap.php"; ?>
 <?php require_once "../Student/head.php"; ?>
-<?php require_once "navbar.php"; ?>
-<body class="sb-nav-fixed">
 
-<h1 style="text-align: center"> Join Groups</h1>
-<p style="text-align: center"> You can Search Groups Using below Search box. You can add additional filters as well ...</p>
+<body>
+<?php require_once "navbar.php"?>
 
-<div class="container p-5">
-    <div>
+<br/><h1 style="text-align: center"> Search and Join Groups</h1>
+<p style="text-align: center"> You can search groups using below Search box. You can add additional filters as well ...</p>
+
+<div class="container">
+    <div style="padding: 10%">
         <form action='form.php' method="GET">
             <div>
-                <div><h3 style="color: #dddddd; font-family: 'Bebas Neue', cursive;"> Filters </h3>
-                    <div>
-                        <label for="district"
-                               style="color: #dddddd; font-family: 'Bebas Neue', cursive;">District:</label>
-                        <select class="form-control" id="district" name="district" placeholder="district...">
-                            <?php
-                            $districts = "SELECT * FROM district";
-                            $districts = DBConn::getInstance()->getPDO()->prepare($districts);
-                            $districts->execute();
+                <div><h3> Filters </h3>
 
-                            while ($row = $districts->fetch(PDO::FETCH_ASSOC)) {
-                                $district = $row['district'];
-                                echo '<option placeholder="NULL">' . $district . '</option>';
-                            }
-                            ?>
-                        </select>
+                    <label for="district">District:</label>
+                    <select class="form-control" id="district" name="district" placeholder="district...">
+                        <option>-All-</option>
+                        <?php
+                        $districts = "SELECT * FROM district";
+                        $districts = DBConn::getInstance()->getPDO()->prepare($districts);
+                        $districts->execute();
 
-                        <label for="rating" style="color: #dddddd; font-family: 'Bebas Neue', cursive;">Tutor's
-                            Rating:</label>
-                        <select class="form-control" id="rating" name="rating" placeholder="Rating...">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
-                    </div>
-                    <br>
-                    <br>
+                        while ($row = $districts->fetch(PDO::FETCH_ASSOC)) {
+                            $district = $row['district'];
+                            echo '<option placeholder="NULL">' . $district . '</option>';
+                        }
+                        ?>
+                    </select>
 
-                    <div>
-                        <input class="form-control me-2 subject" type="search" placeholder="Search subjects" id="search"
-                               name="search" aria-label="Search">
-                        <input class="btn btn-outline-success" name="Search" value="Search" type="submit">
-                    </div>
+                    <label for="rating">Rating:</label>
+                    <select class="form-control" id="rating" name="rating" placeholder="Rating...">
+                        <option value="0">-All-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <br>
+                <br>
 
-                    <div><input type="hidden" name="subId" id="subId"></div>
+                <div>
+                    <input class="form-control me-2 subject" type="search" placeholder="Search subjects" id="search"
+                           name="search" aria-label="Search" required>
+                    <input class="btn btn-outline-success" name="Search" value="Search" type="submit">
+                </div>
+
+                <div><input type="hidden" name="subId" id="subId"></div>
+            </div>
         </form>
     </div>
-</div>
+    <div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a><div><br/>
+        </div>
 
 
-<script src="js/subjects.js"></script>
+        <script src="js/subjects.js"></script>
 </body>
 </html>
 

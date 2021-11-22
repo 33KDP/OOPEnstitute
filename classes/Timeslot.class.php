@@ -1,6 +1,7 @@
 <?php
 require_once "DBConn.class.php";
 require_once "User.class.php";
+
 class Timeslot
 {
     private  $timeslotId;
@@ -48,8 +49,8 @@ class Timeslot
             $abr = "am";
         }
         $mins = $time%60;
-        if ($mins == 0) {
-            $mins = "00";
+        if ($mins < 10) {
+            $mins = "0".$mins;
         }
         if ($hrs == 0) {
             $hrs = "12";
@@ -61,8 +62,8 @@ class Timeslot
     {
         $hrs = intdiv($time,60);
         $mins = $time%60;
-        if ($mins == 0) {
-            $mins = "00";
+        if ($mins < 10) {
+            $mins = "0".$mins;
         }
         if ($hrs == 0) {
             $hrs = "00";
@@ -186,13 +187,14 @@ class Timeslot
                 $qry = self::$dbConn->getPDO()->prepare("UPDATE TimeSlot SET state=1 WHERE id=:id");
                 $qry->execute(array(':id'=>$id));
             }
+            $_SESSION['success'] = 'Timeslot successfully added';
         }
         header("location: ../timeslots.php");
     }
 
     public function editTimeSlot($form){
         if (empty($form['dayInput']) || empty($form['startTime']) || empty($form['endTime'])) {
-            //flash message
+            //$_SESSION['error'] = 'Fill all fields';
         } else{
             $day = $_POST['dayInput'];
             $start = self::getMinutes($_POST['startTime']);
@@ -207,6 +209,7 @@ class Timeslot
             }else{
                 $this->setNotAvailable(false);
             }
+            $_SESSION['success'] = 'Timeslot successfully edited';
         }
         header("location: ../timeslots.php");
     }
@@ -217,7 +220,7 @@ class Timeslot
             ':timeid' => $timeSlotId
         ));
         unset(self::$instances[$timeSlotId]);
-        //flash message
+        $_SESSION['success'] = 'Timeslot successfully deleted';
         header("location: ../timeslots.php");
     }
 }

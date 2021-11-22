@@ -16,24 +16,27 @@
 
 ?>
 
-    <div class="container">
+    <div class="container" style="padding: 3%">
         <h1>Conversations</h1>
         <?php
             foreach ($usersWithConversations as $user) {
                 $curTutor = Tutor::getInstance($user);
                 echo '
-                    <a href="viewTutor.php?tid='.
-                        $curTutor->getTutorId()
-                        .'" style="color: black; text-decoration: none;">'.
-                        $curTutor->getFName().' '.$curTutor->getLName()
-                    .'</a> &emsp;
-                    <div class="text-end" >
-                        <a href="../User/message.php?receiver_id='.
-                            $curTutor->getId()
-                        .'">Message</a> &emsp;
+                <div class="card mx-auto rounded-3 border-0 shadow my-3">
+                    <div class="card-body">
+                        <h5><a href="viewTutor.php?tid='.
+                            $curTutor->getTutorId()
+                            .'">'.
+                            $curTutor->getFName().' '.$curTutor->getLName()
+                        .'</a></h5> &emsp;
+                        <h6></h6>
+                        <div class="text-end" >
+                            <a href="../User/message.php?receiver_id='.
+                                $curTutor->getId()
+                            .'" class="btn btn-primary">Message</a> &emsp;
+                        </div>
                     </div>
-                    <hr>
-                ';
+                </div>';
             }
         ?>
     </div>
