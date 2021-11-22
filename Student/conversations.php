@@ -10,9 +10,9 @@
         header("location: ../index.php");
     }
 
-    $curTutor = Tutor::getInstance($_SESSION['user_id']);
-    $curTutor->setUsersWithConversations();
-    $usersWithConversations = $curTutor->getUsersWithConversations();
+    $curStudent = Student::getInstance($_SESSION['user_id']);
+    $curStudent->setUsersWithConversations();
+    $usersWithConversations = $curStudent->getUsersWithConversations();
 
 ?>
 
@@ -20,16 +20,16 @@
         <h1>Conversations</h1>
         <?php
             foreach ($usersWithConversations as $user) {
-                $curStudent = Student::getInstance($user);
+                $curTutor = Tutor::getInstance($user);
                 echo '
-                    <a href="viewStudent.php?sid='.
-                        $curStudent->getstudentId()
+                    <a href="viewTutor.php?tid='.
+                        $curTutor->getTutorId()
                         .'" style="color: black; text-decoration: none;">'.
-                        $curStudent->getFName().' '.$curStudent->getLName()
+                        $curTutor->getFName().' '.$curTutor->getLName()
                     .'</a> &emsp;
                     <div class="text-end" >
                         <a href="../User/message.php?receiver_id='.
-                            $curStudent->getId()
+                            $curTutor->getId()
                         .'">Message</a> &emsp;
                     </div>
                     <hr>

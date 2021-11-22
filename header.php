@@ -23,7 +23,7 @@ require_once "bootstrap.php";
 </head>
 
 <body>
-<header class="intro">
+<header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
     <a class="navbar-brand" href="#"><img src="assets/img/logo2.png" alt="E-nstitute logo" style="width:200px;height:40px;"></a>

@@ -6,7 +6,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand"  href="index.php"><img src="../assets/img/logo2.png" alt="E-nstitute logo" style="width:200px;height:40px;"></a>
+        <a class="navbar-brand"  href="../Student/index.php"><img src="../assets/img/logo2.png" alt="E-nstitute logo" style="width:200px;height:40px;"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,9 +17,9 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                         <?=htmlentities($curStudent->getFName()." ".$curStudent->getLName())?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="index.php">Home</a></li>
-                        <li><a class="dropdown-item" href="tutorList.php">Tutors</a></li>
-                        <li><a class="dropdown-item" href="profile.php">Profile settings</a></li>
+                        <li><a class="dropdown-item" href="../Student/index.php">Home</a></li>
+                        <li><a class="dropdown-item" href="../Student/tutorList.php">Tutors</a></li>
+                        <li><a class="dropdown-item" href="../Student/profile.php">Profile settings</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="../logout.php">Log out</a></li>
                     </ul>
