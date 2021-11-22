@@ -38,6 +38,15 @@
                 return;
             }
 
+        }else{
+            if ($reviewee instanceof Tutor) {
+                header("Location: ../Student/viewTutor.php?tid=".$reviewee->getTutorId()."");
+                return;
+            }
+            else{
+                header("Location: ../tutor/viewStudent.php?sid=".$reviewee->getstudentId()."");
+                return;
+            }
         }
     }
 ?>
