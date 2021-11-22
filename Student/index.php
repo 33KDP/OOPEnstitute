@@ -74,7 +74,7 @@ echo '          <br/>
                     <div class="card border-0 shadow my-3">
                         <div class="card-body">
                             <h5 class="card-title">Join Group</h5>
-                            <p class="card-text">You can search and join a group from here.</p>
+                            <p class="card-text">You can search student groups and join a group that you like from here.</p>
                             <a href="../Group/join_group.php" class="btn btn-primary">Join</a>
                         </div>
                     </div>
