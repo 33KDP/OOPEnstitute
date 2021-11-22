@@ -68,7 +68,7 @@
 <section class="our-webcoderskull padding-lg">
   <div class="container">
     <div class="row heading heading-icon">
-        <h2>Our Team 33KDP</h2>
+        <h2>33KDP</h2>
     </div>
     <ul class="row">
       <li class="col-12 col-md-6 col-lg-3">
@@ -77,7 +77,7 @@
             <h3>Dhanusha Hewagama</h3>
             <p>Freelance Web Developer</p>
             <ul class="follow-us clearfix">
-              <li><a href="https://www.facebook.com/profile.php?id=100009800794198"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.facebook.com/profile.php?id=100009800794198" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
               <li><a href="https://www.linkedin.com/in/danusha-hewagama-0857831b4/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
             </ul>
           </div>
