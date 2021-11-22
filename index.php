@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="assets/css/demo.css">
     <section class="index-categories">
         <?php
-        if(isset($_SESSION['error'])){
+        if(isset($_SESSION['error'])||isset($_SESSION['success'])){
             if(check_signup()){
                 set_try_signup("signup");
                 echo '<script>
@@ -41,28 +41,6 @@
                         Teachers and students can register in E-nstitute and students will be able to search teachers based on the subject, teaching platforms(online/physical) and other criteria.
                         Students can find a tutors using E-nstitute based on their locations. Students can rate and review teachers by their performance.</p>
                 </div>
-                    <!--div class="wrapper">
-                        <div class="icon facebook">
-                            <div class="tooltip">Facebook</div>
-                            <span><i class="fab fa-facebook-f"></i></span>
-                        </div>
-                        <div class="icon twitter">
-                            <div class="tooltip">Twitter</div>
-                            <span><i class="fab fa-twitter"></i></span>
-                        </div>
-                        <div class="icon instagram">
-                            <div class="tooltip">Instagram</div>
-                            <span><i class="fab fa-instagram"></i></span>
-                        </div>
-                        <div class="icon github">
-                            <div class="tooltip">Github</div>
-                            <span><i class="fab fa-github"></i></span>
-                        </div>
-                        <div class="icon youtube">
-                            <div class="tooltip">Youtube</div>
-                            <span><i class="fab fa-youtube"></i></span>
-                        </div>
-                    </div-->
             </div>
         </div>
         <!-- End Hero -->
@@ -75,8 +53,8 @@
     <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header ">
-                <h3 style="text-align: center;" class="modal-title">Login</h3>
+                <div class="modal-header">
+                <h3 class="modal-title">Login</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -108,8 +86,8 @@
     <div class="modal fade" id="signup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header">
-                <h3 class="modal-title">Signup</h3>
+                <div class="modal-header ">
+                <h3 class="modal-title">Signup </h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -119,22 +97,46 @@
                     }
                     ?>
                     <form action="includes/signupController.php" method="post">
-                        <div class="form-group mx-5">
-                        <p>You are a</p>
-                        <input type="radio"  id="student_ut" name="usertype" value="student" onclick="show();">
-                        <label for="student_ut">Student</label>
-                        <input type="radio" id="tutor_ut" name="usertype" value="tutor" onclick="hide();">
-                        <label for="tutor_ut">Tutor</label>
+
+                        <div class="form-group">
+                            <div>
+                                <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                                </svg>
+                                <i class="bi bi-people-fill pl-1">Are you a STUDENT or TUTOR ?</i>
+                                </div>
+                                <div class="mt-2">
+                                    <input type="radio"  id="student_ut" name="usertype" value="student" onclick="show();">
+                                    <label for="student_ut">Student</label>
+                                </div>
+                                <div>
+                                <input type="radio" id="tutor_ut" name="usertype" value="tutor" onclick="hide();">
+                                <label for="tutor_ut">Tutor</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="name1" name="fname" placeholder="first name...">
                         </div>
                         <div class="form-group">
-                        <input type="text" class="form-control" id="name1" name="fname" placeholder="first name...">
-                        </div>
-                        <div class="form-group">
-                        <input type="text" class="form-control" id="name2" name="lname" placeholder="last name...">
+                            <input type="text" class="form-control" id="name2" name="lname" placeholder="last name...">
                         </div>
 
                         <div class="form-group" id="grade">
+
+                            <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book-fill" viewBox="0 0 16 16">
+                            <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                            </svg>
+                            <i class="bi bi-book-fill">Select your current grade:</i>
+                            </div>
+                        
                         <select class="form-control" id="grd" name="grade" placeholder="Grade...">
+                            <option value="5"></option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -153,7 +155,15 @@
 
 
                         <div class="form-group">
+                            <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
+                            <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+                            </svg>
+                            <i class="bi bi-pin-map-fill">Select your District:</i>
+                            </div>
                         <select class="form-control" id="dis" name="district"  placeholder="your distric...">
+                            <option value="Colombo"></option>
                             <option value="Ampara">Ampara</option>
                             <option value="Anuradhapura">Anuradhapura</option>
                             <option value="Badulla">Badulla</option>
