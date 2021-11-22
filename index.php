@@ -35,34 +35,34 @@
         <div id="hero" class="home">
 
             <div class="container">
-            <div class="hero-content">
-                <h1>E-Nstitute<span class="typed"></span></h1>
-                <p>“E-nstitute” is an online platform which will help students to find the best suited private tutors across the island. 
-                    Teachers and students can register in E-nstitute and students will be able to search teachers based on the subject, teaching platforms(online/physical) and other criteria. 
-                    Students can find a tutors using E-nstitute based on their locations. Students can rate and review teachers by their performance.</p>
-            </div>
-                <div class="wrapper">
-                    <div class="icon facebook">
-                        <div class="tooltip">Facebook</div>
-                        <span><i class="fab fa-facebook-f"></i></span>
-                    </div>
-                    <div class="icon twitter">
-                        <div class="tooltip">Twitter</div>
-                        <span><i class="fab fa-twitter"></i></span>
-                    </div>
-                    <div class="icon instagram">
-                        <div class="tooltip">Instagram</div>
-                        <span><i class="fab fa-instagram"></i></span>
-                    </div>
-                    <div class="icon github">
-                        <div class="tooltip">Github</div>
-                        <span><i class="fab fa-github"></i></span>
-                    </div>
-                    <div class="icon youtube">
-                        <div class="tooltip">Youtube</div>
-                        <span><i class="fab fa-youtube"></i></span>
-                    </div>
+                <div class="hero-content">
+                    <h1>E-Nstitute<span class="typed"></span></h1>
+                    <p>“E-nstitute” is an online platform which will help students to find the best suited private tutors across the island.
+                        Teachers and students can register in E-nstitute and students will be able to search teachers based on the subject, teaching platforms(online/physical) and other criteria.
+                        Students can find a tutors using E-nstitute based on their locations. Students can rate and review teachers by their performance.</p>
                 </div>
+                    <!--div class="wrapper">
+                        <div class="icon facebook">
+                            <div class="tooltip">Facebook</div>
+                            <span><i class="fab fa-facebook-f"></i></span>
+                        </div>
+                        <div class="icon twitter">
+                            <div class="tooltip">Twitter</div>
+                            <span><i class="fab fa-twitter"></i></span>
+                        </div>
+                        <div class="icon instagram">
+                            <div class="tooltip">Instagram</div>
+                            <span><i class="fab fa-instagram"></i></span>
+                        </div>
+                        <div class="icon github">
+                            <div class="tooltip">Github</div>
+                            <span><i class="fab fa-github"></i></span>
+                        </div>
+                        <div class="icon youtube">
+                            <div class="tooltip">Youtube</div>
+                            <span><i class="fab fa-youtube"></i></span>
+                        </div>
+                    </div-->
             </div>
         </div>
         <!-- End Hero -->
