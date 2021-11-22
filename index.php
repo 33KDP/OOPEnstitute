@@ -7,6 +7,7 @@
         <?php
         if(isset($_SESSION['error'])){
             if(check_signup()){
+                set_try_signup("signup");
                 echo '<script>
                         document.onreadystatechange = function () {
                         var myModal = new bootstrap.Modal(document.getElementById("signup"));
@@ -16,6 +17,7 @@
                         };
                     </script>';
             }elseif(check_login()){
+                set_try_login("login");
                 echo '<script>
                         document.onreadystatechange = function () {
                         var myModal = new bootstrap.Modal(document.getElementById("login"));
@@ -74,12 +76,15 @@
         <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header ">
-                <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+                <h3 style="text-align: center;" class="modal-title">Login</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <!-- var_dump("checking session");
-                ?> -->
+                <?php
+                if(check_login()){
+                    check_session();
+                }
+                ?>
                 <form action="includes/loginController.php" method="post">
                     <div class="form-group">
                         <input type="text" class="form-control" id="email1" name="uemail" placeholder="Email...">
@@ -92,7 +97,6 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                     <div class="signup-section ">Not a member yet? </div><a class="nav-link text-info" type="button"  data-bs-toggle="modal" data-bs-target="#signup">Sign up</a>
-                    <!-- <a href="signup.php" class="text-info"> -->
                     
                 </div>
             </div>
@@ -105,11 +109,14 @@
         <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Signup</h5>
+                <h3 class="modal-title">Signup</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <?php  check_session();
+                    <?php  
+                    if(check_signup()){
+                        check_session();
+                    }
                     ?>
                     <form action="includes/signupController.php" method="post">
                         <div class="form-group mx-5">
