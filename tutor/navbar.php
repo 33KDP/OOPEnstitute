@@ -17,7 +17,6 @@
                         <?=htmlentities($curTutor->getFName()." ".$curTutor->getLName())?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="../tutor/home.php">Home</a></li>
                         <li><a class="dropdown-item" href="../tutor/subjects.php">Subjects</a></li>
                         <li><a class="dropdown-item" href="../tutor/profile.php">Profile settings</a></li>
                         <li><a class="dropdown-item" href="../User/reviews.php">Reviews</a></li>
