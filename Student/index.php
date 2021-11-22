@@ -1,14 +1,14 @@
 <?php
-session_start();
-require_once "../classes/DBConn.class.php";
-require_once "../classes/Student.class.php";
+    session_start();
+    require_once "../classes/DBConn.class.php";
+    require_once "../classes/Student.class.php";
 
 
-if (!isset($_SESSION['user_id'])) {
-    header("location: ../index.php");
-}
-$curStudent = Student::getInstance($_SESSION['user_id']);
-
+    if (!isset($_SESSION['user_id'])) {
+        header("location: ../index.php");
+    }
+    $curStudent = Student::getInstance($_SESSION['user_id']);
+    $curStudent->readReviews();
 ?>
 
 <?php require_once "../bootstrap.php"; ?>

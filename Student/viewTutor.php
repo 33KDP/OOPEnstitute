@@ -22,9 +22,9 @@
             $curTutor = Tutor::getInstance(Tutor::getUserId($_GET['tid']));
             $curTutor->readReviews();
             $reviews = $curTutor->getReviewList();
-            ?>
+        ?>
 
-            <div class="container p-5 shadow my-5 rounded-3">
+        <div class="container p-5 shadow my-5 rounded-3">
             <div>
                 <h5>Name:</h5>
                 <?= htmlentities($curTutor->getFName()) ?> <?= htmlentities($curTutor->getLName()) ?>
@@ -65,39 +65,41 @@
                 <h5>Available Time Slots: </h5>
 
                 <?php
-                if (!empty($curTutor->getDescription())) {
-                    echo '<div class="container p-4">';
-                    echo '<div class="row">';
-                    foreach ($curTutor->getTimeSlots() as $timeSlot) {
-                        echo '<div class="col-3">';
-                        echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
-                                              <div class="card-body">
-                                                <h5 class="card-title">' . htmlentities($timeSlot->getDay()) . '</h5>
-                                                <h6 class="card-subtitle mb-2 text-muted">' . htmlentities(Timeslot::getTime12($timeSlot->getStartTime())) . ' - ' . htmlentities(Timeslot::getTime12($timeSlot->getEndTime())) . '</h6>
-                                                <div class="my-3">';
-                        if (!$timeSlot->getNotAvailable()) {
-                            echo '<span class="badge rounded-pill bg-success">Vacant</span>';
-                        } else {
-                            echo '<span class="badge rounded-pill bg-warning text-dark">Occupied</span></td>';
+                    if (!empty($curTutor->getDescription())) {
+                        echo '<div class="container p-4">';
+                        echo '<div class="row">';
+                        foreach ($curTutor->getTimeSlots() as $timeSlot) {
+                            echo '<div class="col-3">';
+                            echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">' . htmlentities($timeSlot->getDay()) . '</h5>
+                                                    <h6 class="card-subtitle mb-2 text-muted">' . htmlentities(Timeslot::getTime12($timeSlot->getStartTime())) . ' - ' . htmlentities(Timeslot::getTime12($timeSlot->getEndTime())) . '</h6>
+                                                    <div class="my-3">';
+                            if (!$timeSlot->getNotAvailable()) {
+                                echo '<span class="badge rounded-pill bg-success">Vacant</span>';
+                            } else {
+                                echo '<span class="badge rounded-pill bg-warning text-dark">Occupied</span></td>';
+                            }
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
                         }
                         echo '</div>';
                         echo '</div>';
-                        echo '</div>';
-                        echo '</div>';
+                    } else {
+                        echo "No Available Time Slots to Preview. Please Contact the tutor";
                     }
-                    echo '</div>';
-                    echo '</div>';
-                } else {
-                    echo "No Available Time Slots to Preview. Please Contact the tutor";
-                }
                 ?>
             </div>
-        <br>
-        <div>
-            <a class="btn btn-primary" href="../User/message.php?receiver_id='.$tutor->getId().'">Send Message</a>
-        </div><br>
-            <h2 style="display:inline">Reviews</h2>
-            <?php
+            <br>
+            <div>
+                <a class="btn btn-primary" href="../User/message.php?receiver_id='.$tutor->getId().'">Send Message</a>
+            </div><br>
+            <h2 style="display:inline">Reviews &emsp; &emsp; &emsp;</h2>
+        </div>
+
+        <?php
             require_once "../User/reviewForm.php";
             echo '<br><hr>';
             
