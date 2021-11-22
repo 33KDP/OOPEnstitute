@@ -19,7 +19,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 
 <?php
 echo '<div class="container">';
-echo '<br/><h1>All Individual Classes</h1><br/>';
+echo '<br/><h1>All Group Classes</h1><br/>';
 echo '<br/>';
 
 echo '<div class="container">';
