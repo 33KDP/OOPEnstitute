@@ -106,7 +106,7 @@
        </li>
       <li class="col-12 col-md-6 col-lg-3">
           <div class="cnt-block equal-hight" style="height: 349px;">
-            <figure><img src="profile_pics/supla.jpeg" class="img-responsive" alt=""></figure>
+            <figure><img src="profile_pics/supla.png" class="img-responsive" alt=""></figure>
             <h3>Supul Pushpakumara</h3>
             <p>Freelance Web Developer</p>
             <ul class="follow-us clearfix">
