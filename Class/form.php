@@ -14,7 +14,7 @@ if (empty($_GET['subId'])) {
 }
 
 
-$search_query = "SELECT `User`.id, `User`.first_name, `User`.last_name, District.district, `User`.rating FROM Tutor 
+$search_query = "SELECT Tutor.id, `User`.first_name, `User`.last_name, District.district, `User`.rating FROM Tutor 
                     JOIN District Join Tutor_Subject Join `User` ON `User`.id = tutor.user_id and 
                         `User`.district_id = district.id and Tutor.id = Tutor_Subject.tutor_id WHERE 
                             Tutor_Subject.Subject_id = '$subjectID' AND Tutor.availability_flag=0";
@@ -55,7 +55,7 @@ $search_query->execute();
                                 <h4 class="card-title"> ' . $name . '</h4>
                                 <h5 class="card-title">Rating: ' . $rate . '</h5>
                                 <h5 class="card-title">District: ' . $dis . '</h5>
-                                <a href="tutorDetails.php?id=' . $id . '&sid=' . $subjectID . '" class="btn btn-secondary">View</a>
+                                <a href="../Student/viewTutor.php?tid=' . $id . '&sid=' . $subjectID . '" class="btn btn-secondary">View</a>
                                 <a href="submit.php?id=' . $id . '&sid=' . $subjectID . '&type=enroll" class="btn btn-primary">Enroll</a>
                         </div>
                 </div>';

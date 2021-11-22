@@ -8,7 +8,7 @@ session_start();
 if (!isset($_GET['id'])) {
     header("location: ../index.php");
 }
-$curTutor = Tutor::getInstance($_GET['id']);
+$curTutor = Tutor::getInstance(Tutor::getUserId($_GET['id']));
 $curStudent = Student::getInstance($_SESSION['user_id']);
 
 if (isset($_POST['Send'])) {

@@ -82,17 +82,18 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container py-5" >
+
             <?php
                 if ($usertype_id == 1)
                     echo '
-                        <a href="../Student/conversations.php">Back</a> &emsp;'.
+                        <a href="../Student/conversations.php" class="btn btn-primary">Back</a><h4  style="display:inline; float: right "  >'.
                             htmlentities($receiver->getFName()).' '.htmlentities($receiver->getLName())
-                        .'<hr>
+                        .'</h4><hr><br/>
                     ';
                 else
                     echo '
-                        <a href="../tutor/conversations.php">Back</a> &emsp;'.
+                        <a href="../tutor/conversations.php" class="btn btn-secondary">Back</a> &emsp;'.
                             htmlentities($receiver->getFName()).' '.htmlentities($receiver->getLName())
                         .'<hr>
                     ';
