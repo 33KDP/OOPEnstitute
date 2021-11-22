@@ -14,12 +14,15 @@
 
 <html>
     <head>
-        <?php require_once "../bootstrap.php"; ?>
-        <?php require_once "head.php"; ?>
+        <?php
+            require_once "../bootstrap.php";
+            require_once "head.php";
+        ?>
     </head>
     <body>
-        <?php require_once "navbar.php";
-        echo '<div class="text-center p-4"><h1>'. $curTutor->getFName().' '.$curTutor->getLName().'</h1></div>'
+        <?php
+            require_once "navbar.php";
+            echo '<div class="text-center p-4"><h1>'. $curTutor->getFName().' '.$curTutor->getLName().'</h1></div>'
         ?>
 
         <div class="position-fixed"  style="top: 90%; left: 90%; transform: translate(-50%, -50%); z-in">
