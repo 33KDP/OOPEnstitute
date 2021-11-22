@@ -8,6 +8,8 @@ if (!isset($_GET['id'])) {
 }
 $curTutor = Tutor::getInstance($_GET['id']);
 $type = 0;
+$curTutor->readReviews();
+$reviews = $curTutor->getReviewList();
 ?>
 
 <?php require_once "../bootstrap.php"; ?>
@@ -16,6 +18,7 @@ $type = 0;
 
 <body>
     <br/>
+
     <div class="container p-5 shadow my-5 rounded-3">
             <div>
                 <h5>Name:</h5>
@@ -94,6 +97,38 @@ $type = 0;
             echo '<a href="submit.php?id=' . $_GET['id'] . '&sid=' . $_GET['sid'] . '&type=enroll" class="btn btn-primary">Enroll</a>';
             ?>
         </div>
+
+        <?php
+        require_once "../User/reviewForm.php";
+        echo '<br><hr>';
+
+        foreach ($reviews as $review) {
+        echo '
+        <h5 style="display:inline">'.
+            htmlentities($review->getReviewerFirstName()).' '.htmlentities($review->getReviewerLastName()).'&emsp; &emsp;
+        </h5>
+        <p style="display:inline; font-size: 13px;">'.
+            substr($review->getDate(),0,-3)
+            .'</p>
+        <div class="mt-1">
+            ';
+
+            $starRating = $review->getStarRating();
+            for ($checkedStars = 1; $checkedStars <= $starRating; $checkedStars++) {
+            echo '<div class="clip-star-checked"></div>';
+            }
+            for ($unCheckedStars = 0; $unCheckedStars < 5-$starRating; $unCheckedStars++) {
+            echo '<div class="clip-star-unchecked"></div>';
+            }
+
+            echo '</div>
+        <p>'.
+            htmlentities($review->getReviewText())
+            .'</p><hr>
+        ';
+        }
+        ?>
+
     </div>
 </body>
 </html>
