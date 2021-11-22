@@ -50,9 +50,7 @@
     $curUser->readMessages($user_id, $receiver_id, 0);
     $messages = $curUser->getMessageList();
 
-    $curUserType = $curUser->getUserTypeId();
-
-    if ($curUserType == 1){
+    if ($usertype_id == 1){
         $receiver = Tutor::getInstance($receiver_id);
         require_once "../Student/navbar.php";
     }

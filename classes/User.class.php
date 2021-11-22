@@ -1,7 +1,9 @@
 <?php
 require_once "DBConn.class.php";
-require_once("Message.class.php");
+require_once "Message.class.php";
 require_once "Review.class.php";
+require_once "Tutor.class.php";
+require_once "Student.class.php";
 
 abstract class User
 {
@@ -15,10 +17,10 @@ abstract class User
     private $messageList;
     private $reviewList;
     private $propic;
-    private $usersWithConversations;
+    private $rating;
     // private $privateMessageList;
     // private $groupMessageList;
-    private $rating;
+    private $usersWithConversations;
     protected $dbCon;
 
 
@@ -35,8 +37,9 @@ abstract class User
         $this->city=$row['city'];
         $this->userTypeId = $row['usertype_id'];
         $this->propic = $row['profile_picture'];
+        $this->rating = $row['rating'];
         $this->usersWithConversations = array();
-
+        $this->reviewList = array();
         // $this->privateMessageList = $this->getMessages($userId, 0);
         // $this->groupMessageList = $this->getMessages($userId, 1);
     }
@@ -308,7 +311,6 @@ abstract class User
 
     public function readReviews()
     {
-        $this->reviewList = array();
         $stmt = Review::receiveReviews($this);
 
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
