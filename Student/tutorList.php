@@ -20,10 +20,7 @@
         <h1>Enrolled Tutors</h1><br/>
                 <?php
                     foreach ($enrolledTutors as $tutor) {
-                        echo '
-                            <a href="viewTutor.php?tid='.
-                                $tutor->getTutorId()
-                                .'" style="color: white; text-decoration: none;">'.
+                        echo '<a href="viewTutor.php?tid='. $tutor->getTutorId() .'">'.
                                 htmlentities($tutor->getFName()).' '.htmlentities($tutor->getLName())
                             .'</a> &emsp;
                             <div class="text-end" >

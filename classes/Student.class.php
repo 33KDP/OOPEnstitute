@@ -114,9 +114,6 @@ class Student extends User
 
     public function getEnrolledTutors(){
         $enrolledTutors = array();
-
-
-
         $qry = $this->dbCon->getPDO()->prepare("SELECT tutor_id from IndividualClass WHERE student_id = :sid;");
         $qry->execute(array(':sid'=>$this->studentId));
         while ($row = $qry->fetch(PDO::FETCH_ASSOC)) {

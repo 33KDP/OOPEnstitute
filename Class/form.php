@@ -35,35 +35,36 @@ $search_query->execute();
 
     echo '<br/>';
     echo '<div class="container " style="padding: 3%">';
-    echo '<h1>Search Results for Tutors</h1><br/>';
-    echo '<br/>';
+        echo '<h1>Search Results for Tutors</h1><br/>';
+        echo '<br/>';
 
         echo '<div>';
-        while ($row = $search_query->fetch(PDO::FETCH_ASSOC)) {
-            echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">';
-            $id = $row['id'];
-            $name = $row['first_name'] . ' ' . $row['last_name'];
-            $dis = $row['district'];
-            $rate = $row['rating'];
+            while ($row = $search_query->fetch(PDO::FETCH_ASSOC)) {
+                echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">';
+                    $id = $row['id'];
+                    $name = $row['first_name'] . ' ' . $row['last_name'];
+                    $dis = $row['district'];
+                    $rate = $row['rating'];
 
-            if (is_null($id)) {
-            header('location: joinClass.php');
+                    if (is_null($id)) {
+                    header('location: joinClass.php');
+                    }
+
+                    echo '
+                        <div class="card-body">
+                                <h4 class="card-title"> ' . $name . '</h4>
+                                <h5 class="card-title">Rating: ' . $rate . '</h5>
+                                <h5 class="card-title">District: ' . $dis . '</h5>
+                                <a href="tutorDetails.php?id=' . $id . '&sid=' . $subjectID . '" class="btn btn-secondary">View</a>
+                                <a href="submit.php?id=' . $id . '&sid=' . $subjectID . '&type=enroll" class="btn btn-primary">Enroll</a>
+                        </div>
+                </div>';
             }
-
-            echo '
-                    <div class="card-body">
-                            <h5 class="card-title"> ' . $name . '</h5>
-                            <h5 class="card-title">Rating: ' . $rate . '</h5>
-                            <h5 class="card-title">District: ' . $district . '</h5>
-                            <a href="tutorDetails.php?id=' . $id . '&sid=' . $subjectID . '" class="btn btn-secondary">View</a>
-                            <a href="submit.php?id=' . $id . '&sid=' . $subjectID . '&type=enroll" class="btn btn-primary">Enroll</a>
-                    </div>
-                </div>
-            </div>';
-            echo '<div>';
-        }
-
+        echo '</div>';
+            echo '<a href="joinClass.php" class="btn btn-primary"> Back to Search</a><br/>';
+    echo '</div>';
     ?>
+
 </body>
 </html>
 
