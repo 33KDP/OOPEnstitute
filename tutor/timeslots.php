@@ -2,6 +2,7 @@
     session_start();
     require_once "../classes/Timeslot.class.php";
     require_once "../classes/Tutor.class.php";
+    require_once "../includes/utils.php";
 
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
@@ -19,8 +20,8 @@
 
         <?php
 
-        echo '<div class="position-fixed"  style="top: 90%; left: 90%; transform: translate(-50%, -50%); z-index: 1000">';
-        echo '<svg type="button" data-bs-toggle="modal" data-bs-target="#addEntry" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" fill="#0a89a6" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+        echo '<div class="position-fixed"  style="top: 90%; left: 90%; transform: translate(-50%, -50%); z-index: 1000;">';
+        echo '<svg type="button" data-bs-toggle="modal" data-bs-target="#addEntry" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" fill="#0a89a6" class="bi bi-plus-circle-fill rounded-circle shadow" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                         </svg>';
         echo '</div>';
@@ -36,7 +37,15 @@
                     <form action="controllers/timeslotController.php" method="POST">
                       <div class="mb-3">
                         <label for="dayInput" class="form-label">Day</label>
-                        <input type="text"  name="dayInput" class="form-control" id="dayInput">
+                        <select name="dayInput" id="dayInput" class="form-control">
+                          <option value="Monday">Monday</option>
+                          <option value="Tuesday">Tuesday</option>
+                          <option value="Wednesday">Wednesday</option>
+                          <option value="Thursday">Thursday</option>
+                          <option value="Friday">Friday</option>
+                          <option value="Saturday">Saturday</option>
+                          <option value="Sunday">Sunday</option>
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="startTime" class="form-label">Start time</label>
@@ -64,6 +73,7 @@
             </div>';
 
         echo '<div class="container p-4">';
+        check_session();
         echo '<div class="row">';
         foreach ($curTutor->getTimeSlots() as $timeSlot) {
             echo '<div class="col-3">';
@@ -95,7 +105,16 @@
                         <form action="controllers/timeslotController.php" method="POST">
                           <div class="mb-3">
                             <label for="dayInput" class="form-label">Day</label>
-                            <input type="text"  name="dayInput" class="form-control" id="dayInput" value="' .htmlentities($timeSlot->getDay()).'">
+                            <select name="dayInput" id="dayInput" class="form-control">
+                              <option value="' .htmlentities($timeSlot->getDay()).'" selected disable hidden>'.htmlentities($timeSlot->getDay()).'</option>
+                              <option value="Monday">Monday</option>
+                              <option value="Tuesday">Tuesday</option>
+                              <option value="Wednesday">Wednesday</option>
+                              <option value="Thursday">Thursday</option>
+                              <option value="Friday">Friday</option>
+                              <option value="Saturday">Saturday</option>
+                              <option value="Sunday">Sunday</option>
+                            </select>
                           </div>
                           <div class="mb-3">
                             <label for="startTime" class="form-label">Start time</label>
