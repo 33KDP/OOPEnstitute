@@ -78,8 +78,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                var_dump("checking session");
-                ?>
+                <!-- var_dump("checking session");
+                ?> -->
                 <form action="includes/loginController.php" method="post">
                     <div class="form-group">
                         <input type="text" class="form-control" id="email1" name="uemail" placeholder="Email...">

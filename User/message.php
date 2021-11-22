@@ -88,7 +88,7 @@
             <?php
                 if ($curUserType == 1)
                     echo '
-                        <a href="../Student/tutorList.php">Back</a> &emsp;'.
+                        <a href="../Student/conversations.php">Back</a> &emsp;'.
                             htmlentities($receiver->getFName()).' '.htmlentities($receiver->getLName())
                         .'<hr>
                     ';

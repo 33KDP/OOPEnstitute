@@ -15,6 +15,7 @@ abstract class User
     private $messageList;
     private $reviewList;
     private $propic;
+    private $usersWithConversations;
     // private $privateMessageList;
     // private $groupMessageList;
     private $rating;
@@ -34,6 +35,7 @@ abstract class User
         $this->city=$row['city'];
         $this->userTypeId = $row['usertype_id'];
         $this->propic = $row['profile_picture'];
+        $this->usersWithConversations = array();
 
         // $this->privateMessageList = $this->getMessages($userId, 0);
         // $this->groupMessageList = $this->getMessages($userId, 1);
@@ -232,6 +234,27 @@ abstract class User
             exit(); 
         }
 
+    }
+
+    public function setUsersWithConversations() {
+        $user_id = $this->getId();
+        $usersWithConversations = array();
+        $qry = $this->dbCon->getPDO()->prepare("SELECT * FROM `Message` WHERE (user_id = :userId OR receiver = :userId)");
+        $qry->execute(array(':userId'=>$user_id));
+        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            if ($row['user_id'] == $user_id and !in_array($row['receiver'], $usersWithConversations))
+                array_push($usersWithConversations, $row['receiver']);
+            elseif($row['receiver'] == $user_id and !in_array($row['user_id'], $usersWithConversations))
+                array_push($usersWithConversations, $row['user_id']);
+        }
+
+        $this->usersWithConversations = $usersWithConversations;
+
+    }
+
+    public function getUsersWithConversations()
+    {
+        return $this->usersWithConversations;
     }
 
     public function composeMessage($sender, $receiver, $messageBody, $messageType)
