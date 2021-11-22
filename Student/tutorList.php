@@ -20,15 +20,18 @@
         <h1>Enrolled Tutors</h1><br/>
                 <?php
                     foreach ($enrolledTutors as $tutor) {
-                        echo '<a href="viewTutor.php?tid='. $tutor->getTutorId() .'">'.
-                                htmlentities($tutor->getFName()).' '.htmlentities($tutor->getLName())
-                            .'</a> &emsp;
-                            <div class="text-end" >
-                                <a href="../User/message.php?receiver_id='.
-                                $tutor->getId()
-                                .'">Message</a> &emsp;
+                        echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">';
+                            echo '<div class="card-body">';
+                            echo '<a href="viewTutor.php?tid='. $tutor->getTutorId() .'">'.
+                                    htmlentities($tutor->getFName()).' '.htmlentities($tutor->getLName())
+                                .'</a> &emsp;
+                                <div class="text-end" >
+                                    <a href="../User/message.php?receiver_id='.
+                                    $tutor->getId()
+                                    .'">Message</a> &emsp;
+                                </div>
                             </div>
-                            <hr>
+                        </div>
                         ';
                     }
                 ?>

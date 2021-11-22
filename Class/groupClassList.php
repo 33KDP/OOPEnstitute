@@ -11,33 +11,33 @@ if (!isset($_SESSION['user_id'])){
 $curStudent=  Student::getInstance($_SESSION['user_id']);
 ?>
 
-<html>
-<head>
-    <?php require_once "../bootstrap.php"; ?>
-    <?php require_once "head.php"; ?>
-    <?php require_once "navbar.php"; ?>
-</head>
+<?php require_once "../bootstrap.php"; ?>
+<?php require_once "head.php"; ?>
+<?php require_once "navbar.php"; ?>
+
 <body>
 
 <?php
-echo '<div class="container p-4">';
-echo '<div class="row">';
+echo '<div class="container">';
+echo '<br/><h1>All Individual Classes</h1><br/>';
+echo '<br/>';
+
+echo '<div class="container">';
 foreach ($curStudent->getIndClasses() as $class) {
     $subject = Subject::getInstance($class->getSubject());
-
     $tutor = Tutor::getInstance(Tutor::getUserId($class->getTutor()));
-    echo '<div class="col-4">';
+
     echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
                             <div class="card-body">
                                 <h5 class="card-title">'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
                                 <h5 class="card-title" >Tutor: 
-                                    <a href="individual_index.php?tid='.$tutor->getUserId($class->getTutor()).'">'.htmlentities($tutor->getFName()).': '.htmlentities($tutor->getLName()).'</a>
+                                    <a href="individual_index.php?tid='.$tutor->getUserId($class->getTutor()).'">'.htmlentities($tutor->getFName()).' '.htmlentities($tutor->getLName()).'</a>
                                 </h5>
                             </div>
-                        </div>';
-    echo '</div>';
+                    </div>';
 }
 echo '</div>';
+echo '<div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a><div><br/>';
 echo '</div>';
 ?>
 </body>

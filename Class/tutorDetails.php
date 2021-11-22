@@ -89,6 +89,7 @@ $reviews = $curTutor->getReviewList();
                 ?>
             </div>
         <br>
+
         <div>
             <?php
             $lastURL = $_SESSION['lastURL'];
@@ -99,36 +100,39 @@ $reviews = $curTutor->getReviewList();
         </div>
 
         <?php
-        require_once "../User/reviewForm.php";
         echo '<br><hr>';
 
-        foreach ($reviews as $review) {
-        echo '
-        <h5 style="display:inline">'.
-            htmlentities($review->getReviewerFirstName()).' '.htmlentities($review->getReviewerLastName()).'&emsp; &emsp;
-        </h5>
-        <p style="display:inline; font-size: 13px;">'.
-            substr($review->getDate(),0,-3)
-            .'</p>
-        <div class="mt-1">
-            ';
-
-            $starRating = $review->getStarRating();
-            for ($checkedStars = 1; $checkedStars <= $starRating; $checkedStars++) {
-            echo '<div class="clip-star-checked"></div>';
-            }
-            for ($unCheckedStars = 0; $unCheckedStars < 5-$starRating; $unCheckedStars++) {
-            echo '<div class="clip-star-unchecked"></div>';
-            }
-
-            echo '</div>
-        <p>'.
-            htmlentities($review->getReviewText())
-            .'</p><hr>
-        ';
+        echo '<h4>Reviews</h4>';
+        if (!$reviews) {
+            echo 'No Reviews for this Tutor';
         }
-        ?>
+        else {
+            foreach ($reviews as $review) {
+                echo '
+            <div class="card mx-auto rounded-3 border-0 shadow my-3">
+                <h5 style="display:inline">'.
+                    htmlentities($review->getReviewerFirstName()).' '.htmlentities($review->getReviewerLastName()).'&emsp; &emsp;
+                </h5>
+                <p style="display:inline; font-size: 13px;">'.
+                    substr($review->getDate(),0,-3)
+                    .'</p>
+                <div class="mt-1">';
+                $starRating = $review->getStarRating();
+                for ($checkedStars = 1; $checkedStars <= $starRating; $checkedStars++) {
+                    echo '<div class="clip-star-checked"></div>';
+                }
+                for ($unCheckedStars = 0; $unCheckedStars < 5-$starRating; $unCheckedStars++) {
+                    echo '<div class="clip-star-unchecked"></div>';
+                }
 
+                echo '
+                </div>
+                <p>'. htmlentities($review->getReviewText()) .'</p>
+            </div>';
+            }
+        }
+
+        ?>
     </div>
 </body>
 </html>
