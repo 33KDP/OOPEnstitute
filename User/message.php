@@ -84,7 +84,7 @@
     <body>
         <div class="container">
             <?php
-                if ($curUserType == 1)
+                if ($usertype_id == 1)
                     echo '
                         <a href="../Student/conversations.php">Back</a> &emsp;'.
                             htmlentities($receiver->getFName()).' '.htmlentities($receiver->getLName())
