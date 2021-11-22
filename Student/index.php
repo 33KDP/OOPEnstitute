@@ -38,7 +38,7 @@ echo '          <br/>
                     <div class="card border-0 shadow my-3">
                         <div class="card-body">
                             <h5 class="card-title">Join Individual Classes</h5>
-                            <p class="card-text">Search and join tutors and request them for a class from here.</p>
+                            <p class="card-text">Search and join tutors and request them for multilex a class from here.</p>
                             <a href="../Class/joinClass.php" class="btn btn-primary">Join</a>
                         </div>
                     </div>
