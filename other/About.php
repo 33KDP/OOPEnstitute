@@ -68,7 +68,7 @@
 <section class="our-webcoderskull padding-lg">
   <div class="container">
     <div class="row heading heading-icon">
-        <h2>Our Team 33KDP</h2>
+        <h2>33KDP</h2>
     </div>
     <ul class="row">
       <li class="col-12 col-md-6 col-lg-3">
