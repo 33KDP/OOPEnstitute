@@ -58,6 +58,7 @@ $search_query->execute();
                                 <a href="../Student/viewTutor.php?tid=' . $id . '&sid=' . $subjectID . '" class="btn btn-secondary">View</a>
                                 <a href="submit.php?id=' . $id . '&sid=' . $subjectID . '&type=enroll" class="btn btn-primary">Enroll</a>
                         </div>
+                        
                 </div>';
             }
         echo '</div>';

@@ -9,9 +9,6 @@
 
 
     if (isset($_POST['submit'])) {
-
-
-
         if (isset($_POST['student'])){
             $student = Student::getInstance(Student::getUserId($_POST['student']));
             $reviewer = Tutor::getInstance($_SESSION['user_id']);
