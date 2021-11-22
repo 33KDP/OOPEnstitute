@@ -77,7 +77,7 @@
             <h3>Dhanusha Hewagama</h3>
             <p>Freelance Web Developer</p>
             <ul class="follow-us clearfix">
-              <li><a href="https://www.google.com"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.facebook.com/profile.php?id=100009800794198"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
               <li><a href="https://www.linkedin.com/in/danusha-hewagama-0857831b4/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
             </ul>
           </div>
@@ -100,7 +100,7 @@
             <p>Freelance Web Developer</p>
             <ul class="follow-us clearfix">
               <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/thivindu-paranayapa-19aa1221a/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
             </ul>
           </div>
        </li>

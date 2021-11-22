@@ -33,14 +33,18 @@
         ?>
         <!-- ======= Hero Section ======= -->
         <div id="hero" class="home">
-
             <div class="container">
                 <div class="hero-content">
                     <h1>E-Nstitute<span class="typed"></span></h1>
                     <p>“E-nstitute” is an online platform which will help students to find the best suited private tutors across the island.
                         Teachers and students can register in E-nstitute and students will be able to search teachers based on the subject, teaching platforms(online/physical) and other criteria.
                         Students can find a tutors using E-nstitute based on their locations. Students can rate and review teachers by their performance.</p>
+                    <div>
+                        <a id="logbt"  type="button"  data-bs-toggle="modal" data-bs-target="#login">Log in</a>
+                        <a id="signbt"  type="button"  data-bs-toggle="modal" data-bs-target="#signup">Sign up</a>
+                    </div>
                 </div>
+
             </div>
         </div>
         <!-- End Hero -->
