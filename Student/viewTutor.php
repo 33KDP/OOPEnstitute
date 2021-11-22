@@ -43,8 +43,16 @@
                     <div>
                         <a class="btn btn-primary" href="../User/message.php?receiver_id='.$tutor->getId().'">Send Message</a>
                     </div><br>
-                    <h2 style="display:inline">Reviews</h2>
+                    <h2 style="display:inline">Reviews &emsp; &emsp; &emsp;</h2>
             ';
+
+            if (null != $tutor->getRating())
+                echo '
+                    <h4 style="display:inline">Overall Rating : '.
+                        $tutor->getRating()
+                    .' Stars</h4>
+                ';
+
             require_once "../User/reviewForm.php";
             echo '<br><hr>';
             

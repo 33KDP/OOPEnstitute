@@ -3,7 +3,10 @@ session_start();
 
 ?>
 
-<?php require_once "../Student/head.php"; ?>
+<?php 
+    require_once "../Student/head.php";
+    require_once "navbar.php";
+?>
 <body>
 
 <div class="container">

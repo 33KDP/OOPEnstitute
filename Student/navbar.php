@@ -1,7 +1,7 @@
 <?php
-require_once "../bootstrap.php";
-$userid = $_SESSION['user_id'];
-$curStudent=  Student::getInstance($_SESSION['user_id']);
+    require_once "../bootstrap.php";
+    $userid = $_SESSION['user_id'];
+    $curStudent = Student::getInstance($_SESSION['user_id']);
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
@@ -20,6 +20,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                         <li><a class="dropdown-item" href="../Student/index.php">Home</a></li>
                         <li><a class="dropdown-item" href="../Student/tutorList.php">Tutors</a></li>
                         <li><a class="dropdown-item" href="../Student/profile.php">Profile settings</a></li>
+                        <li><a class="dropdown-item" href="../User/reviews.php">Reviews</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="../logout.php">Log out</a></li>
                     </ul>
