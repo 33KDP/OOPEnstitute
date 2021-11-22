@@ -27,9 +27,6 @@
                                 <a href="../User/message.php?receiver_id='.
                                 $tutor->getId()
                                 .'">Message</a> &emsp;
-                                <a href="sendRequest.php?tutor_id='.
-                                $tutor->getId()
-                                .'">Send enrolment request</a>
                             </div>
                             <hr>
                         ';
