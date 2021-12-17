@@ -167,7 +167,7 @@ abstract class User
     }
 
     public function reset_password($old_pwd,$new_pwd,$confirm_pwd){
-        if(empty($old_pwd) || empty($new_pwd) || empty($confirm_pwd)){
+        if(empty($old_pwd) || empty($new_pwd) || empty($confirm_pwd)){   //Check wether there is any empty fields
             $error_msg = "please fill all fields";
             set_session_fail($error_msg);
             if($this->userTypeId==1){
@@ -177,7 +177,7 @@ abstract class User
             }
             exit();
         }
-        if($new_pwd !== $confirm_pwd){
+        if($new_pwd !== $confirm_pwd){                                  //check wether given password matching with the confimation password
             $error_msg = "Passwords are not matching";
             set_session_fail($error_msg);
             if($this->userTypeId==1){
@@ -195,7 +195,7 @@ abstract class User
         ));
         $row = $qry->fetch(PDO::FETCH_ASSOC);
         if($row){
-            if (password_verify($old_pwd, $row['password'])){
+            if (password_verify($old_pwd, $row['password'])){        //check wether given current password right or wrong 
                 $can_reset = true;
             }else{
                 $can_reset = false;

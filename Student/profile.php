@@ -10,8 +10,9 @@ if (!isset($_SESSION['user_id'])) {
 $curStudent = Student::getInstance($_SESSION['user_id']);
 
 require_once "../bootstrap.php";
+require_once "head.php";
 require_once "navbar.php";
-include_once 'head.php';
+
 ?>
 
     <div class="container p-5 shadow my-5 rounded-3 st">

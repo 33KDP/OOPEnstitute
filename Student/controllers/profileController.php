@@ -4,7 +4,7 @@ require_once "../../classes/Student.class.php";
 require_once "../../classes/DBConn.class.php";
 session_start();
 
-if (isset($_POST["set"])) {
+if (isset($_POST["set"])) { //check whether user wants to change profile details or password
     $curStudent = Student::getInstance($_SESSION['user_id']);
     update_student($_POST, $curStudent);
 } elseif (isset($_POST["reset"])) {

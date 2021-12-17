@@ -86,33 +86,35 @@ class Signup
     
     private function createUser($conn,$fname,$lname,$email,$pwd,$user_type,$grade,$distric,$city){
         if($user_type=="student"){
+            //getting distric id from distric tabel
             $sql0=$conn->prepare("SELECT * FROM District WHERE district=:dis");
             $sql0->execute(array(':dis'=>$distric));
             $row = $sql0->fetch(pdo::FETCH_ASSOC);
+
+            //preparing sql statement
             $sql1="INSERT INTO user(usertype_id,email,first_name,last_name,district_id,city) VALUES(:utype,:uemail,:fname,:lname,:distric,:city)";
-            $stmt1  = $conn->prepare($sql1);
-        
-            $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
+            $stmt1  = $conn->prepare($sql1);           
         
             $stmt1->execute(array(
-                ':utype' => 1,
+                ':utype' => 1,            //Hard code whether student or tutor
                 ':uemail' => $email,
                 ':fname' => $fname,
                 ':lname' => $lname,
-                ':distric' =>$row['id'],
+                ':distric' =>$row['id'],  //asign the distric id to usertable
                 ':city' => $city)
                 );
     
-            $profile_id = $conn->lastInsertId();
-    
-            $sql2="INSERT INTO `authentication`(`user_id`,`password`) VALUES(:uida,:upassword)";
+            $profile_id = $conn->lastInsertId();  //getting last filled user id from user table
+
+            $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
+            $sql2="INSERT INTO `authentication`(`user_id`,`password`) VALUES(:uida,:upassword)";  //usually there should be a specific table to store passwords
             $stmt2  = $conn->prepare($sql2);
             $stmt2->execute(array(
                 ':uida' => $profile_id,
                 ':upassword' => $hashedpwd)
                 );
     
-            $sql3="INSERT INTO student(`user_id`,grade) VALUES(:uids,:sgrade)";
+            $sql3="INSERT INTO student(`user_id`,grade) VALUES(:uids,:sgrade)"; //giving user_id to student table and student table has a compulsory column as grade 
             $stmt3  = $conn->prepare($sql3);
             $stmt3->execute(array(
                 ':uids' => $profile_id,
@@ -130,7 +132,7 @@ class Signup
             $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
         
             $stmt1->execute(array(
-                ':utype' => 2,
+                ':utype' => 2,   // Hardcode as tutor
                 ':uemail' => $email,
                 ':fname' => $fname,
                 ':lname' => $lname,
@@ -147,7 +149,7 @@ class Signup
                 ':upassword' => $hashedpwd)
                 );
     
-            $sql3="INSERT INTO tutor(`user_id`) VALUES(:uids)";
+            $sql3="INSERT INTO tutor(`user_id`) VALUES(:uids)";  //giving user_id to tutor table
             $stmt3  = $conn->prepare($sql3);
             $stmt3->execute(array(
                 ':uids' => $profile_id)

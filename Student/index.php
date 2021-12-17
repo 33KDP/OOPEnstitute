@@ -17,10 +17,10 @@
 <body>
 <?php require_once "navbar.php";
 
-echo '          <br/>
-                <div class="title" style="text-align: center">
-                <h1>Welcome <br/>' . $curStudent->getFName() . ' ' . $curStudent->getLName() . '</h1>
-                </div></br>'
+echo '<br/>
+    <div class="title" style="text-align: center">
+    <h1>Welcome <br/>' . $curStudent->getFName() . ' ' . $curStudent->getLName() . '</h1>
+    </div></br>'
 
 ?>
 
@@ -93,17 +93,5 @@ echo '          <br/>
 
 </body>
 
-        <!--footer class="py-4 bg-dark mt-auto">
-            <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
-                </div>
-            </div>
-        </footer-->
 
 
