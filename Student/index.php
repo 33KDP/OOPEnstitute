@@ -48,25 +48,16 @@ echo '<br/>
                         <div class="card-body">
                             <h5 class="card-title">Manage Individual Classes</h5>
                             <p class="card-text">Manage all individual classes that you have enrolled from here.</p>
-                            <?php echo '<a href="../Class/individualClassList.php?id=' . $_SESSION['user_id'] . '" class="btn btn-primary">View</a> ' ?>
+                            <?php echo '<a href="../Class/individualClassList.php?id=' . $_SESSION['user_id'] . '" class="btn btn-primary">Edit</a> ' ?>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="card border-0 shadow my-3">
                         <div class="card-body">
-                            <h5 class="card-title">Manage Group Classes</h5>
+                            <h5 class="card-title">Your Ratings</h5>
                             <p class="card-text">Manage all group classes that you have enrolled from here.</p>
                             <?php echo '<a href="../Class/groupClassList.php?id=' . $_SESSION['user_id'] . '" class="btn btn-primary">View</a> ' ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card border-0 shadow my-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Create Group</h5>
-                            <p class="card-text">You can create a group and become the admin from here.</p>
-                            <a href="../Group/create_group.php" class="btn btn-primary">Create</a>
                         </div>
                     </div>
                 </div>
@@ -82,9 +73,18 @@ echo '<br/>
                 <div class="col-4">
                     <div class="card border-0 shadow my-3">
                         <div class="card-body">
-                            <h5 class="card-title">Manage your Groups</h5>
+                            <h5 class="card-title">Create Group</h5>
+                            <p class="card-text">You can create a group and become the admin from here.</p>
+                            <a href="../Group/create_group.php" class="btn btn-primary">Create</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card border-0 shadow my-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Manage Group Classes</h5>
                             <p class="card-text">You can find all your groups that you have enrolled or created from here.</p>
-                            <a href="../Group/manage_group.php" class="btn btn-primary">View</a>
+                            <a href="../Group/manage_group.php" class="btn btn-primary">Edit</a>
                         </div>
                     </div>
                 </div>
