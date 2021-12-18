@@ -1,5 +1,5 @@
 <?php
-require_once "State.class.php";
+require_once "RequestState.class.php";
 require_once "Request.class.php";
 
 class EnrollRequest extends Request

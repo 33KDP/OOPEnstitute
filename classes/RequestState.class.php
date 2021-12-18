@@ -1,10 +1,10 @@
 <?php
 
-class State
+class RequestState
 {
 }
 
-class Pending extends State{
+class Pending extends RequestState{
     private static $instance;
     private function __construct(){}
 
@@ -16,7 +16,7 @@ class Pending extends State{
     }
 }
 
-class Accepted extends State{
+class Accepted extends RequestState{
     private static $instance;
     private function __construct(){}
 
@@ -27,7 +27,7 @@ class Accepted extends State{
         return self::$instance;
     }
 }
-class Rejected extends State{
+class Rejected extends RequestState{
     private static $instance;
     private function __construct(){}
 

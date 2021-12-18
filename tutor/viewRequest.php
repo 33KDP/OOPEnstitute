@@ -46,6 +46,7 @@
                             <input type="hidden" name="subjectId" value="'.$request->getSubjectId().'">
                             <input class="btn btn-success btn-sm" name="Accept" value="Accept" type="submit">
                             <input class="btn btn-danger btn-sm mx-3" name="Reject" value="Reject" type="submit">
+                            <a class="btn btn-secondary btn-sm mx-2" href="../User/message.php?receiver_id='.Student::getUserId($senderId).'">Message</a>
                         </form>
                       </div>
                 </div>';

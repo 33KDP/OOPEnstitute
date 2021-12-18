@@ -15,7 +15,7 @@ class Timeslot
 
     private function __construct($timeslotId){
         $this->timeslotId = $timeslotId;
-        $qry = self::$dbConn->getPDO()->prepare("SELECT * FROM TimeSlot WHERE id=:timeid");
+        $qry = self::$dbConn->getPDO()->prepare("SELECT * FROM TimeSlot WHERE id=:timeid"); 
         $qry->execute(array(':timeid'=>$timeslotId));
         $row = $qry->fetch(PDO::FETCH_ASSOC);
         $this->startTime=$row['start_time'];

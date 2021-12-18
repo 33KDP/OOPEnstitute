@@ -1,6 +1,6 @@
 <?php
 require_once "DBConn.class.php";
-require_once "State.class.php";
+require_once "RequestState.class.php";
 require_once "IndividualClass.class.php";
 abstract class Request
 {
