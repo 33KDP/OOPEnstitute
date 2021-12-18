@@ -16,7 +16,7 @@
         else{
             $curUser = Tutor::getInstance($user_id);
             require_once "../tutor/head.php";
-            require_once "../tutor/navbar.php";            
+            require_once "../tutor/navbar.php";
         }
         $curUser->readReviews();
         $reviews = $curUser->getReviewList();
