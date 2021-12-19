@@ -12,4 +12,5 @@
         $request = new EnrollRequest($_POST['reqId']);
         $request->reject($_POST);
     }
+    //var_dump($_POST);
     header("location: ../requests.php");

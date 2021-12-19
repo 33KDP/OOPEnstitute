@@ -25,15 +25,18 @@
                 $note = 'Individual request';
                 $sender = Student::getInstance(Student::getUserId($senderId));
                 $getUrl='../tutor/viewStudent.php?sid='.$senderId;
+                $senderName = $sender->getFName().' '.$sender->getLName();
             } else {
                 $note = 'Group request';
-                $getUrl='../tutor/viewStudent.php?gid='.$senderId;
+                //$sender =
+                $getUrl='../tutor/viewGroup.php?gid='.$senderId;
+                //$senderName =
             }
             echo '<div class="container p-5">';
             echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
                       <div class="card-body">
                         <h5 class="card-title">' . htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' medium</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">'.$note.' by <a href='.$getUrl.'>'.$sender->getFName().' '.$sender->getLName().'</a></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">'.$note.' by <a href='.$getUrl.'>'.$senderName.'</a></h6>
                         <p>';
                             echo htmlentities($request->getMessage());
                             echo
@@ -41,7 +44,7 @@
                         <form action="../tutor/controllers/requestController.php" method="POST" class="d-flex m-0">
                             <input type="hidden" name="reqId" value="' .$request->getId().'">
                             <input type="hidden" name="tutorId" value="'.$curTutor->getTutorId().'">
-                            <input type="hidden" name="studentId" value="'.$senderId.'">
+                            <input type="hidden" name="senderId" value="'.$senderId.'">
                             <input type="hidden" name="type" value="'.$request->getType().'">
                             <input type="hidden" name="subjectId" value="'.$request->getSubjectId().'">
                             <input class="btn btn-success btn-sm" name="Accept" value="Accept" type="submit">
