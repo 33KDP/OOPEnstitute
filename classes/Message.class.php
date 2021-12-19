@@ -1,5 +1,6 @@
 <?php
 require_once "DBConn.class.php";
+require_once "MessageState.class.php";
 
 class Message
 {
@@ -22,9 +23,12 @@ class Message
         $this->senderLastName = $row['last_name'];
         $this->receiver = $receiver;
         $this->messageBody = $messageBody;
-        // date_default_timezone_set("Asia/Colombo");
-        // $this->time = date("d.m.Y - h:i a");
-        $this->state = $state;
+
+        if ($state == 0)
+            $this->state = Unread::getInstance();
+        else if($state == 1)
+            $this->state = Read::getInstance();
+
         $this->messageType = $messageType;
     }
 
@@ -57,6 +61,21 @@ class Message
         $this->time = $time;
     }
 
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    public function getStateValue() : int
+    {
+        return $this->state->getStateValue();
+    }
+
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
     public function send()
     {
         $pdo = self::$dbConn->getPDO();
@@ -70,7 +89,7 @@ class Message
                 ':user_last_name' => $this->senderLastName,
                 ':receiver' => $this->receiver,
                 ':message' => $this->messageBody,
-                ':state' => $this->state,             
+                ':state' => $this->getStateValue(),
                 ':type' => $this->messageType ));
         }
         else {
@@ -82,7 +101,7 @@ class Message
                 ':user_last_name' => $this->senderLastName,
                 ':receiver' => $this->receiver,
                 ':message' => $this->messageBody,
-                ':state' => $this->state,             
+                ':state' => $this->getStateValue(),
                 ':type' => $this->messageType ));
         }
     }
