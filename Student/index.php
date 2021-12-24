@@ -48,7 +48,7 @@ echo '<br/>
                         <div class="card-body">
                             <h5 class="card-title">Manage Individual Classes</h5>
                             <p class="card-text">Manage all individual classes that you have enrolled from here.</p>
-                            <?php echo '<a href="../Class/individualClassList.php?id=' . $_SESSION['user_id'] . '" class="btn btn-primary">Edit</a> ' ?>
+                            <?php echo '<a href="../Class/individualClassList.php?id=' . $_SESSION['user_id'] . '" class="btn btn-primary">View</a> ' ?>
                         </div>
                     </div>
                 </div>
