@@ -16,13 +16,25 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
 if (isset($_POST['create'])) {
     $studentID=$_POST['student_id'];
     $name = $_POST['name'];
-    $maxsd = $_POST['maxsd'];
     $subj = $_POST['subId'];
-    $district = $_POST['district'];
     $description = $_POST['description'];
+    $limit = $_POST['limit'];
+
+    if($limit=="yes"){
+        $maxsd = $_POST['maxsd'];
+        $district = $_POST['district'];
+    }else{
+        $maxsd = 1000000;
+        $district = $curStudent->getDistrict();
+    }
+
+    $conn1 = DBConn::getInstance()->getPDO();
+    $sql0=$conn1->prepare("SELECT * FROM District WHERE district=:dis");
+    $sql0->execute(array(':dis'=>$district));
+    $row = $sql0->fetch(pdo::FETCH_ASSOC);
 
     $conn = DBConn::getInstance()->getPDO();
-    $sql1="INSERT INTO `group`(group_admin,group_name,subject_id,capacity,description) VALUES(:gadmin,:gname,:subid,:cap,:descrip)";
+    $sql1="INSERT INTO `group`(group_admin,group_name,subject_id,capacity,description,district_id) VALUES(:gadmin,:gname,:subid,:cap,:descrip,:dis)";
     $stmt1  = $conn->prepare($sql1);           
 
     $stmt1->execute(array(
@@ -30,11 +42,11 @@ if (isset($_POST['create'])) {
         ':gname' => $name,
         ':subid' => $subj,
         ':cap' => $maxsd,
-        ':descrip' => $description)
+        ':descrip' => $description,
+        ':dis' => $row['id'])
         );
 
-
-    header('location: ../Student/index.php');
+    header('location: manage_group.php');
 }
 
 
@@ -56,13 +68,6 @@ if (isset($_POST['create'])) {
 
         <div class="row">
             <div class="col"><div class="mb-3">
-                <label for="maxsd" class="form-label">Maximum Students</label>
-                <input type="number" name="maxsd" class="form-control" id="maxsd" min="2" required>
-            </div></div>
-        </div>
-
-        <div class="row">
-            <div class="col"><div class="mb-3">
                 <label for="maxsd" class="form-label">Subject</label>
                 <input class="form-control me-2 subject" type="search" placeholder="Search subjects" id="search" name="search" aria-label="Search">
                 <input type="hidden" name="subId" id="subId">
@@ -70,6 +75,16 @@ if (isset($_POST['create'])) {
         </div>
 
         <div class="row">
+        <div class="col"><div class="mb-3">
+            <h5>Do you want to limit your group?</h5>
+        <input type="radio"  id="limitY" name="limit" value="yes" onclick="show();">
+        <label for="limitY">Yes</label>
+        <input type="radio" id="limitN" name="limit" value="no" onclick="hide();">
+        <label for="limitN">No</label>
+        </div></div>
+        </div>
+
+        <div class="row" id="grpLimit">
 
             <div class="col"><div class="mb-3">
                 <label for="district" class="form-label">District</label>
@@ -86,6 +101,11 @@ if (isset($_POST['create'])) {
                     }
                     ?>
                 </select>
+            </div></div>
+
+            <div class="col"><div class="mb-3" >
+                <label for="maxsd" class="form-label" >Maximum Students</label>
+                <input type="number" name="maxsd" class="form-control" id="maxsd" min="2" required>
             </div></div>
 
             <div class="col"><div class="mb-3"></div></div>
