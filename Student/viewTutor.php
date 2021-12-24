@@ -69,7 +69,7 @@
                 <h5>Available Time Slots: </h5>
 
                 <?php
-                    if (!empty($curTutor->getDescription())) {
+                    if (!empty($curTutor->getTimeSlots())) {
                         echo '<div class="container p-4">';
                         echo '<div class="row">';
                         foreach ($curTutor->getTimeSlots() as $timeSlot) {

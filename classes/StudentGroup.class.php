@@ -103,4 +103,8 @@ class StudentGroup implements IStudentGroup
         return $this->student_list;
     }
 
+    function getDistrict()
+    {
+        return $this->district;
+    }
 }

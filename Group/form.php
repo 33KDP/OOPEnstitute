@@ -23,11 +23,8 @@ if (empty($_GET['subId'])) {
         $search_query .= " AND District.district='$district'";
     }
 
-
     $search_query = DBConn::getInstance()->getPDO()->prepare($search_query);
     $search_query->execute();
-
-
 }
 ?>
 
@@ -40,24 +37,35 @@ if (empty($_GET['subId'])) {
         $proxy = new StudentGroupProxy($row['id']);
 
         $qry = "SELECT groupclass.tutor_id FROM groupclass WHERE group_id = '$proxy->getGroupId()' ";
-        $search_query = DBConn::getInstance()->getPDO()->prepare($search_query);
-        $search_query->execute();
+        $qry = DBConn::getInstance()->getPDO()->prepare($qry);
+        $qry->execute();
 
-        if (($row_1 = $search_query->fetch(PDO::FETCH_ASSOC)) !== false) {
-            $tutor = $row_1['tutor_id'];
-        } else {
-            $tutor = NULL;
-        }
 
         echo '<div class="card" style="background-color:black;color: #dddddd ">
                   <div class="card-header">
-                    ' . $group_name . '
+                    ' . $proxy->getName() . '
                   </div>
                   <div class="card-body">
-                    <h5 class="card-title">District: ' . $district . '</h5>
-                    <a href="tutorDetails.php?id=' . $id . '&sid=' . $subjectID . '"><button>View</button></a>
-                    <a href="submit.php?id=' . $id . '&sid=' . $subjectID . '" ><button>Enroll</button></a>
-                  </div>
-                </div>';
-}
+                    <h5 class="card-title">District: ' . $proxy->getDistrict() . '</h5>
+                    <h5 class="card-title">:Available: Filled /' . $proxy->getCapacity() . '</h5>
+                    // group availability flag - up or down
+                    <h5 class="card-title">Created Date: ' . $proxy->getCreatedDate() . '</h5>';
+
+        if (($row_1 = $qry->fetch(PDO::FETCH_ASSOC)) !== false) {
+            $tutor = $row_1['tutor_id'];
+            $curTutor = Tutor::getInstance(Tutor::getUserId($tutor));
+            // tutor availability flag - up
+            echo '<h5 class="card-title">Tutor: <a href="../Student/viewTutor.php?tid='.$curTutor->getTutorId().'">'.htmlentities($curTutor->getFName()).' '.htmlentities($curTutor->getLName()).'</a> </h5>';
+        } else {
+            $tutor = NULL;
+            echo '<h5 class="card-title">No tutor is assigned to this group</h5>';
+        }
+
+        echo '<a href="groupDetails.php?id=' . $proxy->getGroupId() . '&sid=' . $proxy->getSubjectId() . '"><button>View</button></a>
+
+                // iff group availability flag - up
+                <a href="submit.php?id=' . $proxy->getGroupId() . '" ><button>Join</button></a>
+              </div>
+            </div>';
+    }
 ?>
