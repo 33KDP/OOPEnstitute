@@ -7,17 +7,11 @@ class GroupClass extends _Class
      * GroupClass constructor.
      */
     private $groupId;
-    private $capacity;
-    private $district;
-    private $created_date;
-    private $description;
-
 
     function __construct($class_id)
     {
         $dbConn =DBConn::getInstance();
-        $qry = $dbConn->getPDO()->prepare("SELECT GroupClass.tutor_id, `Group`.subject_id,`Group`.capacity,
-                                                 `Group`.created_date, `Group`.description, district, `Group`.id 
+        $qry = $dbConn->getPDO()->prepare("SELECT GroupClass.tutor_id, `Group`.subject_id, `Group`.id 
                                                  FROM GroupClass JOIN `Group` ON GroupClass.group_id=`Group`.id 
                                                  WHERE GroupClass.id=:clsid");
         $qry->execute(array(':clsid'=>$class_id));
@@ -25,10 +19,7 @@ class GroupClass extends _Class
         $tutor_id = $row['tutor_id'];
         $subject_id = $row['subject_id'];
         $this->groupId = $row['id'];
-        $this->capacity = $row['capacity'];
-        $this->district = $row['district'];
-        $this->created_date = $row['created_date'];
-        $this->description = $row['description'];
+
         parent::__construct($class_id, $tutor_id, $subject_id);
     }
 
