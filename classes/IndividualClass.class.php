@@ -23,13 +23,12 @@ class IndividualClass extends _Class
     }
 
     public static function addClass($form){
-        if (empty($form['tutorId']) || empty($form['studentId']) || empty($form['subjectId'])) {
+        if (empty($form['tutorId']) || empty($form['senderId']) || empty($form['subjectId'])) {
             //flash message
         } else{
-            $tutor = $_POST['tutorId'];
-            $student = $_POST['studentId'];
-            $subject = $_POST['subjectId'];
-
+            $tutor = $form['tutorId'];
+            $student = $form['senderId'];
+            $subject = $form['subjectId'];
             $qry = DBConn::getInstance()->getPDO()->prepare("INSERT INTO IndividualClass (tutor_id, student_id, subject_id) VALUES (:tid, :sid, :subId)");
             $qry->execute(array(
                 ':tid' => $tutor,
@@ -37,7 +36,6 @@ class IndividualClass extends _Class
                 ':subId' => $subject
             ));
         }
-        header("location: ../requests.php");
     }
 
     /**

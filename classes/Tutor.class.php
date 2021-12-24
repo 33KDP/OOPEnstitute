@@ -146,6 +146,18 @@ class Tutor extends User
         return $classes;
     }
 
+    public function getGrpClasses(){
+        $qry = $this->dbCon->getPDO()->prepare("SELECT GroupClass.id FROM Tutor JOIN GroupClass ON Tutor.id=GroupClass.tutor_id WHERE Tutor.id=:tid");
+        $qry->execute(array(
+            ':tid'=>$this->tutorId
+        ));
+        $classes = array();
+        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            array_push($classes, new GroupClass($row['id']));
+        }
+        return $classes;
+    }
+
     public static function getUserId($tutorId){
         $qry = DBConn::getInstance()->getPDO()->prepare("SELECT `User`.id FROM `User` JOIN Tutor ON `User`.id = Tutor.user_id WHERE Tutor.id=:tid");
         $qry->execute(array(':tid'=>$tutorId));

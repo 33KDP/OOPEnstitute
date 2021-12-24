@@ -1,5 +1,5 @@
 <?php
-require_once "State.class.php";
+require_once "RequestState.class.php";
 require_once "Request.class.php";
 
 class EnrollRequest extends Request
@@ -30,10 +30,35 @@ class EnrollRequest extends Request
     public function accept($form)
     {
         $this->setState(Accepted::getInstance());
+        $dbConn =DBConn::getInstance();
         if ($form['type'] == 0){
-            IndividualClass::addClass($form);
+            $qry = $dbConn->getPDO()->prepare("SELECT * FROM IndividualClass WHERE student_id=:sid AND tutor_id=:tid AND subject_id=:subid");
+            $qry->execute(array(
+                ':sid'=> $form['senderId'],
+                ':tid'=>$form['tutorId'],
+                ':subid'=> $form['subjectId']
+            ));
+            $row = $qry->fetch(PDO::FETCH_ASSOC);
+            var_dump($row);
+            if ($row !== false){
+                //flash already enrolled
+            }else{
+                var_dump($form);
+                IndividualClass::addClass($form);
+            }
             //notify student
         } else {
+            $qry = $dbConn->getPDO()->prepare("SELECT * FROM GroupClass WHERE group_id=:gid AND tutor_id=:tid");
+            $qry->execute(array(
+                ':gid'=> $form['senderId'],
+                ':tid'=>$form['tutorId']
+            ));
+            $row = $qry->fetch(PDO::FETCH_ASSOC);
+            if ($row !== false){
+                //flash already enrolled
+            }else{
+                GroupClass::addClass($form);
+            }
             //notify group
         }
         Request::removeRequest($this->getId());

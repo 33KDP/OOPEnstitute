@@ -87,7 +87,8 @@ class Review
             ':reviewerLastName' => $this->reviewerLastName,
             ':starRating' => $this->starRating,           
             ':reviewText' => $this->reviewText ));
-
+        
+        $this->reviewee->readReviews();
         $numReviews = count($this->reviewee->getReviewList());
         $newRating = ($this->reviewee->getRating()*$numReviews + $this->starRating)/($numReviews+1);
         $this->reviewee->setRating($newRating);

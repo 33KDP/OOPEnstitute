@@ -14,7 +14,7 @@
         <?php include "../User/css/style.css" ?>
     </style>
 
-<body>
+    <body>
         <?php require_once "navbar.php";
             if (!isset($_GET['tid'])){
                 header("location: ../group_index.php");
@@ -99,18 +99,24 @@
 
 
             <?php
-            if (isset($_GET['sid'])) {
-                echo '<div>';
-                    $lastURL = $_SESSION['lastURL'];
-                    echo '<a href="../Class/form.php?subId=' . $lastURL['subId'] .
-                        '&district=' . $lastURL['district'] . '&rating=' . $lastURL['rating'] . '" class="btn btn-secondary">Cancel</a>';
-                    echo '<a href="../Class/submit.php?id=' . $_GET['tid'] . '&sid=' . $_GET['sid'] . '&type=enroll" class="btn btn-primary">Enroll</a>';
-                echo '</div>';
-            }
-            ?>
-            <br>
+                if (isset($_GET['sid'])) {
+                    echo '<div>';
+                        $lastURL = $_SESSION['lastURL'];
+                        echo '<a href="../Class/form.php?subId=' . $lastURL['subId'] .
+                            '&district=' . $lastURL['district'] . '&rating=' . $lastURL['rating'] . '" class="btn btn-secondary">Cancel</a>';
+                        echo '<a href="../Class/submit.php?id=' . $_GET['tid'] . '&sid=' . $_GET['sid'] . '&type=enroll" class="btn btn-primary">Enroll</a>';
+                    echo '</div>';
+                }
+                
+                echo '<br><h2 style="display:inline">Reviews &emsp; &emsp; &emsp;</h2>';
 
-            <h2 style="display:inline">Reviews &emsp; &emsp; &emsp;</h2>
+                if (null != $curTutor->getRating())
+                    echo '
+                        <h4 style="display:inline">Overall Rating : '.
+                            $curTutor->getRating()
+                        .' Stars</h4>
+                    ';
+            ?>
 
             <link rel="stylesheet" type="text/css" href="../User/css/style.css">
 
@@ -199,7 +205,5 @@
             ?>
         </div>
 
-
-        
     </body>
 </html>

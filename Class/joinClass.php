@@ -35,9 +35,10 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
                 </div>
 
                 <div>
-                    <div><h5> Filters </h5>
+                    <div><h5> Additional Filters </h5><br/>
+
                         <div class="row">
-                            <div class="col-6 mb-3">
+                            <div class="col-4 mb-3">
                                 <label for="district">District:</label>
                                 <select class="form-control" id="district" name="district" placeholder="district...">
                                     <option>-All-</option>
@@ -54,7 +55,7 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
                                 </select>
                             </div>
 
-                            <div class="col-6 mb-3">
+                            <div class="col-4 mb-3">
                                 <label for="rating">Rating:</label>
                                 <select class="form-control" id="rating" name="rating" placeholder="Rating...">
                                     <option value="-All-">-All-</option>
@@ -70,7 +71,8 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
                     <div><input type="hidden" name="subId" id="subId"></div>
                 </div>
             </form>
-            <div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a><div><br/>
+        <br/>
+        <div><a href="../Student/index.php" class="btn btn-primary">Back Home</a><div><br/>
     </div>
 
 <script src="js/subjects.js"></script>
