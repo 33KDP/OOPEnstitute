@@ -56,8 +56,8 @@ echo '<br/>
                     <div class="card border-0 shadow my-3">
                         <div class="card-body">
                             <h5 class="card-title">Your Ratings</h5>
-                            <p class="card-text">Manage all group classes that you have enrolled from here.</p>
-                            <?php echo '<a href="../Class/groupClassList.php?id=' . $_SESSION['user_id'] . '" class="btn btn-primary">View</a> ' ?>
+                            <p class="card-text">View your reviews </p>
+                            <?php echo '<a href="../User/reviews.php" class="btn btn-primary">View</a> ' ?>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@ echo '<br/>
                         <div class="card-body">
                             <h5 class="card-title">Manage Group Classes</h5>
                             <p class="card-text">You can find all your groups that you have enrolled or created from here.</p>
-                            <a href="../Group/manage_group.php" class="btn btn-primary">Edit</a>
+                            <a href="../Group/manage_group.php" class="btn btn-primary">View</a>
                         </div>
                     </div>
                 </div>

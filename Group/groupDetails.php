@@ -95,7 +95,7 @@ $curGroup = StudentGroup::getInstance($_GET['id']);
             echo '<h5 class="card-title">No tutor is assigned to this group</h5>';
         }
 
-    if (isset($_GET['sid'])) {
+    if (isset($_GET['sid']) && (!($_GET['type'] == 'view'))) {
         echo '<div>';
         $lastURL = $_SESSION['lastURL'];
         echo '<a href="../Group/form.php?subId=' . $lastURL['subId'] .
@@ -103,7 +103,19 @@ $curGroup = StudentGroup::getInstance($_GET['id']);
         echo '<a href="../Group/submit.php?id=' . $_GET['id'] . '&type=enroll" class="btn btn-primary">Join</a>';
         echo '</div>';
     }
+
+    if ($_GET['type'] == 'view'){
+        $curStudent = Student::getInstance($_SESSION['user_id']);
+
+        if ($curGroup->getAdmin() == $curStudent){
+            echo '<div>';
+            echo '<a href=".delete_group.php?id= '.$curGroup->getID().' " class="btn btn-secondary">Delete</a>';
+            echo '<a href="edit_group.php?id= '.$curGroup->getID().' " class="btn btn-primary">Edit Group Details</a>';
+            echo '</div>';
+        }
+    }
     ?>
+    }
 </div>
 
 </body>

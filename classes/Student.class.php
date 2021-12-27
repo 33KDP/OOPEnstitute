@@ -122,4 +122,17 @@ class Student extends User
         }
         return $enrolledTutors;
     }
+
+
+    public function getGroup(){
+        $qry = $this->dbCon->getPDO()->prepare("SELECT `Group`.id FROM Group_Student JOIN `Group` ON Group_Student.group_id=`Group`.id WHERE Group_Student.student_id=:sid");
+        $qry->execute(array(
+            ':sid'=>$this->studentId
+        ));
+        $classes = array();
+        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            array_push($classes, new StudentGroup($row['id']));
+        }
+        return $classes;
+    }
 }

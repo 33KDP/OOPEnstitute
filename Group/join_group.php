@@ -54,24 +54,12 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
                             ?>
                         </select>
                     </div>
-
-                    <!--div class="col-4 mb-3">
-                        <label for="rating">Rating:</label>
-                        <select class="form-control" id="rating" name="rating" placeholder="Rating...">
-                            <option value="-All-">-All-</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div-->
                 </div>
             </div>
             <div><input type="hidden" name="subId" id="subId"></div>
         </div>
     </form>
     <br/>
-    <div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a><div><br/>
-        </div>
+    <div><a href="../Student/index.php" class="btn btn-primary">Back Home</a></div><br/>
+</div>
 

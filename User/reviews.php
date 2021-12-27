@@ -70,7 +70,9 @@
                 ';
             }
 
-            echo '</div>';
+            echo '<div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a></div><br/></div>';
         ?>
+
+
     </body>
 </html>

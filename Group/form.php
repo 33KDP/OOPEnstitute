@@ -16,7 +16,7 @@ if (empty($_GET['subId'])) {
 
     $search_query = "SELECT `group`.group_name, `group`.id,`group`.capacity, District.district,  
                      FROM `group` JOIN District
-                     ON `group`.district = District.district
+                     ON `group`.district_id = District.id
                      WHERE `group`.Subject_id = '$subjectID' ";
 
     if ($district != "") {

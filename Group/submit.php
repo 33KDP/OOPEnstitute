@@ -14,31 +14,21 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
 
 if (isset($_POST['Send'])) {
     $group_id = $_POST['id'];
-    $req_type = $_POST['req_type'];
+    $student_id = $curStudent->getstudentId();
     $message = $_POST['message'];
 
     //how to send a request to a group admin
-    $stmt = 'INSERT INTO Request (tutor_id, subject_id, message, `type`';
+    $stmt = 'INSERT INTO JoinGroupRequest (student_id, group_id, message)';
 
-    if ($req_type == 0) {
-        $stmt .= ', student_id) ';
-        $id = $curStudent->getStudentID();
 
-    } else {
-        $id = $_POST['group_id'];
-        $stmt .= ', group_id) ';
-    }
-
-    $stmt .= 'values (:tid, :sid, :message, :ty, :id)';
+    $stmt .= 'values (:sid, :gid, :message)';
     $pdo = DBConn::getInstance()->getPDO();
     $query = $pdo->prepare($stmt);
 
     $query->execute(array(
-        ':tid' => $tutorid,
-        ':sid' => $subjectid,
+        ':sid' => $student_id,
+        ':gid' => $group_id,
         ':message' => $message,
-        ':ty' => $req_type,
-        ':id' => $id
     ));
 
     header('location: ../Student/group_index.php');
