@@ -19,7 +19,7 @@ class StudentGroupProxy implements IStudentGroup {
         $qry->execute(array(':gid' => $group_id));
         $row = $qry->fetch(PDO::FETCH_ASSOC);
 
-        $this->groupId = $row['id'];
+        $this->group_id = $row['id'];
         $this->capacity = $row['capacity'];
         $this->name = $row['group_name'];
         $this->subject_id = $row['subject_id'];

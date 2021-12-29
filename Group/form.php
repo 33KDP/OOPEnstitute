@@ -27,11 +27,8 @@ if (empty($_GET['subId'])) {
     $search_query = DBConn::getInstance()->getPDO()->prepare($search_query);
     $search_query->execute();
 
-    require_once "../Student/head.php";
-
-    echo '<body class="sb-nav-fixed">';
-
-    require_once "../Student/navbar.php";
+    require_once "head.php";
+    require_once "navbar.php";
 
     while ($row = $search_query->fetch(PDO::FETCH_ASSOC)) {
         $proxy = new StudentGroupProxy($row['id']);
@@ -42,14 +39,14 @@ if (empty($_GET['subId'])) {
         $qry = DBConn::getInstance()->getPDO()->prepare($qry);
         $qry->execute();
 
-        $count = "SELECT COUNT(student_id) FROM Group_Student WHERE group_id = '$groupID'";
+        $count = "SELECT COUNT(*) FROM Group_Student WHERE group_id = '$groupID'";
         $count = DBConn::getInstance()->getPDO()->prepare($count);
         $count->execute();
-        $countofstd = $count->fetch(PDO::FETCH_ASSOC);
-        var_dump($countofstd);
+        $countofstd = $count->fetchColumn();
 
 
-        echo '<div class="card" style="background-color:black;color: #dddddd ">
+        echo '<div class=container>';
+        echo '<div class="card">
                   <div class="card-header">
                     ' . $proxy->getName() . '
                   </div>
@@ -57,8 +54,8 @@ if (empty($_GET['subId'])) {
                     <h5 class="card-title">District: ' . $proxy->getDistrict() . '</h5>
                     
 
-                    <h5 class="card-title">:Available: '.($proxy->getCapacity()-$countofstd).' /' . $proxy->getCapacity() . '</h5>
-                    // group availability flag - up or down
+                    <h5 class="card-title">Available: ' . ($proxy->getCapacity() - $countofstd) . ' /' . $proxy->getCapacity() . '</h5>
+                    <!--group availability flag - up or down-->
                     <h5 class="card-title">Created Date: ' . $proxy->getCreatedDate() . '</h5>';
 
         if (($row_1 = $qry->fetch(PDO::FETCH_ASSOC)) !== false) {
@@ -71,12 +68,13 @@ if (empty($_GET['subId'])) {
             echo '<h5 class="card-title">No tutor is assigned to this group</h5>';
         }
 
-        echo '<a href="groupDetails.php?id=' . $proxy->getGroupId() . '&sid=' . $proxy->getSubjectId() . '"><button>View</button></a>
+        echo '<a href="groupDetails.php?id=' . $proxy->getGroupId() . '&sid=' . $proxy->getSubjectId() . '&type=enroll"><button>View</button></a>
 
-                // iff group availability flag - up
-                <a href="submit.php?id=' . $proxy->getGroupId() . '" ><button>Join</button></a>
+                <!--iff group availability flag - up-->
+                <a href="submit.php?id=' . $proxy->getGroupId() . '" ><button class="btn btn-primary">Join</button></a>
               </div>
-            </div>';
+            </div>
+        </div>';
+
     }
 }
-?>

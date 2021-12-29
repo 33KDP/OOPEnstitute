@@ -55,9 +55,9 @@ echo '<br/>
                 <div class="col-4">
                     <div class="card border-0 shadow my-3">
                         <div class="card-body">
-                            <h5 class="card-title">Your Ratings</h5>
-                            <p class="card-text">View your reviews </p>
-                            <?php echo '<a href="../User/reviews.php" class="btn btn-primary">View</a> ' ?>
+                            <h5 class="card-title">Manage Requests</h5>
+                            <p class="card-text">View requests </p>
+                            <?php echo '<a href="../Group/manage_group_request.php" class="btn btn-primary">View</a> ' ?>
                         </div>
                     </div>
                 </div>

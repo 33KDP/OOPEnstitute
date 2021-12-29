@@ -75,4 +75,13 @@ class EnrollRequest extends Request
         }
         Request::removeRequest($this->getId());
     }
+
+    public static function removeRequest($requestId)
+    {
+        $dbConn =DBConn::getInstance();
+        echo $requestId;
+        $qry = $dbConn->getPDO()->prepare("DELETE FROM Request WHERE id=:reqid");
+        $qry->execute(array(':reqid'=>$requestId));
+        // TODO: Implement removeRequest() method.
+    }
 }

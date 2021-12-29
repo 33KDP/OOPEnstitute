@@ -32,14 +32,20 @@ echo '<div class="container">';
                         <h5 class="card-title" >Group: 
                             <a href="groupDetails.php?id= '.$class->getGroupID().' &sid= '.$subject->getId().' &type=view">'.htmlentities($class->getName()).'</a>
                         </h5>
-                    </div>
-                  </div>';
-/*             if (($class->getTutor()) != NULL) {
-                echo '<p>Tutor Assigned</p>';
+                    </div>';
+
+             if (($class->isClass()) !== false) {
+                 echo '<div class=" my-2"><span class="badge rounded-pill bg-success mx-2">Tutor Assigned</span>';
+
+             } else {
+                 echo '<div class="my-2"><span class="badge rounded-pill bg-warning text-dark mx-2">Tutor not Assigned</span>';
+             }
+
+            if ($curStudent->getStudentId() == $class->getAdmin()) {
+                echo '<span class="badge rounded-pill bg-danger">Admin</span>';
             }
-            if ($curStudent->getId() == $class->getAdmin()) { //create group assign????
-                echo '<p> You are the admin</p>';
-            } */
+            echo'</div>
+            </div>';
         }?>
 
     </div>

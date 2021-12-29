@@ -31,11 +31,12 @@ class StudentGroup implements IStudentGroup
 
         $qry = $dbConn->getPDO()->prepare("SELECT *  FROM `Group_Student`  WHERE group_id=:gid");
         $qry->execute(array(':gid' => $group_id));
-        $student_list = array();
+        $this->student_list = array();
 
         while ($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+
             $student = Student::getInstance(Student::getUserId($row['student_id']));
-            array_push($student_list,$student);
+            array_push($this->student_list, $student);
         }
     }
 
@@ -103,8 +104,22 @@ class StudentGroup implements IStudentGroup
         return $this->student_list;
     }
 
-    function getDistrict()
+    public function getDistrict()
     {
         return $this->district;
     }
+
+    public function isClass() {
+        $dbConn = DBConn::getInstance();
+        $qry = $dbConn->getPDO()->prepare("SELECT *  FROM GroupClass  WHERE id=:gid");
+        $qry->execute(array(':gid' => $this->groupId));
+        $row = $qry->fetch(PDO::FETCH_ASSOC);
+
+        if ($row !== false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

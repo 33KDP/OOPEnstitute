@@ -1,6 +1,7 @@
 <?php
 require_once("User.class.php");
 require_once("StudentGroup.class.php");
+require_once "JoinGroupRequest.class.php";
 
 class Student extends User
 {
@@ -124,7 +125,6 @@ class Student extends User
         return $enrolledTutors;
     }
 
-
     public function getGroup(): array
     {
         $qry = $this->dbCon->getPDO()->prepare("SELECT `Group`.id FROM Group_Student JOIN `Group` ON Group_Student.group_id=`Group`.id WHERE Group_Student.student_id=:sid");
@@ -134,5 +134,17 @@ class Student extends User
             array_push($classes, new StudentGroup($row['id']));
         }
         return $classes;
+    }
+
+    public function getRequests(){
+        $qry = $this->dbCon->getPDO()->prepare("SELECT JoinGroupRequest.id FROM Student JOIN JoinGroupRequest Join `Group` ON `Group`.group_admin = Student.id AND JoinGroupRequest.group_id = `Group`.id WHERE Student.id=:sid");
+        $qry->execute(array(
+            ':sid'=>$this->studentId
+        ));
+        $requests = array();
+        while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
+            array_push($requests, new JoinGroupRequest($row['id']));
+        }
+        return $requests;
     }
 }

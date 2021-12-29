@@ -8,12 +8,12 @@ session_start();
 if (!isset($_GET['id'])) {
     header("location: ../index.php");
 }
-$curGroup = StudentGroup::getInstance($_GET['id']);
+$curGroup = new StudentGroup($_GET['id']);
 $curStudent = Student::getInstance($_SESSION['user_id']);
 
 
 if (isset($_POST['Send'])) {
-    $group_id = $_POST['id'];
+    $group_id = $_POST['groupid'];
     $student_id = $curStudent->getstudentId();
     $message = $_POST['message'];
 
@@ -31,18 +31,18 @@ if (isset($_POST['Send'])) {
         ':message' => $message,
     ));
 
-    header('location: ../Student/group_index.php');
+    header('location: ../Student/index.php');
 }
 ?>
 
 
 <?php require_once "../Student/head.php"; ?>
+<?php require_once "navbar.php"; ?>
 <body>
 
 
 <form method="POST">
     <input type="hidden" name="groupid" value="<?= $curGroup->getGroupId() ?>">
-    <input type="hidden" name="req_type" value=0>
     <div class="mb-3">
         <label for="message" class="form-label">message</label>
         <textarea class="form-control" name="message" id="message">Type your message here...</textarea>

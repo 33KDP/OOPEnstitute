@@ -101,11 +101,6 @@ abstract class Request
         return $this->type;
     }
 
-    public static function removeRequest($requestId){
-        $dbConn =DBConn::getInstance();
-        echo $requestId;
-        $qry = $dbConn->getPDO()->prepare("DELETE FROM Request WHERE id=:reqid");
-        $qry->execute(array(':reqid'=>$requestId));
-    }
+    public static abstract function removeRequest($requestId);
 
 }

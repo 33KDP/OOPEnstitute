@@ -17,13 +17,11 @@ require_once "head.php"; ?>
 <body>
 <?php require_once "navbar.php";
 
-$curGroup = StudentGroup::getInstance($_GET['id']);
+$curGroup = new StudentGroup($_GET['id']);
+
 ?>
 
 <div class="container p-5 shadow my-5 rounded-3">
-    <div >
-        <?php echo '<a class="btn btn-primary" href="../User/message.php?receiver_id='.$curGroup->getAdmin().'"> Send Message</a> '?>
-    </div><br/>
 
     <div>
         <h5>Name:</h5>
@@ -36,18 +34,31 @@ $curGroup = StudentGroup::getInstance($_GET['id']);
     </div><br/>
 
     <div>
-        <h5>:</h5>
-        <?= htmlentities($curGroup->getCapacity()) ?>
+        <h5>Capacity</h5>
+        <?php
+        $groupID = $_GET['id'];
+        $count = "SELECT COUNT(*) FROM Group_Student WHERE group_id = '$groupID'";
+        $count = DBConn::getInstance()->getPDO()->prepare($count);
+        $count->execute();
+        $countofstd = $count->fetchColumn();
+
+        $cap = $curGroup->getCapacity();
+
+        echo 'Available: '.( $cap - $countofstd).' / '.$cap;
+        ?>
     </div><br/>
 
     <div>
         <h5>Admin:</h5>
-        <?= htmlentities($curGroup->getAdmin()) ?>
+        <?php
+        $admin = Student::getInstance(Student::getUserId($curGroup->getAdmin()));
+        echo '<a href="viewStudent.php?sid='.$admin->getStudentId().'">'.htmlentities($admin->getFName()).': '.htmlentities($admin->getLName()).'</a>';
+        ?>
     </div><br/>
 
     <div>
         <h5>Admin Email:</h5>
-        <?= htmlentities("Not Available") ?>
+        <?= htmlentities($admin->getEmail()) ?>
     </div><br/>
 
     <div>
@@ -61,8 +72,14 @@ $curGroup = StudentGroup::getInstance($_GET['id']);
     </div><br/>
 
     <div>
+
         <h5>Students List:</h5>
-        <?= htmlentities($curGroup->getStudentList()) ?>
+        <?php
+
+        foreach($curGroup->getStudentList() as $student) {
+            echo '<a href="viewStudent.php?sid='.$student->getStudentId().'">'.htmlentities($student->getFName()).': '.htmlentities($student->getLName()).'</a> ';
+        }
+        ?>
     </div><br/>
 
 
@@ -77,8 +94,9 @@ $curGroup = StudentGroup::getInstance($_GET['id']);
     </div><br/>
 
     <?php
+        $groupid = $curGroup->getGroupID();
 
-        $qry = "SELECT groupclass.tutor_id FROM groupclass WHERE group_id = '$curGroup->getGroupID()' ";
+        $qry = "SELECT groupclass.tutor_id FROM groupclass WHERE group_id = '$groupid' ";
         $qry = DBConn::getInstance()->getPDO()->prepare($qry);
         $qry->execute();
 
@@ -107,15 +125,14 @@ $curGroup = StudentGroup::getInstance($_GET['id']);
     if ($_GET['type'] == 'view'){
         $curStudent = Student::getInstance($_SESSION['user_id']);
 
-        if ($curGroup->getAdmin() == $curStudent->getId()){
+        if ($curGroup->getAdmin() == $curStudent->getstudentId()){
             echo '<div>';
-            echo '<a href=".delete_group.php?id= '.$curGroup->getID().' " class="btn btn-secondary">Delete</a>';
-            echo '<a href="edit_group.php?id= '.$curGroup->getID().' " class="btn btn-primary">Edit Group Details</a>';
+            echo '<a href=".delete_group.php?id= '.$curGroup->getGroupId().' " class="btn btn-secondary">Delete</a>';
+            echo '<a>Enroll to a Tutor</a>';
             echo '</div>';
         }
     }
     ?>
-    }
 </div>
 
 </body>
