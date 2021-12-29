@@ -2,6 +2,7 @@
     require_once "../classes/Tutor.class.php";
     require_once "../classes/Subject.class.php";
     require_once "../classes/Student.class.php";
+    require_once "../classes/StudentGroupProxy.php";
     session_start();
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
@@ -20,6 +21,7 @@
             $request = new EnrollRequest($_GET['reqId']);
             $subject = Subject::getInstance($request->getSubjectId());
             $senderId = $request->getSenderId();
+            $isGroup = false;
 
             if ($request->getType() == 0){
                 $note = 'Individual request';
@@ -27,10 +29,11 @@
                 $getUrl='../tutor/viewStudent.php?sid='.$senderId;
                 $senderName = $sender->getFName().' '.$sender->getLName();
             } else {
+                $isGroup = true;
                 $note = 'Group request';
-                //$sender =
-                $getUrl='../tutor/viewGroup.php?gid='.$senderId;
-                //$senderName =
+                $sender = new StudentGroupProxy($senderId);
+                $getUrl='../Group/groupDetails.php?id='.$sender->getGroupId().'&type=view&tid='.$curTutor->getTutorId();
+                $senderName = $sender->getName();
             }
             echo '<div class="container p-5">';
             echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
@@ -48,8 +51,12 @@
                             <input type="hidden" name="type" value="'.$request->getType().'">
                             <input type="hidden" name="subjectId" value="'.$request->getSubjectId().'">
                             <input class="btn btn-success btn-sm" name="Accept" value="Accept" type="submit">
-                            <input class="btn btn-danger btn-sm mx-3" name="Reject" value="Reject" type="submit">
-                            <a class="btn btn-secondary btn-sm mx-2" href="../User/message.php?receiver_id='.Student::getUserId($senderId).'">Message</a>
-                        </form>
+                            <input class="btn btn-danger btn-sm mx-3" name="Reject" value="Reject" type="submit">';
+                            if ($isGroup !== false){
+                                //send message to group?
+                            } else {
+                                echo '<a class="btn btn-secondary btn-sm mx-2" href="../User/message.php?receiver_id='.Student::getUserId($senderId).'">Message</a>';
+                            }
+                        echo'</form>
                       </div>
                 </div>';

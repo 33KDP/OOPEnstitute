@@ -3,6 +3,7 @@
     require_once "../classes/DBConn.class.php";
     require_once "../classes/Tutor.class.php";
     require_once "../classes/Student.class.php";
+    require_once "../classes/StudentGroupProxy.php";
 
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
@@ -32,6 +33,8 @@
                             $name = $sender->getFname().' '.$sender->getLname();
                         } else {
                             $note = 'Group request';
+                            $sender = new StudentGroupProxy($senderId);
+                            $name = $sender->getName();
                         }
                         echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
                                       <div class="card-body">

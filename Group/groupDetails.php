@@ -15,9 +15,13 @@ require_once "head.php"; ?>
 </style>
 
 <body>
-<?php require_once "navbar.php";
-
-$curGroup = new StudentGroup($_GET['id']);
+<?php
+    if (isset($_GET['tid'])){
+        require_once "../tutor/navbar.php";
+    }else{
+        require_once "navbar.php";
+    }
+    $curGroup = new StudentGroup($_GET['id']);
 
 ?>
 
@@ -113,7 +117,7 @@ $curGroup = new StudentGroup($_GET['id']);
             echo '<h5 class="card-title">No tutor is assigned to this group</h5>';
         }
 
-    if (isset($_GET['sid']) && (!($_GET['type'] == 'view'))) {
+    if (isset($_GET['sid']) && (!($_GET['type'] == 'view') && (!isset($_GET['tid'])))) {
         echo '<div>';
         $lastURL = $_SESSION['lastURL'];
         echo '<a href="../Group/form.php?subId=' . $lastURL['subId'] .
@@ -122,13 +126,13 @@ $curGroup = new StudentGroup($_GET['id']);
         echo '</div>';
     }
 
-    if ($_GET['type'] == 'view'){
+    if ($_GET['type'] == 'view' && (!isset($_GET['tid']))){
         $curStudent = Student::getInstance($_SESSION['user_id']);
 
         if ($curGroup->getAdmin() == $curStudent->getstudentId()){
             echo '<div>';
             echo '<a href=".delete_group.php?id= '.$curGroup->getGroupId().' " class="btn btn-secondary">Delete</a>';
-            echo '<a>Enroll to a Tutor</a>';
+            echo '<a href="joinClass.php?gid='.$curGroup->getGroupId().'" class="btn btn-primary mx-2">Enroll to a Tutor</a>';
             echo '</div>';
         }
     }

@@ -51,9 +51,16 @@ if (isset($_POST['Send'])) {
         echo '
     <form method="POST" style="padding: 3%">
         <input type="hidden" name="tutorid" value=" '.$curTutor->getTutorId().'">
-        <input type="hidden" name="subjectid" value=" '.$_GET['sid'].'">
-        <input type="hidden" name="req_type" value=0>
-        <div class="mb-3">
+        <input type="hidden" name="subjectid" value=" '.$_GET['sid'].'">';
+
+        if (isset($_GET['gid'])){
+            echo '<input type="hidden" name="req_type" value=1>';
+            echo '<input type="hidden" name="group_id" value='.$_GET['gid'].'>';
+        } else {
+            echo '<input type="hidden" name="req_type" value=0>';
+        }
+
+        echo '<div class="mb-3">
             <label for="message" class="form-label">message</label>
             <textarea class="form-control" name="message" id="message" placeholder="Type your message here..."></textarea>
         </div>

@@ -4,6 +4,8 @@
     require_once "../classes/Tutor.class.php";
     require_once "../classes/Student.class.php";
     require_once "../classes/Subject.class.php";
+    require_once "../classes/StudentGroup.class.php";
+    require_once  "../classes/GroupClass.class.php";
 
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");
@@ -24,8 +26,7 @@
         foreach ($curTutor->getGrpClasses() as $class) {
             $subject = Subject::getInstance($class->getSubject());
 
-            //$group = Student::getInstance(Student::getUserId($class->getStudentId()));
-            $group = null;
+            $group = new StudentGroup($class->getGroupId());
             echo '<div class="col-4">';
             echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
                                     <div class="card-body">
