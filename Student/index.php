@@ -82,7 +82,7 @@ echo '<br/>
                 <div class="col-4">
                     <div class="card border-0 shadow my-3">
                         <div class="card-body">
-                            <h5 class="card-title">Manage Group Classes</h5>
+                            <h5 class="card-title">Manage Groups</h5>
                             <p class="card-text">You can find all your groups that you have enrolled or created from here.</p>
                             <a href="../Group/manage_group.php" class="btn btn-primary">View</a>
                         </div>

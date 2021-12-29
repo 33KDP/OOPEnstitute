@@ -107,7 +107,7 @@ $curGroup = StudentGroup::getInstance($_GET['id']);
     if ($_GET['type'] == 'view'){
         $curStudent = Student::getInstance($_SESSION['user_id']);
 
-        if ($curGroup->getAdmin() == $curStudent){
+        if ($curGroup->getAdmin() == $curStudent->getId()){
             echo '<div>';
             echo '<a href=".delete_group.php?id= '.$curGroup->getID().' " class="btn btn-secondary">Delete</a>';
             echo '<a href="edit_group.php?id= '.$curGroup->getID().' " class="btn btn-primary">Edit Group Details</a>';

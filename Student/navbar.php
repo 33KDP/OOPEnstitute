@@ -1,5 +1,6 @@
 <?php
     require_once "../bootstrap.php";
+    require_once "../classes/Student.class.php";
     $userid = $_SESSION['user_id'];
     $curStudent = Student::getInstance($_SESSION['user_id']);
 ?>
