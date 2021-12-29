@@ -24,22 +24,22 @@ echo '<div class="container">';
 
     echo '<div class="container">';
         foreach ($curStudent->getGroup() as $class) {
-            $subject = Subject::getInstance($class->getSubject());
+            $subject = Subject::getInstance($class->getSubjectId());
 
             echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
                     <div class="card-body">
                         <h5 class="card-title">'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
                         <h5 class="card-title" >Group: 
-                            <a href="groupDetails.php?id= '.$class->getGroupID().' &sid= '.$subject->getSubjectId().' &type=view">'.htmlentities($class->getName()).'</a>
+                            <a href="groupDetails.php?id= '.$class->getGroupID().' &sid= '.$subject->getId().' &type=view">'.htmlentities($class->getName()).'</a>
                         </h5>
                     </div>
                   </div>';
-            if (($class->getTutor()) != NULL) {
+/*             if (($class->getTutor()) != NULL) {
                 echo '<p>Tutor Assigned</p>';
             }
             if ($curStudent->getId() == $class->getAdmin()) { //create group assign????
                 echo '<p> You are the admin</p>';
-            }
+            } */
         }?>
 
     </div>

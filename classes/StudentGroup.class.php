@@ -27,7 +27,7 @@ class StudentGroup implements IStudentGroup
         $this->admin = $row['group_admin'];
         $this->created_date = $row['created_date'];
         $this->description = $row['description'];
-        $this->district = $row['district'];
+        $this->district = $row['district_id'];
 
         $qry = $dbConn->getPDO()->prepare("SELECT *  FROM `Group_Student`  WHERE group_id=:gid");
         $qry->execute(array(':gid' => $group_id));
@@ -35,7 +35,7 @@ class StudentGroup implements IStudentGroup
 
         while ($row = $qry->fetch(PDO::FETCH_ASSOC)) {
             $student = Student::getInstance(Student::getUserId($row['student_id']));
-            array_push($student);
+            array_push($student_list,$student);
         }
     }
 
