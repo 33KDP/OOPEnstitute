@@ -1,6 +1,6 @@
 <?php
 
-
+require_once "IStudentGroup.interface.php";
 class StudentGroupProxy implements IStudentGroup {
 
     private $group_id;
@@ -26,7 +26,7 @@ class StudentGroupProxy implements IStudentGroup {
         $this->admin = $row['group_admin'];
         $this->created_date = $row['created_date'];
         $this->description = $row['description'];
-        $this->district = $row['district'];
+        $this->district = $row['district_id'];
     }
 
     private $student_group;

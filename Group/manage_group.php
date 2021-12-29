@@ -19,7 +19,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 
 <?php
 echo '<div class="container">';
-    echo '<br/><h1>All Group Classes</h1><br/>';
+    echo '<br/><h1>All Groups</h1><br/>';
     echo '<br/>';
 
     echo '<div class="container">';
@@ -37,7 +37,7 @@ echo '<div class="container">';
             if (($class->getTutor()) != NULL) {
                 echo '<p>Tutor Assigned</p>';
             }
-            if ($curStudent == $class->getAdmin()) { //create group assign????
+            if ($curStudent->getId() == $class->getAdmin()) { //create group assign????
                 echo '<p> You are the admin</p>';
             }
         }?>

@@ -26,8 +26,8 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
         <div class="row mb-5">
             <div class="col-2 "></div>
             <div class="col-6 ">
-                <input class="form-control me-2 subject mx-0" type="search" placeholder="Select subjects" id="search"
-                       name="search" aria-label="Search" required>
+                <input class="form-control me-2 subject" type="search" placeholder="Search subjects" id="search" name="search" aria-label="Search" required>
+                <input type="hidden" name="subId" id="subId">
             </div>
             <div class="col-2 mx-0">
                 <input class="btn btn-outline-primary mx-0" name="Search" value="Search Groups" type="submit">
@@ -56,10 +56,9 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
                     </div>
                 </div>
             </div>
-            <div><input type="hidden" name="subId" id="subId"></div>
         </div>
     </form>
     <br/>
     <div><a href="../Student/index.php" class="btn btn-primary">Back Home</a></div><br/>
 </div>
-
+<script src="js/subjects.js"></script>

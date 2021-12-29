@@ -1,6 +1,6 @@
 <?php
 
-
+require_once "IStudentGroup.interface.php";
 class StudentGroup implements IStudentGroup
 {
     private $groupId;
