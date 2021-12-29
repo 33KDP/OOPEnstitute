@@ -33,7 +33,7 @@ class GroupClass extends _Class
             $qry = DBConn::getInstance()->getPDO()->prepare("INSERT INTO GroupClass (tutor_id, group_id) VALUES (:tid, :gid)");
             $qry->execute(array(
                 ':tid' => $tutor,
-                ':sid' => $group
+                ':gid' => $group
             ));
         }
     }

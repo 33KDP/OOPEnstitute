@@ -1,6 +1,7 @@
 <?php
 require_once "RequestState.class.php";
 require_once "Request.class.php";
+require_once "GroupClass.class.php";
 
 class EnrollRequest extends Request
 {
@@ -61,7 +62,7 @@ class EnrollRequest extends Request
             }
             //notify group
         }
-        Request::removeRequest($this->getId());
+        self::removeRequest($this->getId());
     }
 
 
@@ -73,7 +74,7 @@ class EnrollRequest extends Request
         } else {
             //notify group
         }
-        Request::removeRequest($this->getId());
+        self::removeRequest($this->getId());
     }
 
     public static function removeRequest($requestId)

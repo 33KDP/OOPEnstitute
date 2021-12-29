@@ -99,7 +99,14 @@
 
 
             <?php
-                if (isset($_GET['sid'])) {
+                if(isset($_GET['gid'])){
+                    echo '<div>';
+                    $lastURL = $_SESSION['lastURL'];
+                    echo '<a href="../Group/tutorForm.php?subId=' . $lastURL['subId'] .
+                        '&district=' . $lastURL['district'] . '&rating=' . $lastURL['rating'] .'&gid='.$lastURL['gid'].'" class="btn btn-secondary">Cancel</a>';
+                    echo '<a href="../Class/submit.php?id=' . $_GET['tid'] . '&gid=' . $_GET['gid'] . '&sid=' . $_GET['sid'] .'&type=enroll" class="btn btn-primary">Enroll</a>';
+                    echo '</div>';
+                }elseif (isset($_GET['sid'])) {
                     echo '<div>';
                         $lastURL = $_SESSION['lastURL'];
                         echo '<a href="../Class/form.php?subId=' . $lastURL['subId'] .
