@@ -5,74 +5,37 @@
     require_once "../classes/tutor.class.php";
     require_once "../bootstrap.php";
 
-    if (isset($_SESSION['user_id'])){
+    if (isset($_SESSION['user_id']) and isset($_GET['receiver_id']) and ($_SESSION['user_id'] != $_GET['receiver_id'])){
         $user_id = $_SESSION['user_id'];
-        $usertype_id = User::getUserType($user_id);
-
-        if ($usertype_id == 1)
+        $receiver_id = $_GET['receiver_id'];
+        $usertype_id = User::getUserType($user_id);     
+            
+        if ($usertype_id == 1){
             $curUser = Student::getInstance($user_id);
-        else
-            $curUser = Tutor::getInstance($user_id);
-
-        if(isset($_GET['receiver_id']) or isset($_GET['group_id'])){
-            if(isset($_GET['receiver_id'])){
-                if($user_id != $_GET['receiver_id'])
-                    $receiver_id = $_GET['receiver_id'];
-                else
-                    header("location: ../index.php");
-            }
-            else
-                $group_id = $_GET['receiver_id'];
+            $otherParty = Tutor::getInstance($receiver_id);
+            require_once "../Student/navbar.php";
         }
-        else
-            header("location: ../index.php");
+        else{
+            $curUser = Tutor::getInstance($user_id);
+            $otherParty = Student::getInstance($receiver_id);
+            require_once "../tutor/navbar.php";
+        }
     }
     else
         header("location: ../index.php");
 
     if (isset($_POST['send'])) {
-        if (isset($_POST['message'])) {
-            if(!empty(trim($_POST['message']))) {
-                if (isset($receiver_id)){
-                    $curUser->composeMessage($user_id, $receiver_id, $_POST['message'], 0);
-                    header("Location: message.php?receiver_id=".$receiver_id."");
-                    return; 
-                }
-                else{
-                    $curUser->composeMessage($user_id, $group_id, $_POST['message'], 1);
-                    header("Location: message.php?receiver_id=".$group_id."");
-                    return; 
-                }    
-            }       
+        if (isset($_POST['message']) and !empty(trim($_POST['message']))) {
+            $curUser->composeMessage($otherParty, $_POST['message'], 0);
+            header("Location: message.php?receiver_id=".$receiver_id."");
+            return;
         }     
     }
 
-    $curUser->readMessages($user_id, $receiver_id, 0);
+    $curUser->readMessages($otherParty);
     $messages = $curUser->getMessageList();
 
-    if ($usertype_id == 1){
-        $receiver = Tutor::getInstance($receiver_id);
-        require_once "../Student/navbar.php";
-    }
-    else{
-        $receiver = Student::getInstance($receiver_id);
-        require_once "../tutor/navbar.php";
-    }
-
 ?>
-
-<!-- <script type="text/javascript">
-    const tx = document.getElementsByTagName("textarea");
-    for (let i = 0; i < tx.length; i++) {
-        tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
-        tx[i].addEventListener("input", OnInput, false);
-    }
-
-    function OnInput() {
-        this.style.height = "auto";
-        this.style.height = (this.scrollHeight) + "px";
-    }
-</script> -->
 
 <!DOCTYPE html>
 <html>
@@ -82,51 +45,53 @@
     </head>
 
     <body>
-        <div class="container py-5" >
+        <div class="container py-3 px-0" >
 
             <?php
                 if ($usertype_id == 1)
                     echo '
-                        <a href="../Student/conversations.php" class="btn btn-primary">Back</a><h4  style="display:inline; float: right "  >'.
-                            htmlentities($receiver->getFName()).' '.htmlentities($receiver->getLName())
-                        .'</h4><hr><br/>
+                        <a href="../Student/conversations.php" class="btn btn-primary">Back</a><h4 style="display:inline" class="mx-3" >'.
+                            htmlentities($otherParty->getFName()).' '.htmlentities($otherParty->getLName())
+                        .'</h4><hr class="m-1" ><br/>
                     ';
                 else
                     echo '
-                        <a href="../tutor/conversations.php" class="btn btn-secondary">Back</a> &emsp;'.
-                            htmlentities($receiver->getFName()).' '.htmlentities($receiver->getLName())
-                        .'<hr>
+                        <a href="../tutor/conversations.php" class="btn btn-primary">Back</a><h4 style="display:inline" class="mx-3" >'.
+                            htmlentities($otherParty->getFName()).' '.htmlentities($otherParty->getLName())
+                        .'</h4><hr class="m-1" ><br/>
                     ';
 
-                foreach ($messages as $message) {
-                    $sender = $message->getSender();
-                    $receiver = $message->getReceiver();
-                    $messageBody = $message->getMessageBody();
-                    $time = $message->getTime();
+                echo '<div id = "scrollDiv" style = "height: 442px; width: auto; overflow: auto;">';
+                    foreach ($messages as $message) {
+                        $sender_id = $message->getSender()->getId();
+                        $receiver_id = $message->getReceiver()->getId();
+                        $messageBody = $message->getMessageBody();
+                        $time = $message->getTime();
 
-                    if ($sender == $user_id)
-                        echo '
-                            <div class="message right border border-primary mb-1 rounded w-25" >'.
-                                htmlentities($messageBody)
-                                .'<p class="mb-0 text-end">'.
-                                substr($time,0,-3)
-                                .'</p>
-                            </div>
-                        ';
-                    else
-                        echo '
-                            <div class="message left border border-primary mb-1 rounded w-25" >'.
-                                htmlentities($messageBody)
-                                .'<p class="mb-0 text-end">'.
-                                substr($time,0,-3)
-                                .'</p>
-                            </div>
-                        ';
-                }
+                        if ($sender_id == $user_id)
+                            echo '
+                                <div class="message right border border-primary mb-1 rounded w-25" >'.
+                                    htmlentities($messageBody)
+                                    .'<p class="mb-0 text-end">'.
+                                    substr($time,0,-3)
+                                    .'</p>
+                                </div>
+                            ';
+                        else
+                            echo '
+                                <div class="message left border border-primary mb-1 rounded w-25" >'.
+                                    htmlentities($messageBody)
+                                    .'<p class="mb-0 text-end">'.
+                                    substr($time,0,-3)
+                                    .'</p>
+                                </div>
+                            ';
+                    }
+                echo '</div>';
 
             ?>
             <br>
-            <form method="POST" class="row mb-3">
+            <form method="POST" style="display:flex">
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="message" id="message" placeholder="Message">
                 </div>
@@ -136,3 +101,8 @@
         </div>
     </body>
 </html>
+
+<script type="text/javascript">
+    var scrollDiv = document.getElementById("scrollDiv");
+    scrollDiv.scrollTop = scrollDiv.scrollHeight;
+</script>

@@ -1,5 +1,6 @@
 <?php
 require_once "DBConn.class.php";
+require_once "User.class.php";
 require_once "MessageState.class.php";
 
 class Message
@@ -16,11 +17,8 @@ class Message
 
     public function __construct($sender, $receiver, $messageBody, $messageType, $state){
         $this->sender = $sender;
-        $qry = self::$dbConn->getPDO()->prepare("SELECT first_name, last_name FROM `User` WHERE id=:sender");
-        $qry->execute(array(':sender'=>$sender));
-        $row = $qry->fetch(PDO::FETCH_ASSOC);
-        $this->senderFirstName = $row['first_name'];
-        $this->senderLastName = $row['last_name'];
+        $this->senderFirstName = $sender->getFName();
+        $this->senderLastName = $sender->getLName();
         $this->receiver = $receiver;
         $this->messageBody = $messageBody;
 
@@ -79,49 +77,69 @@ class Message
     public function send()
     {
         $pdo = self::$dbConn->getPDO();
-        $msgTtype = $this->messageType;
-        if ($msgTtype == 0){
+        $msgType = $this->messageType;
+        if ($msgType == 0){
             $sql = "INSERT INTO message (user_id, user_first_name, user_last_name, receiver, message, state, type) VALUES (:user_id, :user_first_name, :user_last_name, :receiver, :message, :state, :type)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array(
-                ':user_id' => $this->sender,
+                ':user_id' => $this->sender->getId(),
                 ':user_first_name' => $this->senderFirstName,
                 ':user_last_name' => $this->senderLastName,
-                ':receiver' => $this->receiver,
+                ':receiver' => $this->receiver->getId(),
                 ':message' => $this->messageBody,
                 ':state' => $this->getStateValue(),
-                ':type' => $this->messageType ));
+                ':type' => $msgType ));
         }
         else {
             $sql = "INSERT INTO message (group_id, user_first_name, user_last_name, receiver, message, state, type) VALUES (:group_id, :user_first_name, :user_last_name, :receiver, :message, :state, :type)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array(
-                ':group_id' => $this->sender,
+                ':group_id' => $this->sender->getId(),
                 ':user_first_name' => $this->senderFirstName,
                 ':user_last_name' => $this->senderLastName,
-                ':receiver' => $this->receiver,
+                ':receiver' => $this->receiver->getId(),
                 ':message' => $this->messageBody,
                 ':state' => $this->getStateValue(),
-                ':type' => $this->messageType ));
+                ':type' => $msgType ));
         }
     }
 
-    public static function receiveMessages($userId, $receiverId, $messageType)
+    public static function receiveMessages($user, $otherParty)
     {
-        $sql0 = "SELECT * FROM `Message` WHERE (((user_id = :userId AND receiver = :receiverId) OR (user_id = :receiverId AND receiver = :userId)) AND type = :messageType)";
-        $sql1 = "UPDATE `Message` SET state = 1 WHERE ((user_id = :receiverId AND receiver = :userId) AND type = :messageType)";
+        $userId = $user->getId();
+        
+        if ($otherParty instanceof User) {
+            $receiverId = $otherParty->getId();
+            $messageType = 0;
+        }
 
-        $stmt = self::$dbConn->getPDO()->prepare($sql0);
-        $stmt->execute(array(':userId'=>$userId,
-                            ':receiverId'=>$receiverId,
-                            ':messageType'=>$messageType));
+        else {
+            $receiverId = $otherParty->getId();
+            $messageType = 1;
+        }
+
+        if ($messageType == 0) {
+            $sql0 = "SELECT * FROM `Message` WHERE (((user_id = :userId AND receiver = :receiverId) OR (user_id = :receiverId AND receiver = :userId)) AND type = 0)";
+            $sql1 = "UPDATE `Message` SET state = 1 WHERE (user_id = :receiverId AND receiver = :userId AND type = 0)";
+
+            $stmt0 = self::$dbConn->getPDO()->prepare($sql0);
+            $stmt0->execute(array(':userId'=>$userId,
+                                ':receiverId'=>$receiverId));
+        }
+        else {
+            $sql0 = "SELECT * FROM `Message` WHERE (receiver = :receiverId AND type = 1)";
+            $sql1 = "UPDATE `Message` SET state = 1 WHERE (user_id != :userId AND receiver = :receiverId AND type = 1)"; 
+
+            $stmt0 = self::$dbConn->getPDO()->prepare($sql0);
+            $stmt0->execute(array(':receiverId'=>$receiverId));
+
+        }
 
         $stmt1 = self::$dbConn->getPDO()->prepare($sql1);
         $stmt1->execute(array(':userId'=>$userId,
-                            ':receiverId'=>$receiverId,
-                            ':messageType'=>$messageType));
-        
-        return $stmt;
+                            ':receiverId'=>$receiverId));
+
+        return $stmt0;
     }
     
 }

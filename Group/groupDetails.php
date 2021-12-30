@@ -1,15 +1,17 @@
 <?php
-session_start();
-require_once "../classes/DBConn.class.php";
-require_once "../classes/Tutor.class.php";
-require_once "../classes/Student.class.php";
+    session_start();
+    require_once "../classes/DBConn.class.php";
+    require_once "../classes/Tutor.class.php";
+    require_once "../classes/Student.class.php";
 
-if (!isset($_SESSION['user_id'])) {
-    header("location: ../index.php");
-}
+    if (!isset($_SESSION['user_id'])) {
+        header("location: ../index.php");
+    }
 
-require_once "../bootstrap.php";
-require_once "head.php"; ?>
+    require_once "../bootstrap.php";
+    require_once "head.php"; 
+?>
+
 <style>
     <?php include "../User/css/style.css" ?>
 </style>
@@ -40,23 +42,23 @@ require_once "head.php"; ?>
     <div>
         <h5>Capacity</h5>
         <?php
-        $groupID = $_GET['id'];
-        $count = "SELECT COUNT(*) FROM Group_Student WHERE group_id = '$groupID'";
-        $count = DBConn::getInstance()->getPDO()->prepare($count);
-        $count->execute();
-        $countofstd = $count->fetchColumn();
+            $groupID = $_GET['id'];
+            $count = "SELECT COUNT(*) FROM Group_Student WHERE group_id = '$groupID'";
+            $count = DBConn::getInstance()->getPDO()->prepare($count);
+            $count->execute();
+            $countofstd = $count->fetchColumn();
 
-        $cap = $curGroup->getCapacity();
+            $cap = $curGroup->getCapacity();
 
-        echo 'Available: '.( $cap - $countofstd).' / '.$cap;
+            echo 'Available: '.( $cap - $countofstd).' / '.$cap;
         ?>
     </div><br/>
 
     <div>
         <h5>Admin:</h5>
         <?php
-        $admin = Student::getInstance(Student::getUserId($curGroup->getAdmin()));
-        echo '<a href="viewStudent.php?sid='.$admin->getStudentId().'">'.htmlentities($admin->getFName()).': '.htmlentities($admin->getLName()).'</a>';
+            $admin = Student::getInstance(Student::getUserId($curGroup->getAdmin()));
+            echo '<a href="viewStudent.php?sid='.$admin->getStudentId().'">'.htmlentities($admin->getFName()).' '.htmlentities($admin->getLName()).'</a>';
         ?>
     </div><br/>
 
@@ -79,10 +81,8 @@ require_once "head.php"; ?>
 
         <h5>Students List:</h5>
         <?php
-
-        foreach($curGroup->getStudentList() as $student) {
-            echo '<a href="viewStudent.php?sid='.$student->getStudentId().'">'.htmlentities($student->getFName()).': '.htmlentities($student->getLName()).'</a> ';
-        }
+            foreach($curGroup->getStudentList() as $student)
+                echo '<a href="viewStudent.php?sid='.$student->getStudentId().'">'.htmlentities($student->getFName()).' '.htmlentities($student->getLName()).'</a><br> ';
         ?>
     </div><br/>
 
@@ -90,11 +90,11 @@ require_once "head.php"; ?>
     <div>
         <h5>Description:</h5>
         <?php
-        if (!empty($curGroup->getDescription())) {
-            echo htmlentities($curGroup->getDescription());
-        } else {
-            echo "No Description";
-        } ?>
+            if (!empty($curGroup->getDescription()))
+                echo htmlentities($curGroup->getDescription());
+            else
+                echo "No Description";
+        ?>
     </div><br/>
 
     <?php
@@ -108,34 +108,42 @@ require_once "head.php"; ?>
             $tutor = $row_1['tutor_id'];
             $curTutor = Tutor::getInstance(Tutor::getUserId($tutor));
             // tutor availability flag - up
-            echo '<h5 class="card-title">Tutor: <a href="../Student/viewTutor.php?tid='.$curTutor->getTutorId().'">'.htmlentities($curTutor->getFName()).' '.htmlentities($curTutor->getLName()).'</a> </h5>';
-            echo '<h5 class="card-title">TutorDetails'.$curTutor->getEmail().'</h5>';
-            echo '<h5 class="card-title">TutorCity'.$curTutor->getCity().'</h5>';
+            echo '
+                <h5 class="card-title">Tutor: <a href="../Student/viewTutor.php?tid='.$curTutor->getTutorId().'">'.htmlentities($curTutor->getFName()).' '.htmlentities($curTutor->getLName()).'</a> </h5>
+                <h5 class="card-title">TutorDetails'.$curTutor->getEmail().'</h5>
+                <h5 class="card-title">TutorCity'.$curTutor->getCity().'</h5>
+            ';
 
         } else {
             $tutor = NULL;
             echo '<h5 class="card-title">No tutor is assigned to this group</h5>';
         }
 
-    if (isset($_GET['sid']) && (!($_GET['type'] == 'view') && (!isset($_GET['tid'])))) {
-        echo '<div>';
-        $lastURL = $_SESSION['lastURL'];
-        echo '<a href="../Group/form.php?subId=' . $lastURL['subId'] .
-            '&district=' . $lastURL['district'] . '" class="btn btn-secondary">Cancel</a>';
-        echo '<a href="../Group/submit.php?id=' . $_GET['id'] . '&type=enroll" class="btn btn-primary">Join</a>';
-        echo '</div>';
-    }
-
-    if ($_GET['type'] == 'view' && (!isset($_GET['tid']))){
-        $curStudent = Student::getInstance($_SESSION['user_id']);
-
-        if ($curGroup->getAdmin() == $curStudent->getstudentId()){
-            echo '<div>';
-            echo '<a href=".delete_group.php?id= '.$curGroup->getGroupId().' " class="btn btn-secondary">Delete</a>';
-            echo '<a href="joinClass.php?gid='.$curGroup->getGroupId().'" class="btn btn-primary mx-2">Enroll to a Tutor</a>';
-            echo '</div>';
+        if (isset($_GET['sid']) && (!($_GET['type'] == 'view') && (!isset($_GET['tid'])))) {
+            $lastURL = $_SESSION['lastURL'];
+            echo '
+                <div>
+                    <a href="../Group/form.php?subId=' . $lastURL['subId'] . '&district=' . $lastURL['district'] . '" class="btn btn-secondary">Cancel</a>
+                    <a href="../Group/submit.php?id=' . $_GET['id'] . '&type=enroll" class="btn btn-primary mx-2">Join</a>
+                </div>
+            ';
         }
-    }
+
+        if ($_GET['type'] == 'view' && (!isset($_GET['tid']))){
+            $curStudent = Student::getInstance($_SESSION['user_id']);
+
+            if ($curGroup->getAdmin() == $curStudent->getstudentId()) {
+                echo '
+                    <div>
+                        <a href=".delete_group.php?id= '.$curGroup->getGroupId().' " class="btn btn-secondary">Delete</a>
+                        <a href="joinClass.php?gid='.$curGroup->getGroupId().'" class="btn btn-primary mx-2">Enroll to a Tutor</a>
+                ';
+            }
+            echo '
+                    <a href="forum.php?fid='.$curGroup->getGroupId().'" class="btn btn-primary">Forum</a>
+                </div>
+            ';
+        }
     ?>
 </div>
 

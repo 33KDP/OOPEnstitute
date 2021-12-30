@@ -18,8 +18,6 @@ abstract class User
     private $reviewList;
     private $propic;
     private $rating;
-    // private $privateMessageList;
-    // private $groupMessageList;
     private $usersWithConversations;
     protected $dbCon;
 
@@ -40,8 +38,6 @@ abstract class User
         $this->rating = $row['rating'];
         $this->usersWithConversations = array();
         $this->reviewList = array();
-        // $this->privateMessageList = $this->getMessages($userId, 0);
-        // $this->groupMessageList = $this->getMessages($userId, 1);
     }
 
     public function getId()
@@ -260,39 +256,37 @@ abstract class User
         return $this->usersWithConversations;
     }
 
-    public function composeMessage($sender, $receiver, $messageBody, $messageType)
+    public function composeMessage($receiver, $messageBody, $messageType)
     {
-        $message = new Message($sender, $receiver, $messageBody, $messageType, 0);
+        $message = new Message($this, $receiver, $messageBody, $messageType, 0);
         $message->send();
     }
 
-    public function readMessages($userId, $tutorId, $messageType)
+    public function readMessages($otherParty)
     {
         $this->messageList = array();
 
-        $stmt = Message::receiveMessages($userId, $tutorId, $messageType);
+        $stmt = Message::receiveMessages($this, $otherParty);
 
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($messageType == 0)
-                $sender = htmlentities($row['user_id']);
-            else
-                $sender = htmlentities($row['user_id']);
-                
-            $receiver = htmlentities($row['receiver']);
+            $senderId = htmlentities($row['user_id']); 
             $messageBody = htmlentities($row['message']);
             $state = htmlentities($row['state']);
-            $messageType = htmlentities($row['type']);
-            
-            $messageId = $row['id'];
-            $qry = $this->dbCon->getPDO()->prepare("SELECT time FROM `Message` WHERE id=:messageId");
-            $qry->execute(array(':messageId'=>$messageId));
-            $row = $qry->fetch(PDO::FETCH_ASSOC);
             $time = $row['time'];
-            
-            $newMessage = new Message($sender, $receiver, $messageBody, $messageType, $state);
-            $newMessage->setTime($time);
 
-            array_push($this->messageList, $newMessage);
+            if ($otherParty->getId() == $senderId) {
+                $sender = $otherParty;
+                $receiver = $this;
+            }
+            else {
+                $sender = $this;
+                $receiver = $otherParty;
+            }
+
+            $message = new Message($sender, $receiver, $messageBody, 0, $state);
+            $message->setTime($time);
+
+            array_push($this->messageList, $message);
 
         }
         
