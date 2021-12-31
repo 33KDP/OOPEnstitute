@@ -238,7 +238,7 @@ abstract class User
     public function setUsersWithConversations() {
         $user_id = $this->getId();
         $usersWithConversations = array();
-        $qry = $this->dbCon->getPDO()->prepare("SELECT * FROM `Message` WHERE (user_id = :userId OR receiver = :userId)");
+        $qry = $this->dbCon->getPDO()->prepare("SELECT * FROM `Message` WHERE (user_id = :userId OR receiver = :userId) AND type = 0");
         $qry->execute(array(':userId'=>$user_id));
         while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
             if ($row['user_id'] == $user_id and !in_array($row['receiver'], $usersWithConversations))
@@ -311,7 +311,7 @@ abstract class User
             $reviewId = $row['id'];
             $reviewerId = $row['reviewer_id'];
 
-            if ($this->getUserTypeId($reviewerId) == 2)
+            if (User::getUserType($reviewerId) == 1)
                 $reviewer = Student::getInstance($reviewerId);
             else
                 $reviewer = Tutor::getInstance($reviewerId);

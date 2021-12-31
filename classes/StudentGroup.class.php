@@ -1,6 +1,9 @@
 <?php
 
+require_once "DBConn.class.php";
 require_once "IStudentGroup.interface.php";
+require_once "Forum.class.php";
+
 class StudentGroup implements IStudentGroup
 {
     private $groupId;
@@ -12,6 +15,7 @@ class StudentGroup implements IStudentGroup
     private $created_date;
     private $student_list;
     private $district;
+    private $forum;
 
     function __construct($group_id)
     {
@@ -38,6 +42,8 @@ class StudentGroup implements IStudentGroup
             $student = Student::getInstance(Student::getUserId($row['student_id']));
             array_push($this->student_list, $student);
         }
+
+        $this->forum = new Forum($group_id);
     }
 
     /**
@@ -107,6 +113,11 @@ class StudentGroup implements IStudentGroup
     public function getDistrict()
     {
         return $this->district;
+    }
+
+    public function getForum()
+    {
+        return $this->forum;
     }
 
     public function isClass() {

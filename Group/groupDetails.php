@@ -140,7 +140,7 @@
                 ';
             }
             echo '
-                    <a href="forum.php?fid='.$curGroup->getGroupId().'" class="btn btn-primary">Forum</a>
+                    <a href="forum.php?id='.$curGroup->getGroupId().'" class="btn btn-primary">Forum</a>
                 </div>
             ';
         }

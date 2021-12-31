@@ -8,7 +8,6 @@
         header("location: ../index.php");
     }
     $curStudent = Student::getInstance($_SESSION['user_id']);
-    $curStudent->readReviews();
 ?>
 
 <?php require_once "../bootstrap.php"; ?>

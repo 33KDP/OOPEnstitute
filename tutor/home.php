@@ -8,7 +8,6 @@
     }
 
     $curTutor = Tutor::getInstance($_SESSION['user_id']);
-    $curTutor->readReviews();
 
 ?>
 

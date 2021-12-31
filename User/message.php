@@ -21,8 +21,10 @@
             require_once "../tutor/navbar.php";
         }
     }
-    else
+    else {
         header("location: ../index.php");
+        return;
+    }
 
     if (isset($_POST['send'])) {
         if (isset($_POST['message']) and !empty(trim($_POST['message']))) {
@@ -40,7 +42,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Message</title>
+        <title>E-nstitute</title>
         <link rel="stylesheet" href="css/messageStyle.css">
     </head>
 
@@ -64,7 +66,6 @@
                 echo '<div id = "scrollDiv" style = "height: 442px; width: auto; overflow: auto;">';
                     foreach ($messages as $message) {
                         $sender_id = $message->getSender()->getId();
-                        $receiver_id = $message->getReceiver()->getId();
                         $messageBody = $message->getMessageBody();
                         $time = $message->getTime();
 
@@ -72,7 +73,7 @@
                             echo '
                                 <div class="message right border border-primary mb-1 rounded w-25" >'.
                                     htmlentities($messageBody)
-                                    .'<p class="mb-0 text-end">'.
+                                    .'<p class="mb-0 text-end date">'.
                                     substr($time,0,-3)
                                     .'</p>
                                 </div>
@@ -81,7 +82,7 @@
                             echo '
                                 <div class="message left border border-primary mb-1 rounded w-25" >'.
                                     htmlentities($messageBody)
-                                    .'<p class="mb-0 text-end">'.
+                                    .'<p class="mb-0 text-end date">'.
                                     substr($time,0,-3)
                                     .'</p>
                                 </div>
