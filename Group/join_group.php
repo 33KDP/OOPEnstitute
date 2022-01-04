@@ -62,3 +62,8 @@ $curStudent = Student::getInstance($_SESSION['user_id']);
     <div><a href="../Student/index.php" class="btn btn-primary">Back Home</a></div><br/>
 </div>
 <script src="js/subjects.js"></script>
+
+
+<?php require_once '../Student/footer.php'; ?>
+</body>
+</html>

@@ -84,7 +84,12 @@ class StudentGroupProxy implements IStudentGroup {
      */
     public function getDistrict()
     {
-        return $this->district;
+        $dbConn = DBConn::getInstance();
+        $qry = $dbConn->getPDO()->prepare("SELECT district FROM District  WHERE id=:did");
+        $qry->execute(array(':did'=>$this->district));
+        $row = $qry->fetch(PDO::FETCH_ASSOC);
+        $district_name = $row['district'];
+        return $district_name;
     }
 
     /**

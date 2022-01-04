@@ -16,13 +16,13 @@ $curGroup = new StudentGroupProxy($_GET['gid']);
 <?php require_once "head.php"; ?>
 
 <body>
-<?php require_once "navbar.php"?>
+<?php require_once "navbar.php" ?>
 
     <br/><h1 style="text-align: center"> Search and Join Tutors</h1>
     <p style="text-align: center"> You can Search Tutors Using below Search box. You can add additional filters as well ...</p>
 
     <div class="container p-5">
-            <form action='tutorForm.php' method="GET">
+            <form action='../Group/tutorForm.php' method="GET">
                 <div>
                     <div><h5> Select Filters </h5><br/>
 
@@ -63,7 +63,7 @@ $curGroup = new StudentGroupProxy($_GET['gid']);
                     </div>
                 </div>
                 <div>
-                    <a href="manage_group.php" class="btn btn-primary">Back</a>
+                    <a href="../Group/manage_group.php" class="btn btn-primary">Back</a>
                     <input class="btn btn-primary mx-2" name="Search" value="Search Tutors" type="submit">
                 <div>
             </form>
@@ -72,7 +72,7 @@ $curGroup = new StudentGroupProxy($_GET['gid']);
         <br/>
     </div>
 
-<script src="js/subjects.js"></script>
+<script src="../Group/js/subjects.js"></script>
 </body>
 </html>
 

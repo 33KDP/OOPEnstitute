@@ -41,20 +41,23 @@ if (isset($_POST['Send'])) {
 <body>
 
 
-<form method="POST">
+<form method="POST" style="padding: 3%">
     <input type="hidden" name="groupid" value="<?= $curGroup->getGroupId() ?>">
     <div class="mb-3">
-        <label for="message" class="form-label">message</label>
-        <textarea class="form-control" name="message" id="message">Type your message here...</textarea>
+        <label for="message" class="form-label">Message:</label>
+        <textarea class="form-control" name="message" id="message" placeholder="Type your message here..."></textarea>
     </div>
 
-    <div>
+    <div style="text-align: center">
         <?php
         $lastURL = $_SESSION['lastURL'];
         echo '<a href="form.php?subId=' . $lastURL['subId'] .
-            '&district=' . $lastURL['district'] . '" class="btn btn-secondary">Cancel</a>'; ?>
+            '&district=' . $lastURL['district'] . '" class="btn btn-danger">Cancel</a>'; ?>
         <input type="submit" name="Send" value="Send" class="btn btn-primary">
     </div>
 
 </form>
 
+<?php require_once "../Student/footer.php"; ?>
+</body>
+</html>

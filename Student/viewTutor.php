@@ -92,11 +92,10 @@
                         echo '</div>';
                         echo '</div>';
                     } else {
-                        echo "No Available Time Slots to Preview. Please Contact the tutor";
+                        echo "No Available Time Slots to Preview. Please Contact the tutor.";
                     }
                 ?>
-            </div>
-
+            </div><br/>
 
             <?php
                 if(isset($_GET['gid'])){
@@ -106,7 +105,7 @@
                         '&district=' . $lastURL['district'] . '&rating=' . $lastURL['rating'] .'&gid='.$lastURL['gid'].'" class="btn btn-secondary">Cancel</a>';
                     echo '<a href="../Class/submit.php?id=' . $_GET['tid'] . '&gid=' . $_GET['gid'] . '&sid=' . $_GET['sid'] .'&type=enroll" class="btn btn-primary">Enroll</a>';
                     echo '</div>';
-                }elseif (isset($_GET['sid'])) {
+                } elseif (isset($_GET['sid'])) {
                     echo '<div>';
                         $lastURL = $_SESSION['lastURL'];
                         echo '<a href="../Class/form.php?subId=' . $lastURL['subId'] .
@@ -114,6 +113,7 @@
                         echo '<a href="../Class/submit.php?id=' . $_GET['tid'] . '&sid=' . $_GET['sid'] . '&type=enroll" class="btn btn-primary">Enroll</a>';
                     echo '</div>';
                 }
+
                 
                 echo '<br><h2 style="display:inline">Reviews &emsp; &emsp; &emsp;</h2>';
 
@@ -182,35 +182,40 @@
             <?php
             echo '<br><hr>';
 
-            foreach ($reviews as $review) {
-                echo '
-                    <h5 style="display:inline">'.
-                    htmlentities($review->getReviewerFirstName()).' '.htmlentities($review->getReviewerLastName()).'&emsp; &emsp;
-                    </h5>
-                    <p style="display:inline; font-size: 13px;">'.
-                    substr($review->getDate(),0,-3)
-                    .'</p>
-                    <div class="mt-1">
-                ';
+            if ($reviews != NULL) {
+                foreach ($reviews as $review) {
 
-                $starRating = $review->getStarRating();
-                for ($checkedStars = 1; $checkedStars <= $starRating; $checkedStars++) {
-                    echo '<div class="clip-star-checked"></div>';
-                }
-                for ($unCheckedStars = 0; $unCheckedStars < 5-$starRating; $unCheckedStars++) {
-                    echo '<div class="clip-star-unchecked"></div>';
-                }
+                    echo '
+                        <h5 style="display:inline">'.
+                        htmlentities($review->getReviewerFirstName()).' '.htmlentities($review->getReviewerLastName()).'&emsp; &emsp;
+                        </h5>
+                        <p style="display:inline; font-size: 13px;">'.
+                        substr($review->getDate(),0,-3)
+                        .'</p>
+                        <div class="mt-1">
+                    ';
 
-                echo '</div>
-                    <p>'.
-                    htmlentities($review->getReviewText())
-                    .'</p><hr>
-                ';
+                    $starRating = $review->getStarRating();
+                    for ($checkedStars = 1; $checkedStars <= $starRating; $checkedStars++) {
+                        echo '<div class="clip-star-checked"></div>';
+                    }
+                    for ($unCheckedStars = 0; $unCheckedStars < 5-$starRating; $unCheckedStars++) {
+                        echo '<div class="clip-star-unchecked"></div>';
+                    }
+
+                    echo '</div>
+                        <p>'.
+                        htmlentities($review->getReviewText())
+                        .'</p><hr>
+                    ';
+                }
+            } else {
+                echo '<div><p>No reviews available</p></div>';
             }
 
             echo '</div>';
             ?>
         </div>
-
+        <?php require_once '../Student/footer.php'; ?>
     </body>
 </html>

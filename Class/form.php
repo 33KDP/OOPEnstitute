@@ -37,7 +37,7 @@ $search_query->execute();
 
     echo '<br/>';
     echo '<div class="container " style="padding: 3%">';
-        echo '<h1>Search Results for Tutors</h1><br/>';
+        echo '<h1>Search Results for Tutors:</h1><br/>';
         echo '<br/>';
 
         echo '<div>';
@@ -72,11 +72,11 @@ $search_query->execute();
                     </div>';
                 }
             }
-        echo '</div>';
-            echo '<a href="joinClass.php" class="btn btn-primary"> Back to Search</a><br/>';
+        echo '</div><br/>';
+            echo '<div><a href="joinClass.php" class="btn btn-primary"> Back to Search</a></div>';
     echo '</div>';
     ?>
-
+<?php require_once '../Student/footer.php'; ?>
 </body>
 </html>
 

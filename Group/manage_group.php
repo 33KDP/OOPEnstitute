@@ -48,10 +48,11 @@ echo '<div class="container">';
             </div>';
         }?>
 
-    </div>
+    </div><br/>
 
     <div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a><div><br/>
 </div>
 
+<?php require_once "../Student/footer.php"; ?>
 </body>
 </html>

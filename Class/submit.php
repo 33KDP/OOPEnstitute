@@ -61,16 +61,16 @@ if (isset($_POST['Send'])) {
         }
 
         echo '<div class="mb-3">
-            <label for="message" class="form-label">message</label>
+            <label for="message" class="form-label">Message:</label>
             <textarea class="form-control" name="message" id="message" placeholder="Type your message here..."></textarea>
         </div>
     
-        <div> ';
+        <div style="text-align: center"> ';
 
             $lastURL = $_SESSION['lastURL'];
 
                 echo '
-            <a href = "form.php?subId=' . $lastURL['subId'] . '&district=' . $lastURL['district'] . '&rating=' . $lastURL['rating'] . '" class="btn btn-secondary" > Cancel</a>
+            <a href = "form.php?subId=' . $lastURL['subId'] . '&district=' . $lastURL['district'] . '&rating=' . $lastURL['rating'] . '" class="btn btn-danger"> Cancel</a>
             <input type="submit" name="Send" value="Send" class="btn btn-primary">
         </div>
     
@@ -81,3 +81,6 @@ if (isset($_POST['Send'])) {
 
 ?>
 
+    <?php require_once '../Student/footer.php'; ?>
+</body>
+</html>

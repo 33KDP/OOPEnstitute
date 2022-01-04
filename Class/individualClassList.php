@@ -19,7 +19,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 
     <?php
         echo '<div class="container">';
-            echo '<br/><h1>All Individual Classes</h1><br/>';
+            echo '<br/><h1>All Individual Classes</h1>';
             echo '<br/>';
 
             echo '<div class="container">';
@@ -36,9 +36,11 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                             </div>
                     </div>';
                 }
-            echo '</div>';
+            echo '</div><br/>';
                 echo '<div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a><div><br/>';
         echo '</div>';
     ?>
+
+    <?php require_once '../Student/footer.php'; ?>
 </body>
 </html>
