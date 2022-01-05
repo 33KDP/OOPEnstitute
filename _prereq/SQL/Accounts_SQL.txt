@@ -1,6 +1,14 @@
 Tutors
 ======
 
+
+33 - Sin
+34 - Science
+35 - English
+36 - Maths
+37 - History
+38 - Art
+
 john - 17 -4 - 34, 35, 36
 harry - 18 - 5 - 34, 35
 adolf - 19 - 6 - 33, 34, 35, 37, 38

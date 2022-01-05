@@ -60,7 +60,12 @@
                     $count->execute();
                     $countofstd = $count->fetchColumn();
                     $cap = $curGroup->getCapacity();
-                    echo ''.( $cap - $countofstd).' / '.$cap;
+
+                    if ($cap > 10000) {
+                        echo 'Unlimited Slots Available';
+                    } else {
+                        echo '' . ($cap - $countofstd) . ' / ' . $cap;
+                    }
                 ?>
                 </p>
             </div><br/>

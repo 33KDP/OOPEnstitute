@@ -53,12 +53,14 @@ if (empty($_GET['subId'])) {
                         ' . $proxy->getName() . '
                       </div>
                       <div class="card-body">
-                        <h5 class="card-title">District: ' . $proxy->getDistrict() . '</h5>
-                        
-    
-                        <h5 class="card-title">Available: ' . ($proxy->getCapacity() - $countofstd) . ' /' . $proxy->getCapacity() . '</h5>
-                        <!--group availability flag - up or down-->
-                        <h5 class="card-title">Created Date: ' . $proxy->getCreatedDate() . '</h5>';
+                        <h5 class="card-title">District: ' . $proxy->getDistrict() . '</h5>';
+
+            if ($proxy->getCapacity() > 10000) {
+                echo '<h5 class="card-title">Available: Unlimited Slots Available</h5>';
+            } else {
+                echo '<h5 class="card-title">Available: ' . ($proxy->getCapacity() - $countofstd) . ' /' . $proxy->getCapacity() . '</h5>';
+            }
+            echo ' <h5 class="card-title">Created Date: ' . $proxy->getCreatedDate() . '</h5>';
 
             if (($row_1 = $qry->fetch(PDO::FETCH_ASSOC)) !== false) {
                 $tutor = $row_1['tutor_id'];

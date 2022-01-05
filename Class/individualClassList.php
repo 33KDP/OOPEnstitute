@@ -31,7 +31,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
                             <div class="card-body">
                                 <h5 class="card-title">'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
                                 <h5 class="card-title" >Tutor: 
-                                    <a href="../Student/viewTutor.php?tid='.$tutor->getTutorId($class->getTutor()).'">'.htmlentities($tutor->getFName()).' '.htmlentities($tutor->getLName()).'</a>
+                                    <a href="../Student/viewTutor.php?tid='.$tutor->getTutorId($class->getTutor()).'" style="text-decoration: none">'.htmlentities($tutor->getFName()).' '.htmlentities($tutor->getLName()).'</a>
                                 </h5>
                             </div>
                     </div>';

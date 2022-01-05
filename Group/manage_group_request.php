@@ -22,7 +22,7 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
     <?php
     $requests = $curStudent->getRequests();
     if (!isset($requests)){
-        echo 'No Requests';
+        echo 'No New Requests';
     } else {
         if ($requests != NULL) {
             foreach ($requests as $request) {
@@ -41,6 +41,8 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
             echo 'No New Requests';
             //header("location: ../Student/index.php");
         }
+        echo '<br><br>';
+        echo '<div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a><div><br/>';
     }
     ?>
 </div>
