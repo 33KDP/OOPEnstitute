@@ -17,7 +17,7 @@
 ?>
 
     <div class="container" style="padding: 3%">
-        <h1>Conversations</h1>
+        <h1>Conversations</h1><br>
         <?php
             foreach ($usersWithConversations as $user) {
                 $curTutor = Tutor::getInstance($user);
@@ -26,7 +26,7 @@
                     <div class="card-body">
                         <h5><a href="viewTutor.php?tid='.
                             $curTutor->getTutorId()
-                            .'">'.
+                            .'" style="text-decoration: none">'.
                             $curTutor->getFName().' '.$curTutor->getLName()
                         .'</a></h5> &emsp;
                         <h6></h6>

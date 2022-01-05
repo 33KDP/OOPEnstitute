@@ -8,15 +8,13 @@
         header("location: ../index.php");
     }
 
-    require_once "../bootstrap.php";
-    require_once "head.php";
-
-
-    if ($_GET['delete'] == 'true') {
-        //do this
-        //show a popup - successfully deleted
+    if (isset($_POST['Delete'])) {
+        StudentGroup::deletegroup($_POST['groupid']);
         header("location: ../Student/index.php");
     }
+
+    require_once "../bootstrap.php";
+    require_once "head.php";
 
 ?>
 
@@ -34,8 +32,10 @@
     $curGroup = new StudentGroup($_GET['id']);
 
 ?>
-<div class="container">
-    <br/><div><h2>Group Details</h2></div>
+
+<br/><div><h2>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Group Details</h2></div>
+<div class="container w-50">
+
     <div class="container p-5 shadow my-5 rounded-3">
 
         <div style="text-align: center">
@@ -155,11 +155,15 @@
 
                     if ($curGroup->getAdmin() == $curStudent->getstudentId()) {
                         echo '
-                            <div>
-                                <a href="groupDetails.php?delete=true" class="btn btn-danger">Delete</a>
-                                <a href="joinClass.php?gid='.$curGroup->getGroupId().'" class="btn btn-primary mx-2">Enroll to a Tutor</a>
-                        ';
+                            <div>';
+                        if ($tutor === NULL ) {
+                            echo '<button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteEntry">Delete</button>';
+                        }
+
+                    echo'
+                                <a href="joinClass.php?gid='.$curGroup->getGroupId().'" class="btn btn-primary mx-2">Enroll to a Tutor</a>';
                     }
+
                     echo '
                             <a href="forum.php?id='.$curGroup->getGroupId().'" class="btn btn-dark">Forum</a>
                         </div>
@@ -167,9 +171,35 @@
                 }
             echo '</div>'
         ?>
+
     </div>
 </div>
 
-<?php require_once '../Student/footer.php'; ?>
+<?php
+echo'<div class="modal fade" id="deleteEntry" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Confirm delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="dayInput" class="form-label">You will not be able to undo this action.</label>
+                    </div>
+                    <input type="hidden" name="groupid" value="' .$curGroup->getGroupId().'">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" name="Delete" value="Delete" class="btn btn-danger">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>';
+
+require_once '../Student/footer.php'; ?>
+
 </body>
 </html>

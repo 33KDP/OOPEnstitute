@@ -26,11 +26,13 @@ echo '<div class="container">';
         foreach ($curStudent->getGroup() as $class) {
             $subject = Subject::getInstance($class->getSubjectId());
 
-            echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">
+            echo '
+            
+                <div class="card mx-auto rounded-3 border-0 shadow my-3">
                     <div class="card-body">
                         <h5 class="card-title" >'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
                         <h5 class="card-title">Group: 
-                            <a href="groupDetails.php?id= '.$class->getGroupID().' &sid= '.$subject->getId().' &type=view" style="text-decoration: none">'.htmlentities($class->getName()).'</a>
+                            <a href="groupDetails.php?id= '.$class->getGroupID().' &sid= '.$subject->getId().' &type=view" class=" stretched-link" style="text-decoration: none">'.htmlentities($class->getName()).'</a>
                         </h5>
                     </div>';
 
@@ -44,8 +46,8 @@ echo '<div class="container">';
             if ($curStudent->getStudentId() == $class->getAdmin()) {
                 echo '<span class="badge rounded-pill bg-danger">Admin</span>';
             }
-            echo'</div>
-            </div>';
+                echo'</div>
+                </div></a>';
         }?>
 
     </div><br/>

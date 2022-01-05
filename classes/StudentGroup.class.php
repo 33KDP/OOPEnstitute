@@ -138,4 +138,14 @@ class StudentGroup implements IStudentGroup
         }
     }
 
+    public static function  deleteGroup($groupid) {
+        $dbConn = DBConn::getInstance();
+        $qry = $dbConn->getPDO()->prepare("DELETE FROM `Group`  WHERE id=:gid");
+        $qry->execute(array(':gid' => $groupid));
+
+        $qry = $dbConn->getPDO()->prepare("DELETE FROM Group_Student  WHERE group_id=:gid");
+        $qry->execute(array(':gid' => $groupid));
+
+    }
+
 }
