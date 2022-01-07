@@ -20,10 +20,21 @@
             </style>
 
             <?php 
-                require_once "../tutor/navbar.php";
-                if (!isset($_GET['sid'])){
-                    header("location: ../index.php");
+                $user_id = $_SESSION['user_id'];
+                $usertype_id = User::getUserType($user_id);     
+                    
+                if ($usertype_id == 1) {
+                    $curUser = Student::getInstance($user_id);
+                    require_once "../Student/navbar.php";
                 }
+                else {
+                    $curUser = Tutor::getInstance($user_id);
+                    require_once "../tutor/navbar.php";
+                }
+
+                if (!isset($_GET['sid']))
+                    header("location: ../index.php");
+                
                 $student = Student::getInstance(Student::getUserId($_GET['sid']));
                 $student->readReviews();
                 $reviews = $student->getReviewList();
@@ -56,11 +67,9 @@
                         .' Stars</h4>
                     ';
             echo '
-            <link rel="stylesheet" type="text/css" href="../User/css/style.css">';
-
-
-
-            echo '<br><hr>';
+                <link rel="stylesheet" type="text/css" href="../User/css/style.css">
+                <br><hr>
+            ';
 
             foreach ($reviews as $review) {
                 echo '

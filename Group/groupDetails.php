@@ -122,7 +122,7 @@
                 <strong>Students List:</strong>
                 <?php
                     foreach($curGroup->getStudentList() as $student)
-                        echo '<br><a href="viewStudent.php?sid='.$student->getStudentId().'" style="text-decoration: none;">'.htmlentities($student->getFName()).' '.htmlentities($student->getLName()).'</a>';
+                        echo '<br><a href="../tutor/viewStudent.php?sid='.$student->getStudentId().'" style="text-decoration: none;">'.htmlentities($student->getFName()).' '.htmlentities($student->getLName()).'</a>';
                 ?>
             </div>
             <div class="col-6">
