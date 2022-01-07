@@ -24,8 +24,8 @@
         <div class="container p-5">
             <?php
                 $requests = $curTutor->getRequests();
-                if (!isset($requests)){
-                    echo 'No Requests';
+                if (empty($requests)){
+                    echo '<h2> No Requests yet </h2>';
                 } else {
                     foreach ($requests as $request) {
                         $subject = Subject::getInstance($request->getSubjectId());
