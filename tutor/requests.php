@@ -17,7 +17,10 @@
         <?php require_once "head.php"; ?>
     </head>
     <body>
-        <?php require_once "navbar.php"; ?>
+        <?php
+            require_once "navbar.php";
+            check_session();
+        ?>
         <div class="container p-5">
             <?php
                 $requests = $curTutor->getRequests();

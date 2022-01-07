@@ -1,4 +1,4 @@
-
+<?php require_once "../includes/utils.php" ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>

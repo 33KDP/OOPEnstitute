@@ -2,7 +2,6 @@
     session_start();
     require_once "../classes/Timeslot.class.php";
     require_once "../classes/Tutor.class.php";
-    require_once "../includes/utils.php";
 
     if (!isset($_SESSION['user_id'])){
         header("location: ../index.php");

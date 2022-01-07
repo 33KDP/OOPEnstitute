@@ -8,9 +8,11 @@
     if (isset($_POST['Accept'])){
        $request = new EnrollRequest($_POST['reqId']);
        $request->accept($_POST);
+        $_SESSION['success'] = "Request accepted";
     } else if (($_POST['Reject'])) {
         $request = new EnrollRequest($_POST['reqId']);
         $request->reject($_POST);
+        $_SESSION['error'] = "Request rejected";
     }
     //var_dump($_POST);
     header("location: ../requests.php");

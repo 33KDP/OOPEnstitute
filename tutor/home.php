@@ -21,6 +21,7 @@
     <body>
         <?php
             require_once "navbar.php";
+        check_session();
             echo '<div class="text-center p-4"><h1>'. $curTutor->getFName().' '.$curTutor->getLName().'</h1></div>' ;
         ?>
 
@@ -36,40 +37,72 @@
             <div class="row">
                 <div class="col-4">
                     <div class="card border-0 shadow my-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Individual Classes</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="individualClasses.php" class="btn btn-primary">View</a>
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <img src="../assets/img/tutor/indClass.svg" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-6 shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">Individual Classes</h5>
+                                    <p class="card-text">View and manage Individual classes</p>
+                                    <a href="individualClasses.php" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-4">
                     <div class="card border-0 shadow my-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Group Classes</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="groupClasses.php" class="btn btn-primary">View</a>
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <img src="../assets/img/tutor/groupClass.svg" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-6 shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">Group Classes</h5>
+                                    <p class="card-text">View and manage Group classes</p>
+                                    <a href="groupClasses.php" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-4">
                     <div class="card border-0 shadow my-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Timeslots</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="timeslots.php" class="btn btn-primary">View</a>
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <img src="../assets/img/tutor/timeslot.svg" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-6 shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">Timeslots</h5>
+                                    <p class="card-text">View and manage your available timeslots</p>
+                                    <a href="timeslots.php" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-4">
                     <div class="card border-0 shadow my-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Requests</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="requests.php" class="btn btn-primary">View</a>
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <img src="../assets/img/tutor/request.svg" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-6 shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">Requests</h5>
+                                    <p class="card-text">View and manage Student/Group requests</p>
+                                    <a href="requests.php" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 

@@ -13,6 +13,7 @@
 
     require_once "../bootstrap.php";
     require_once "navbar.php";
+check_session();
 ?>
 
 

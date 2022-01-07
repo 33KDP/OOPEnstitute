@@ -7,9 +7,11 @@
 
     if (isset($_POST['Add'])){
         Timeslot::addTimeslot($_POST);
+        $_SESSION['success'] = "Timeslot added";
     } else if (($_POST['Save'])) {
         $timeSlot = Timeslot::getInstance($_POST['timeid']);
         $timeSlot->editTimeSlot($_POST);
+        $_SESSION['success'] = "Changes saved";
     }else if (isset($_POST['Delete'])) {
         Timeslot::deleteTimeSlot($_POST['timeid']);
     } else {

@@ -20,6 +20,7 @@
             </style>
 
             <?php require_once "navbar.php";
+            check_session();
                 if (!isset($_GET['sid'])){
                     header("location: ../index.php");
                 }

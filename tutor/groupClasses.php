@@ -32,7 +32,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">'.htmlentities($subject->getName()).': Grade'.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' medium</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">
-                                            <a href="../tutor/viewGroup.php?gid='.$class->getGroupId().'">'.htmlentities($group->getName()).'</a>
+                                            <a href="../Group/groupDetails.php?id='.$class->getGroupId().'&type=view&tid='.$curTutor->getTutorId().'">'.htmlentities($group->getName()).'</a>
                                         </h6>
                                     </div>
                                 </div>';

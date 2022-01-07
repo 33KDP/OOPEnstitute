@@ -10,10 +10,12 @@
     if (isset($_POST['Add'])){
         $subject = Subject::getInstance($_POST['subId']);
         $curTutor->setSubjects($subject);
+        $_SESSION['success'] = "Subject added";
         header("location: ../subjects.php");
     } else if (isset($_POST['Remove'])){
         $subject = Subject::getInstance($_POST['subId']);
         $curTutor->removeSubjects($subject);
+        $_SESSION['error'] = "Subject removed";
         header("location: ../subjects.php");
     }else {
         header("location: ../subjects.php");

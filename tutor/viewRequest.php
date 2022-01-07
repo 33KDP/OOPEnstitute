@@ -16,8 +16,8 @@
         <?php require_once "head.php"; ?>
     </head>
     <body>
-        <?php require_once "navbar.php"; ?>
-        <?php
+        <?php require_once "navbar.php";
+            check_session();
             $request = new EnrollRequest($_GET['reqId']);
             $subject = Subject::getInstance($request->getSubjectId());
             $senderId = $request->getSenderId();

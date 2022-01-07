@@ -2,6 +2,8 @@
 require_once "RequestState.class.php";
 require_once "Request.class.php";
 require_once "GroupClass.class.php";
+require_once "Tutor.class.php";
+require_once "Student.class.php";
 
 class EnrollRequest extends Request
 {
@@ -31,6 +33,7 @@ class EnrollRequest extends Request
     public function accept($form)
     {
         $this->setState(Accepted::getInstance());
+        $curUser = Tutor::getInstance($_SESSION['user_id']);
         $dbConn =DBConn::getInstance();
         if ($form['type'] == 0){
             $qry = $dbConn->getPDO()->prepare("SELECT * FROM IndividualClass WHERE student_id=:sid AND tutor_id=:tid AND subject_id=:subid");
@@ -42,12 +45,14 @@ class EnrollRequest extends Request
             $row = $qry->fetch(PDO::FETCH_ASSOC);
             var_dump($row);
             if ($row !== false){
-                //flash already enrolled
+                $_SESSION['error'] = "Student already enrolled";
             }else{
-                var_dump($form);
                 IndividualClass::addClass($form);
+                $otherParty = Student::getInstance(Student::getUserId($form['senderId']));
+                $message = 'Your request has been accepted';
+                $curUser->composeMessage($otherParty, $message, 0);
             }
-            //notify student
+
         } else {
             $qry = $dbConn->getPDO()->prepare("SELECT * FROM GroupClass WHERE group_id=:gid AND tutor_id=:tid");
             $qry->execute(array(
@@ -56,7 +61,7 @@ class EnrollRequest extends Request
             ));
             $row = $qry->fetch(PDO::FETCH_ASSOC);
             if ($row !== false){
-                //flash already enrolled
+                $_SESSION['error'] = "Group already enrolled";
             }else{
                 GroupClass::addClass($form);
             }
@@ -69,8 +74,11 @@ class EnrollRequest extends Request
     public function reject($form)
     {
         $this->setState(Rejected::getInstance());
+        $curUser = Tutor::getInstance($_SESSION['user_id']);
         if ($form['type'] == 0){
-            //notify student
+            $otherParty = Student::getInstance(Student::getUserId($form['senderId']));
+            $message = 'Your request has been rejected';
+            $curUser->composeMessage($otherParty, $message, 0);
         } else {
             //notify group
         }
@@ -83,6 +91,5 @@ class EnrollRequest extends Request
         echo $requestId;
         $qry = $dbConn->getPDO()->prepare("DELETE FROM Request WHERE id=:reqid");
         $qry->execute(array(':reqid'=>$requestId));
-        // TODO: Implement removeRequest() method.
     }
 }
