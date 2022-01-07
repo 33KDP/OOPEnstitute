@@ -82,11 +82,10 @@ if (isset($_POST["create"])) {
 
         <div class="row">
         <div class="col"><div class="mb-3">
-            <h5>Do you want to limit your group?</h5>
         <input type="radio"  id="limitY" name="limit" value="yes" onclick="show();">
-        <label for="limitY">Yes</label>
+        <label for="limitY">Customize</label>
         <input type="radio" id="limitN" name="limit" value="no" onclick="hide();">
-        <label for="limitN">No</label>
+        <label for="limitN">Default</label>
         </div></div>
         </div>
 

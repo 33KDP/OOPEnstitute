@@ -33,7 +33,7 @@
 
 ?>
 
-<br/><div><h2>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Group Details</h2></div>
+<div class="mt-4"><h2>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Group Details</h2></div>
 <div class="container w-50">
 
     <div class="container p-5 shadow my-5 rounded-3">
@@ -47,12 +47,12 @@
         <div class="row">
 
             <div class="col-6">
-                <p><strong>District:   </strong>
+                <p><strong>District:</strong>
                 <?= htmlentities($curGroup->getDistrict()) ?></p>
-            </div><br/>
+            </div>
 
             <div class="col-6">
-                <p><strong>Available Slots:   </strong>
+                <p><strong>Available Slots:</strong>
                 <?php
                     $groupID = $_GET['id'];
                     $count = "SELECT COUNT(*) FROM Group_Student WHERE group_id = '$groupID'";
@@ -68,44 +68,46 @@
                     }
                 ?>
                 </p>
-            </div><br/>
+            </div>
 
+        <div class="row">
             <div class="col-6">
-                <p><strong>Admin:   </strong>
+                <p><strong>Admin:</strong>
                 <?php
                     $admin = Student::getInstance(Student::getUserId($curGroup->getAdmin()));
                     echo '<a href="viewStudent.php?sid='.$admin->getStudentId().'" style="text-decoration: none;">'.htmlentities($admin->getFName()).' '.htmlentities($admin->getLName()).'</a>';
                 ?>
                 </p>
-            </div><br/>
-
-            <div class="col-4">
-                <p><strong>Admin Email:   </strong>
-                <?= htmlentities($admin->getEmail()) ?>
-                </p>
-            </div><br/>
-
+            </div>
             <div class="col-6">
-                <p><strong>Admin Contact:   </strong>
+                <p><strong>Admin Email:</strong>
+                <?= '<span>'.htmlentities($admin->getEmail()).'</span>' ?>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <p><strong>Admin Contact:</strong>
                 <?= htmlentities("Not Available") ?>
                 </p>
-            </div><br/>
-
+            </div>
             <div class="col-6">
-                <p><strong>Created Date:   </strong>
+                <p><strong>Created Date:</strong>
                 <?= htmlentities($curGroup->getCreatedDate()) ?>
                 </p>
-            </div><br/>
+            </div>
+        </div>
 
-            <div>
+        <div class="row">
+            <div class="col-6">
                 <strong>Students List:</strong>
                 <?php
                     foreach($curGroup->getStudentList() as $student)
-                        echo '<br><a href="viewStudent.php?sid='.$student->getStudentId().'" style="text-decoration: none;">&ensp; &ensp; &ensp; '.htmlentities($student->getFName()).' '.htmlentities($student->getLName()).'</a> ';
+                        echo '<br><a href="viewStudent.php?sid='.$student->getStudentId().'" style="text-decoration: none;">'.htmlentities($student->getFName()).' '.htmlentities($student->getLName()).'</a>';
                 ?>
-            </div><br/>
-
-            <div><br>
+            </div>
+            <div class="col-6">
                 <p><strong>Description:</strong>
                 <?php
                     if (!empty($curGroup->getDescription()))
@@ -114,7 +116,8 @@
                         echo "No Description";
                 ?>
                 </p>
-            </div><br/>
+            </div>
+        </div>
 
         </div>
         <?php
@@ -124,22 +127,27 @@
             $qry = DBConn::getInstance()->getPDO()->prepare($qry);
             $qry->execute();
 
+            echo '<div class="row mt-3">';
             if (($row_1 = $qry->fetch(PDO::FETCH_ASSOC)) !== false) {
                 $tutor = $row_1['tutor_id'];
                 $curTutor = Tutor::getInstance(Tutor::getUserId($tutor));
                 // tutor availability flag - up
                 echo '
-                    <h5 class="card-title">Tutor: <a href="../Student/viewTutor.php?tid='.$curTutor->getTutorId().'">'.htmlentities($curTutor->getFName()).' '.htmlentities($curTutor->getLName()).'</a> </h5>
-                    <h5 class="card-title">TutorDetails'.$curTutor->getEmail().'</h5>
-                    <h5 class="card-title">TutorCity'.$curTutor->getCity().'</h5>
+                    <div class="col-6">
+                        <strong>Tutor:</strong>
+                        <a href="../Student/viewTutor.php?tid='.$curTutor->getTutorId().'">'.htmlentities($curTutor->getFName()).' '.htmlentities($curTutor->getLName()).'</a>
+                    </div>
                 ';
 
             } else {
                 $tutor = NULL;
-                echo '<br><p class="card-title">No tutor is assigned to this group</p><br/>';
+                echo '
+                    <div class="col-6">
+                        <p class="card-title">No tutor is assigned to this group</p>
+                    </div>';
             }
 
-            echo ' <div style="text-align: center">';
+            echo ' </div><div style="text-align: center" class="mt-4">';
                 if (isset($_GET['sid']) && (!($_GET['type'] == 'view') && (!isset($_GET['tid'])))) {
                     $lastURL = $_SESSION['lastURL'];
                     echo '
@@ -158,10 +166,8 @@
                             <div>';
                         if ($tutor === NULL ) {
                             echo '<button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteEntry">Delete</button>';
+                            echo'<a href="joinClass.php?gid='.$curGroup->getGroupId().'" class="btn btn-primary mx-2">Enroll to a Tutor</a>';
                         }
-
-                    echo'
-                                <a href="joinClass.php?gid='.$curGroup->getGroupId().'" class="btn btn-primary mx-2">Enroll to a Tutor</a>';
                     }
 
                     echo '

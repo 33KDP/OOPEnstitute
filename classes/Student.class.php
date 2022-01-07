@@ -120,7 +120,9 @@ class Student extends User
         $qry->execute(array(':sid'=>$this->studentId));
         while ($row = $qry->fetch(PDO::FETCH_ASSOC)) {
             $user_id = Tutor::getUserId($row['tutor_id']);
-            array_push($enrolledTutors, Tutor::getInstance($user_id));
+            if (!in_array((Tutor::getInstance($user_id)), $enrolledTutors)) {
+                array_push($enrolledTutors, Tutor::getInstance($user_id));
+            }
         }
         return $enrolledTutors;
     }
