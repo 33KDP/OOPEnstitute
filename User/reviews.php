@@ -70,7 +70,13 @@
                 ';
             }
 
+        if ($usertype_id == 1){
             echo '<div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a></div><br/></div>';
+        }
+        else{
+            echo '<div><a href="../tutor/home.php" class="btn btn-primary"> Back Home</a></div><br/></div>';
+        }
+
         ?>
 
 
