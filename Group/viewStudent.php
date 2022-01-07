@@ -19,7 +19,8 @@
                 <?php include "../User/css/style.css"; ?>
             </style>
 
-            <?php require_once "navbar.php";
+            <?php 
+                require_once "../tutor/navbar.php";
                 if (!isset($_GET['sid'])){
                     header("location: ../index.php");
                 }

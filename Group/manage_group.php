@@ -32,7 +32,7 @@ echo '<div class="container">';
                     <div class="card-body">
                         <h5 class="card-title" >'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
                         <h5 class="card-title">Group: 
-                            <a href="groupDetails.php?id= '.$class->getGroupID().' &sid= '.$subject->getId().' &type=view" class=" stretched-link" style="text-decoration: none">'.htmlentities($class->getName()).'</a>
+                            <a href="groupDetails.php?id='.$class->getGroupID().'&sid='.$subject->getId().'&type=view" class=" stretched-link" style="text-decoration: none">'.htmlentities($class->getName()).'</a>
                         </h5>
                     </div>';
 

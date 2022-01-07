@@ -3,6 +3,7 @@
     require_once "../classes/DBConn.class.php";
     require_once "../classes/Tutor.class.php";
     require_once "../classes/Student.class.php";
+    require_once "../classes/GroupClass.class.php";
 
     if (!isset($_SESSION['user_id'])) {
         header("location: ../index.php");
@@ -24,12 +25,29 @@
 
 <body>
 <?php
-    if (isset($_GET['tid'])){
-        require_once "../tutor/navbar.php";
-    }else{
-        require_once "navbar.php";
+    $user_id = $_SESSION['user_id'];
+    $usertype_id = User::getUserType($user_id);     
+        
+    if ($usertype_id == 1) {
+        $curUser = Student::getInstance($user_id);
+        require_once "../Student/navbar.php";
     }
-    $curGroup = new StudentGroup($_GET['id']);
+    else {
+        $curUser = Tutor::getInstance($user_id);
+        require_once "../tutor/navbar.php";
+    }     
+
+    $groupID = $_GET['id'];
+    $qry = "SELECT groupclass.tutor_id FROM groupclass WHERE group_id = '$groupID' ";
+    $qry = DBConn::getInstance()->getPDO()->prepare($qry);
+    $qry->execute();
+
+    if (($row = $qry->fetch(PDO::FETCH_ASSOC)) !== false) {
+        $curClass = new GroupClass($groupID);
+        $curGroup = $curClass->getStudentGroup();
+    }
+    else
+        $curGroup = new StudentGroup($groupID);
 
 ?>
 
@@ -128,8 +146,12 @@
                 $tutor = $row_1['tutor_id'];
                 $curTutor = Tutor::getInstance(Tutor::getUserId($tutor));
                 // tutor availability flag - up
+                if ($usertype_id == 1)
+                    echo '<h5 class="card-title">Tutor: <a href="../Student/viewTutor.php?tid='.$curTutor->getTutorId().'">'.htmlentities($curTutor->getFName()).' '.htmlentities($curTutor->getLName()).'</a> </h5>';
+                else
+                    echo '<h5 class="card-title">Tutor: '.htmlentities($curTutor->getFName()).' '.htmlentities($curTutor->getLName()).'</h5>';
+                
                 echo '
-                    <h5 class="card-title">Tutor: <a href="../Student/viewTutor.php?tid='.$curTutor->getTutorId().'">'.htmlentities($curTutor->getFName()).' '.htmlentities($curTutor->getLName()).'</a> </h5>
                     <h5 class="card-title">TutorDetails'.$curTutor->getEmail().'</h5>
                     <h5 class="card-title">TutorCity'.$curTutor->getCity().'</h5>
                 ';
@@ -140,7 +162,7 @@
             }
 
             echo ' <div style="text-align: center">';
-                if (isset($_GET['sid']) && (!($_GET['type'] == 'view') && (!isset($_GET['tid'])))) {
+                if (isset($_GET['sid']) && (!($_GET['type'] == 'view'))) {
                     $lastURL = $_SESSION['lastURL'];
                     echo '
                         <div>
@@ -150,10 +172,8 @@
                     ';
                 }
 
-                if ($_GET['type'] == 'view' && (!isset($_GET['tid']))) {
-                    $curStudent = Student::getInstance($_SESSION['user_id']);
-
-                    if ($curGroup->getAdmin() == $curStudent->getstudentId()) {
+                if ($_GET['type'] == 'view') {
+                    if (($curUser instanceof Student) && $curGroup->getAdmin() == $curUser->getstudentId()) {
                         echo '
                             <div>';
                         if ($tutor === NULL ) {
@@ -161,14 +181,14 @@
                         }
 
                     echo'
-                                <a href="joinClass.php?gid='.$curGroup->getGroupId().'" class="btn btn-primary mx-2">Enroll to a Tutor</a>';
+                        <a href="joinClass.php?gid='.$curGroup->getGroupId().'" class="btn btn-primary mx-2">Enroll to a Tutor</a>';
                     }
 
-                    echo '
-                            <a href="forum.php?id='.$curGroup->getGroupId().'" class="btn btn-dark">Forum</a>
-                        </div>
-                    ';
                 }
+                echo '
+                    <a href="forum.php?id='.$curGroup->getGroupId().'" class="btn btn-dark">Forum</a>
+                    </div>
+                ';
             echo '</div>'
         ?>
 

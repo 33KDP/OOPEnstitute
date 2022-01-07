@@ -1,12 +1,15 @@
 <?php
 require_once "_Class.class.php";
 require_once "DBConn.class.php";
+require_once "StudentGroup.class.php";
+
 class GroupClass extends _Class
 {
     /**
      * GroupClass constructor.
      */
     private $groupId;
+    private $studentGroup;
 
     function __construct($class_id)
     {
@@ -21,6 +24,7 @@ class GroupClass extends _Class
         $this->groupId = $row['id'];
 
         parent::__construct($class_id, $tutor_id, $subject_id);
+        $this->studentGroup = new StudentGroup($class_id);
     }
 
     public static function addClass($form){
@@ -46,5 +50,9 @@ class GroupClass extends _Class
         return $this->groupId;
     }
 
+    public function getStudentGroup()
+    {
+        return $this->studentGroup;
+    }
 
 }

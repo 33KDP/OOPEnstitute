@@ -44,7 +44,7 @@
 
         <?php
             echo '
-                <a href="groupDetails.php?id= '.$curGroup->getGroupID().' &sid= '.$curGroup->getSubjectId().' &type=view" class="btn btn-primary">Back</a><h4 style="display:inline" class="mx-3" >'.
+                <a href="groupDetails.php?id='.$curGroup->getGroupID().'&sid='.$curGroup->getSubjectId().'&type=view" class="btn btn-primary">Back</a><h4 style="display:inline" class="mx-3" >'.
                     "Forum - ".htmlentities($curGroup->getName())
                 .'</h4><hr class="m-1" ><br/>
             ';
