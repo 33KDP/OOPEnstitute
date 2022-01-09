@@ -64,8 +64,11 @@ class EnrollRequest extends Request
                 $_SESSION['error'] = "Group already enrolled";
             }else{
                 GroupClass::addClass($form);
+                $curGroup = new StudentGroup($form['senderId']);
+                $forum = $curGroup->getForum();
+                $message = 'Your request has been accepted';
+                $curUser->composeMessage($forum, $message, 1);
             }
-            //notify group
         }
         self::removeRequest($this->getId());
     }
@@ -80,7 +83,10 @@ class EnrollRequest extends Request
             $message = 'Your request has been rejected';
             $curUser->composeMessage($otherParty, $message, 0);
         } else {
-            //notify group
+            $curGroup = new StudentGroup($form['senderId']);
+            $forum = $curGroup->getForum();
+            $message = 'Your request has been rejected';
+            $curUser->composeMessage($forum, $message, 1);
         }
         self::removeRequest($this->getId());
     }

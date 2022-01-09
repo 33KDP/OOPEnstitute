@@ -35,7 +35,6 @@ echo '<div class="container">';
                             <a href="groupDetails.php?id='.$class->getGroupID().'&sid='.$subject->getId().'&type=view" class=" stretched-link" style="text-decoration: none">'.htmlentities($class->getName()).'</a>
                         </h5>
                     </div>';
-
              if (($class->isClass()) !== false) {
                  echo '<div class=" my-2"><span class="badge rounded-pill bg-success mx-2">Tutor Assigned</span>';
 

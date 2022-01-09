@@ -38,16 +38,16 @@
     }     
 
     $groupID = $_GET['id'];
-    $qry = "SELECT groupclass.tutor_id FROM groupclass WHERE group_id = '$groupID' ";
+    $qry = "SELECT groupclass.tutor_id, id FROM groupclass WHERE group_id = '$groupID' ";
     $qry = DBConn::getInstance()->getPDO()->prepare($qry);
     $qry->execute();
 
     if (($row = $qry->fetch(PDO::FETCH_ASSOC)) !== false) {
-        $curClass = new GroupClass($groupID);
+        $curClass = new GroupClass($row['id']);
         $curGroup = $curClass->getStudentGroup();
-    }
-    else
+    } else {
         $curGroup = new StudentGroup($groupID);
+    }
 
 ?>
 
@@ -93,7 +93,10 @@
                 <p><strong>Admin:</strong>
                 <?php
                     $admin = Student::getInstance(Student::getUserId($curGroup->getAdmin()));
+                if ($usertype_id == 1)
                     echo '<a href="viewStudent.php?sid='.$admin->getStudentId().'" style="text-decoration: none;">'.htmlentities($admin->getFName()).' '.htmlentities($admin->getLName()).'</a>';
+                else
+                    echo '<a href="../tutor/viewStudent.php?sid='.$admin->getStudentId().'" style="text-decoration: none;">'.htmlentities($admin->getFName()).' '.htmlentities($admin->getLName()).'</a>';
                 ?>
                 </p>
             </div>
@@ -145,25 +148,24 @@
         <?php
             $groupid = $curGroup->getGroupID();
 
-            $qry = "SELECT groupclass.tutor_id FROM groupclass WHERE group_id = '$groupid' ";
+            $qry = "SELECT tutor_id FROM groupclass WHERE group_id = '$groupid'";
             $qry = DBConn::getInstance()->getPDO()->prepare($qry);
             $qry->execute();
-
             echo '<div class="row mt-3">';
             if (($row_1 = $qry->fetch(PDO::FETCH_ASSOC)) !== false) {
                 $tutor = $row_1['tutor_id'];
                 $curTutor = Tutor::getInstance(Tutor::getUserId($tutor));
                 // tutor availability flag - up
-                if ($usertype_id == 1)
+                if ($usertype_id == 1) {
                     echo '
                         <div class="col-6">
                             <strong>Tutor:</strong>
-                            <a href="../Student/viewTutor.php?tid='.$curTutor->getTutorId().'">'.htmlentities($curTutor->getFName()).' '.htmlentities($curTutor->getLName()).'</a>
+                            <a href="../Student/viewTutor.php?tid=' . $curTutor->getTutorId() . '">' . htmlentities($curTutor->getFName()) . ' ' . htmlentities($curTutor->getLName()) . '</a>
                         </div>
                     ';
-                else
-                    echo '<h5 class="card-title">Tutor: '.htmlentities($curTutor->getFName()).' '.htmlentities($curTutor->getLName()).'</h5>';
-                
+                }else {
+                    echo '<strong>Tutor:</strong><p>' . htmlentities($curTutor->getFName()) . ' ' . htmlentities($curTutor->getLName()) . '</p>';
+                }
             } else {
                 $tutor = NULL;
                 echo '

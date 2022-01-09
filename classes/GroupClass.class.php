@@ -24,7 +24,7 @@ class GroupClass extends _Class
         $this->groupId = $row['id'];
 
         parent::__construct($class_id, $tutor_id, $subject_id);
-        $this->studentGroup = new StudentGroup($class_id);
+        $this->studentGroup = new StudentGroup($this->groupId);
     }
 
     public static function addClass($form){
