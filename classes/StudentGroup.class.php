@@ -127,10 +127,9 @@ class StudentGroup implements IStudentGroup
 
     public function isClass() {
         $dbConn = DBConn::getInstance();
-        $qry = $dbConn->getPDO()->prepare("SELECT *  FROM GroupClass  WHERE id=:gid");
+        $qry = $dbConn->getPDO()->prepare("SELECT *  FROM GroupClass  WHERE group_id=:gid");
         $qry->execute(array(':gid' => $this->groupId));
         $row = $qry->fetch(PDO::FETCH_ASSOC);
-
         if ($row !== false) {
             return true;
         } else {

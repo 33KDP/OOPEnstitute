@@ -41,19 +41,19 @@
 
                 echo'
                     <div class="container p-5">
-                        <div>Full Name : '.
+                        <div><strong>Full Name : </strong>'.
                             $student->getFName().' '.$student->getLName()
                         .'</div>
-                        <div>Email : '.
+                        <div><strong>Email : </strong>'.
                             $student->getEmail()
                         .'</div>
-                        <div>Grade : '.
+                        <div><strong>Grade : </strong>'.
                             $student->getgrade()
                         .'</div>                  
-                        <div>District : '.
+                        <div><strong>District : </strong>'.
                             $student->getDistrict()
                         .'</div>
-                        <div>City : '.
+                        <div><strong>City : </strong>'.
                             $student->getCity()
                         .'</div><br>
 
