@@ -26,9 +26,7 @@
             ';
         foreach ($curTutor->getGrpClasses() as $class) {
             $subject = Subject::getInstance($class->getSubject());
-
-            $groupClass = new GroupClass($class->getGroupId());
-            $studentGroup = $groupClass->getStudentGroup();
+            $studentGroup = $class->getStudentGroup();
             echo '
                 <div class="col-4">
                     <div class="card mx-auto rounded-3 border-0 shadow my-3">

@@ -175,7 +175,7 @@
             }
 
             echo ' </div><div style="text-align: center" class="mt-4">';
-                if (isset($_GET['sid']) && (!($_GET['type'] == 'view'))) {
+                if (isset($_GET['sid']) && (($_GET['type'] == 'enroll'))) {
                     $lastURL = $_SESSION['lastURL'];
                     echo '
                         <div>
@@ -183,9 +183,7 @@
                             <a href="../Group/submit.php?id=' . $_GET['id'] . '&type=enroll" class="btn btn-primary mx-2">Join</a>
                         </div>
                     ';
-                }
-
-                if ($_GET['type'] == 'view') {
+                }elseif ($_GET['type'] == 'view') {
                     if (($curUser instanceof Student) && $curGroup->getAdmin() == $curUser->getstudentId()) {
                         echo '
                             <div>';
@@ -194,11 +192,17 @@
                             echo'<a href="joinClass.php?gid='.$curGroup->getGroupId().'" class="btn btn-primary mx-2">Enroll to a Tutor</a>';
                         }
                     }
-                }
-                echo '
+                    echo '
                     <a href="forum.php?id='.$curGroup->getGroupId().'" class="btn btn-dark">Forum</a>
                     </div>
                 ';
+                } else {
+                    echo '
+                    <a href="forum.php?id='.$curGroup->getGroupId().'" class="btn btn-dark">Forum</a>
+                    </div>
+                ';
+                }
+
             echo '</div>'
         ?>
 

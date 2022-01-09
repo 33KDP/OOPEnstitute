@@ -48,31 +48,29 @@ if (empty($_GET['subId'])) {
             $count->execute();
             $countofstd = $count->fetchColumn();
 
-            echo '<div class="card">
-                      <div class="card-header">
-                        ' . $proxy->getName() . '
-                      </div>
+            echo '<div class="card shadow border-0">
                       <div class="card-body">
-                        <h5 class="card-title">District: ' . $proxy->getDistrict() . '</h5>';
+                      <h5 class="card-title">' . $proxy->getName() . '</h5>
+                      <p><strong>District: </strong>' . $proxy->getDistrict() . '<br>';
 
             if ($proxy->getCapacity() > 10000) {
-                echo '<h5 class="card-title">Available: Unlimited Slots Available</h5>';
+                echo '<strong>Available</strong>: Unlimited Slots Available<br>';
             } else {
-                echo '<h5 class="card-title">Available: ' . ($proxy->getCapacity() - $countofstd) . ' /' . $proxy->getCapacity() . '</h5>';
+                echo '<strong>Available: </strong>' . ($proxy->getCapacity() - $countofstd) . ' /' . $proxy->getCapacity() . '<br>';
             }
-            echo ' <h5 class="card-title">Created Date: ' . $proxy->getCreatedDate() . '</h5>';
+            echo ' <strong>Created Date: </strong>' . $proxy->getCreatedDate() . '<br>';
 
             if (($row_1 = $qry->fetch(PDO::FETCH_ASSOC)) !== false) {
                 $tutor = $row_1['tutor_id'];
                 $curTutor = Tutor::getInstance(Tutor::getUserId($tutor));
                 // tutor availability flag - up
-                echo '<h5 class="card-title">Tutor: <a href="../Student/viewTutor.php?tid=' . $curTutor->getTutorId() . '">' . htmlentities($curTutor->getFName()) . ' ' . htmlentities($curTutor->getLName()) . '</a> </h5>';
+                echo '<strong>Tutor:</strong> <a href="../Student/viewTutor.php?tid=' . $curTutor->getTutorId() . '">' . htmlentities($curTutor->getFName()) . ' ' . htmlentities($curTutor->getLName()) . '</a> </p>';
             } else {
                 $tutor = NULL;
-                echo '<h5 class="card-title">No tutor is assigned to this group</h5>';
+                echo '<strong>No tutor is assigned to this group</strong></p>';
             }
 
-            echo '<a href="groupDetails.php?id=' . $proxy->getGroupId() . '&sid=' . $proxy->getSubjectId() . '&type=enroll"><button>View</button></a>
+            echo '<a href="groupDetails.php?id=' . $proxy->getGroupId() . '&sid=' . $proxy->getSubjectId() . '&type=enroll"><button class="btn btn-primary">View</button></a>
     
                     <!--iff group availability flag - up-->
                     <a href="submit.php?id=' . $proxy->getGroupId() . '" ><button class="btn btn-primary">Join</button></a>
