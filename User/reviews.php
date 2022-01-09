@@ -32,15 +32,16 @@
 
         <?php
             echo'
-                <div class="container p-5">
-                    <h2 style="display:inline">Reviews &emsp; &emsp; &emsp;</h2>
+                <div class="container">
+                    <br>
+                    <h1 style="display:inline">Reviews &emsp; &emsp; &emsp;</h1>
             ';
 
             if (null != $curUser->getRating())
                 echo '
                     <h4 style="display:inline">Overall Rating : '.
                         $curUser->getRating()
-                    .' Stars</h4><br><hr>
+                    .' Stars</h4><br><br><hr>
                 ';
 
             foreach ($reviews as $review) {
@@ -70,12 +71,10 @@
                 ';
             }
 
-        if ($usertype_id == 1){
+        if ($usertype_id == 1)
             echo '<div><a href="../Student/index.php" class="btn btn-primary"> Back Home</a></div><br/></div>';
-        }
-        else{
+        else
             echo '<div><a href="../tutor/home.php" class="btn btn-primary"> Back Home</a></div><br/></div>';
-        }
 
         ?>
 

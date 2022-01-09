@@ -18,23 +18,25 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 <body>
 
 <?php
-echo '<div class="container">';
-    echo '<br/><h1>All Groups</h1><br/>';
-    echo '<br/>';
-
-    echo '<div class="container">';
+echo '
+    <div class="container">
+        <br>
+        <h1>All Groups</h1>
+        <br>
+        <div class="container px-0">
+    ';
         foreach ($curStudent->getGroup() as $class) {
             $subject = Subject::getInstance($class->getSubjectId());
 
             echo '
-            
                 <div class="card mx-auto rounded-3 border-0 shadow my-3">
                     <div class="card-body">
-                        <h5 class="card-title" >'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
-                        <h5 class="card-title">Group: 
+                        <h5 class="card-title">
                             <a href="groupDetails.php?id='.$class->getGroupID().'&sid='.$subject->getId().'&type=view" class=" stretched-link" style="text-decoration: none">'.htmlentities($class->getName()).'</a>
                         </h5>
-                    </div>';
+                        <h5 class="card-title" >'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
+                    </div>
+            ';
 
              if (($class->isClass()) !== false) {
                  echo '<div class=" my-2"><span class="badge rounded-pill bg-success mx-2">Tutor Assigned</span>';
@@ -47,7 +49,7 @@ echo '<div class="container">';
                 echo '<span class="badge rounded-pill bg-danger">Admin</span>';
             }
                 echo'</div>
-                </div></a>';
+                </div>';
         }?>
 
     </div><br/>

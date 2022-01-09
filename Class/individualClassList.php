@@ -18,11 +18,13 @@ $curStudent=  Student::getInstance($_SESSION['user_id']);
 <body>
 
     <?php
-        echo '<div class="container">';
-            echo '<br/><h1>All Individual Classes</h1>';
-            echo '<br/>';
+        echo '
+            <div class="container">
+                <br/><h1>All Individual Classes</h1>
+                <br/>
+        ';
 
-            echo '<div class="container">';
+            echo '<div class="container px-0">';
                 foreach ($curStudent->getIndClasses() as $class) {
                     $subject = Subject::getInstance($class->getSubject());
                     $tutor = Tutor::getInstance(Tutor::getUserId($class->getTutor()));

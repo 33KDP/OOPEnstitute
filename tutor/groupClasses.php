@@ -41,6 +41,16 @@
                     </div>
                 </div>
             ';
+            // echo '
+            //     <div class="card mx-auto rounded-3 border-0 shadow my-3">
+            //         <div class="card-body">
+            //             <h5 class="card-title">
+            //                 <a href="groupDetails.php?id='.$class->getGroupID().'&sid='.$subject->getId().'&type=view" class=" stretched-link" style="text-decoration: none">'.htmlentities($class->getName()).'</a>
+            //             </h5>
+            //             <h5 class="card-title" >'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
+            //         </div>
+            //     </div>
+            // ';
         }
         echo '
                 </div>

@@ -17,24 +17,29 @@
 
 <body>
     <div class="container">
-        <h1>Enrolled Tutors</h1><br/>
-                <?php
-                    foreach ($enrolledTutors as $tutor) {
-                        echo '<div class="card mx-auto rounded-3 border-0 shadow my-3">';
-                            echo '<div class="card-body">';
-                            echo '<a href="viewTutor.php?tid='. $tutor->getTutorId() .'">'.
-                                    htmlentities($tutor->getFName()).' '.htmlentities($tutor->getLName())
-                                .'</a> &emsp;
-                                <div class="text-end" >
-                                    <a href="../User/message.php?receiver_id='.
+        <br>
+        <h1>Enrolled Tutors</h1>
+        <br>
+        <?php
+            foreach ($enrolledTutors as $tutor) {
+                echo '
+                    <div class="card mx-auto rounded-3 border-0 shadow my-3">
+                        <div class="card-body">
+                            <h5 class="my-0"><a href="viewTutor.php?tid='.
+                                $tutor->getTutorId()
+                                .'" style="text-decoration: none; color:black">'.
+                                $tutor->getFName().' '.$tutor->getLName()
+                            .'</a></h5> &emsp;
+                            <div class="text-end" >
+                                <a href="../User/message.php?receiver_id='.
                                     $tutor->getId()
-                                    .'">Message</a> &emsp;
-                                </div>
+                                .'" class="btn btn-primary">Message</a> &emsp;
                             </div>
                         </div>
-                        ';
-                    }
-                ?>
+                    </div>
+                ';
+            }
+        ?>
 
     </div>
 </body>
