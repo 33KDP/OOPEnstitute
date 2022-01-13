@@ -46,5 +46,16 @@ class IndividualClass extends _Class
         return $this->student_id;
     }
 
+    public static function disenroll($form){
+        $qry = DBConn::getInstance()->getPDO()->prepare("DELETE FROM IndividualClass WHERE id=:clsid");
+        $qry->execute(array(
+            ':clsid' => $form['classid']
+        ));
+        $curUser = Student::getInstance($_SESSION['user_id']);
+        $otherParty = Tutor::getInstance(Tutor::getUserId($form['tutorid']));
+        $message = 'I have disenrolled from your class';
+        $curUser->composeMessage($otherParty, $message, 0);
+    }
+
 
 }
