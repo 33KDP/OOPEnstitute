@@ -37,14 +37,9 @@
     $curUser->readMessages($otherParty);
     $messages = $curUser->getMessageList();
 
-?>
+    require_once "head.php";
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>E-nstitute</title>
-        <link rel="stylesheet" href="css/messageStyle.css">
-    </head>
+?>
 
     <body>
         <div class="container py-3 px-0" >
