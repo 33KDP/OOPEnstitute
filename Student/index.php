@@ -58,7 +58,7 @@ echo '<br/>
                                 <div class="card-body">
                                     <h5 class="card-title">Manage Individual Classes</h5>
                                     <p class="card-text">Manage all individual classes</p>
-                                    <?= '<a href="../Class/individualClassList.php?id='.$_SESSION['user_id'].'" class="btn btn-primary">View</a>'?>
+                                    <?= '<a href="../Class/individualClassList.php?id='.$_SESSION['user_id'].'" class="btn btn-primary">Manage</a>'?>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@ echo '<br/>
                                 <div class="card-body">
                                     <h5 class="card-title">Manage Requests</h5>
                                     <p class="card-text">View requests from other students to join your groups from here</p>
-                                    <a href="../Group/manage_group_request.php" class="btn btn-primary">View</a>
+                                    <a href="../Group/manage_group_request.php" class="btn btn-primary">Manage</a>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@ echo '<br/>
                                 <div class="card-body">
                                     <h5 class="card-title">Join a Group</h5>
                                     <p class="card-text">Search student groups and join groups that you like from here</p>
-                                    <a href="../Group/join_group.php" class="btn btn-primary">View</a>
+                                    <a href="../Group/join_group.php" class="btn btn-primary">Join</a>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@ echo '<br/>
                                 <div class="card-body">
                                     <h5 class="card-title">Create a Group</h5>
                                     <p class="card-text">Create groups with conditions and become admin from here</p>
-                                    <a href="../Group/create_group.php" class="btn btn-primary">View</a>
+                                    <a href="../Group/create_group.php" class="btn btn-primary">Create</a>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@ echo '<br/>
                                 <div class="card-body">
                                     <h5 class="card-title">Manage all Groups</h5>
                                     <p class="card-text">Manage all groups that you have enrolled or created from here</p>
-                                    <a href="../Group/manage_group.php" class="btn btn-primary">View</a>
+                                    <a href="../Group/manage_group.php" class="btn btn-primary">Manage</a>
                                 </div>
                             </div>
                         </div>
