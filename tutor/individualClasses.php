@@ -30,7 +30,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">'.htmlentities($subject->getName()).': Grade'.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' medium</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">
-                                    <a href="../tutor/viewStudent.php?sid='.$class->getStudentId().'">'.htmlentities($student->getFName()).': '.htmlentities($student->getLName()).'</a>
+                                    <a style="text-decoration: none;" href="../tutor/viewStudent.php?sid='.$class->getStudentId().'">'.htmlentities($student->getFName()).' '.htmlentities($student->getLName()).'</a>
                                 </h6>
                             </div>
                         </div>';

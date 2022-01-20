@@ -52,13 +52,15 @@
             <?php
                 if ($usertype_id == 1)
                     echo '
-                        <a href="../Student/conversations.php" class="btn btn-primary">Back</a><h4 style="display:inline" class="mx-3" >'.
+                        <button class="btn btn-primary" onclick="history.back()">Back</button>
+                        <h4 style="display:inline" class="mx-3" >'.
                             htmlentities($otherParty->getFName()).' '.htmlentities($otherParty->getLName())
                         .'</h4><hr class="m-1" ><br/>
                     ';
                 else
                     echo '
-                        <a href="../tutor/conversations.php" class="btn btn-primary">Back</a><h4 style="display:inline" class="mx-3" >'.
+                        <button class="btn btn-primary" onclick="history.back()">Back</button>
+                        <h4 style="display:inline" class="mx-3" >'.
                             htmlentities($otherParty->getFName()).' '.htmlentities($otherParty->getLName())
                         .'</h4><hr class="m-1" ><br/>
                     ';

@@ -33,22 +33,12 @@
                         <div class="card-body">
                             <h5 class="card-title">'.htmlentities($subject->getName()).': Grade'.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' medium</h5>
                             <h6 class="card-subtitle mb-2 text-muted">
-                                <a href="../Group/groupDetails.php?id='.$class->getGroupId().'&sid='.$subject->getId().'&type=view">'.htmlentities($studentGroup->getName()).'</a>
+                                <a style="text-decoration: none;" href="../Group/groupDetails.php?id='.$class->getGroupId().'&sid='.$subject->getId().'&type=view">'.htmlentities($studentGroup->getName()).'</a>
                             </h6>
                         </div>
                     </div>
                 </div>
             ';
-            // echo '
-            //     <div class="card mx-auto rounded-3 border-0 shadow my-3">
-            //         <div class="card-body">
-            //             <h5 class="card-title">
-            //                 <a href="groupDetails.php?id='.$class->getGroupID().'&sid='.$subject->getId().'&type=view" class=" stretched-link" style="text-decoration: none">'.htmlentities($class->getName()).'</a>
-            //             </h5>
-            //             <h5 class="card-title" >'.htmlentities($subject->getName()).': Grade '.htmlentities($subject->getGrade()).', '.htmlentities($subject->getMedium()).' Medium</h5>
-            //         </div>
-            //     </div>
-            // ';
         }
         echo '
                 </div>
