@@ -75,7 +75,7 @@ if (isset($_POST["create"])) {
         <div class="row">
             <div class="col"><div class="mb-3">
                 <label for="search" class="form-label">Subject</label>
-                <input class="form-control me-2 subject" type="search" placeholder="Search subjects" id="search" name="search" aria-label="Search">
+                <input class="form-control me-2 subject" type="search" placeholder="Search subjects" id="search" name="search" aria-label="Search" required>
                 <input type="hidden" name="subId" id="subId">
             </div></div>
         </div>
@@ -110,7 +110,7 @@ if (isset($_POST["create"])) {
 
             <div class="col"><div class="mb-3" >
                 <label class="form-label" >Maximum Students</label>
-                <input type="number" name="maxsd" class="form-control" min="2" >
+                <input type="number" name="maxsd" class="form-control" min="2" required>
             </div></div>
 
             <div class="col"><div class="mb-3"></div></div>

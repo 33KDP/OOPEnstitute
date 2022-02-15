@@ -59,7 +59,7 @@ class Student extends User
         while($row = $qry->fetch(PDO::FETCH_ASSOC)) {
             array_push($classes, new IndividualClass($row['id']));
         }
-        return $classes;
+        return $classes; //return as an object array
     }
 
     public function getGroupClasses(){

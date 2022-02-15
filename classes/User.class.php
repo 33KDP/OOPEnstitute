@@ -336,6 +336,4 @@ abstract class User
     }
 
     public abstract function getIndClasses();
-
-
 }

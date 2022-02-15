@@ -119,6 +119,7 @@ require_once "navbar.php";
             </div>
             <div>
                 <button type="submit" name="set" class="btn btn-primary">Edit</button>
+                <button class="btn btn-dark mx-2" name="Cancel" value="Cancel" href="index.php"><a style="text-decoration:none; color: white; " href="index.php">Cancel</a> </button>
             </div>
             <input type="hidden" name="studentid" value="<?= $curStudent->getstudentId() ?>">
         </form>
@@ -154,7 +155,7 @@ require_once "navbar.php";
             
             <div class="mb-3 py-3"> 
                 <button class="btn btn-danger " type="submit" name="reset" >Change password</button>
-                <button class="btn btn-dark mx-2" name="Cancel" value="Cancel" href="home.php">Cancel</button>
+                <button class="btn btn-dark mx-2" name="Cancel" value="Cancel" href="index.php"><a style="text-decoration:none; color: white; " href="index.php">Cancel</a> </button>
             </div>   
         </form>
     </div>
